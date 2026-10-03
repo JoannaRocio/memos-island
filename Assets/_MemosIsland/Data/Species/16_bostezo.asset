@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: f9962a02701068a479657f03657bb761, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Bosque Susurro (solo de noche)
   description: "Duerme todo el d\xEDa y sale de noche. Si bosteza cerca tuyo, es
     casi imposible no bostezar tambi\xE9n."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: b1a02ad31bd3f194a9031a3dbf804342, type: 3}
   - {fileID: 21300000, guid: db02df36f9b7372439def8191cb4462e, type: 3}
+  headAnchor: {x: 20, y: 13}
+  neckAnchor: {x: 17, y: 22}

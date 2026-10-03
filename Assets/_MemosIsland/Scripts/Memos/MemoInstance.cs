@@ -54,6 +54,18 @@ namespace MemosIsland.Memos
 
         /// <summary>Ánimo de 0 (triste) a 100 (feliz) → 0,95 … 1,05.</summary>
         public static float MoodFactor(int mood) => Mathf.Lerp(0.95f, 1.05f, Mathf.Clamp01(mood / 100f));
+
+        /// <summary>Puntos mínimos para estar en ese nivel.</summary>
+        public static int MinPointsFor(TrustLevel level) => level switch
+        {
+            TrustLevel.Hostile => -100,
+            TrustLevel.Fear => 0,
+            TrustLevel.Distrust => 100,
+            TrustLevel.Neutral => 250,
+            TrustLevel.Trusting => 450,
+            TrustLevel.Friend => 700,
+            _ => 1000,
+        };
     }
 
     /// <summary>Un Memo concreto del jugador (o de un rival): lo que se guarda en la partida.</summary>
@@ -96,11 +108,33 @@ namespace MemosIsland.Memos
         [Tooltip("Lo liberaste de un collar de Ápice.")]
         public bool rescued;
 
+        [Header("Progreso (Fase 5)")]
+        public int xp;
+        [Tooltip("Si canceló la evolución en este nivel, no vuelve a intentarlo hasta el próximo.")]
+        public int cancelledEvolutionAtLevel;
+        public long rebelUntilTicks;
+        public TrustLevel rebelFrom;
+        public bool grewTogether;
+
+        [Header("Equipamiento (Fase 5)")]
+        public string equipmentId;
+        public string amuletId;
+        public string accessoryId;
+        public System.Collections.Generic.List<string> accessoriesTried = new();
+
+        [Tooltip("Legendarios hostiles: de día se van del refugio hasta esta hora.")]
+        public long awayUntilTicks;
+
         public MemoSpecies Species => MemoDatabase.Instance != null ? MemoDatabase.Instance.GetSpecies(speciesId) : null;
         public Temperament Temperament => MemoDatabase.Instance != null ? MemoDatabase.Instance.GetTemperament(temperamentId) : null;
         public string DisplayName => string.IsNullOrEmpty(nickname) ? Species?.displayName ?? speciesId : nickname;
         public TrustLevel TrustLevel => TrustRules.LevelFor(trust);
-        public ComputedStats Stats => ComputedStats.For(Species.baseStats, level, Temperament);
+        public ItemData Equipment => MemoDatabase.Instance?.GetItem(equipmentId);
+        public ItemData Amulet => MemoDatabase.Instance?.GetItem(amuletId);
+        public ItemData Accessory => MemoDatabase.Instance?.GetItem(accessoryId);
+        public ComputedStats Stats =>
+            ComputedStats.For(EquipmentRules.WithEquipment(Species.baseStats, Equipment), level, Temperament);
+        public bool IsRebel => Progression.IsRebel(this, DateTime.Now);
 
         public Sprite[] WorldFrames
         {

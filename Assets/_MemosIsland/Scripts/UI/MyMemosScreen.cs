@@ -8,7 +8,7 @@ namespace MemosIsland.UI
 {
     /// <summary>
     /// "Mis Memos": todos tus Memos y el diario de vínculo de cada uno (GDD §11).
-    /// ↑↓ elegir · ←→ página (Vínculo, Recuerdos, Amigos) · A acciones (equipo, compañero) · B cerrar.
+    /// ↑↓ elegir · ←→ página (Vínculo, Recuerdos, Amigos, Equipo) · A acciones (equipo, compañero, equipar) · B cerrar.
     /// </summary>
     public class MyMemosScreen : MonoBehaviour
     {
@@ -21,7 +21,7 @@ namespace MemosIsland.UI
 
         const float Ppu = PixelFont.PixelsPerUnit;
         const int VisibleRows = 9, RowHeight = 11, ListTop = 50;
-        static readonly string[] PageNames = { "Vínculo", "Recuerdos", "Amigos" };
+        static readonly string[] PageNames = { "Vínculo", "Recuerdos", "Amigos", "Equipo" };
         static readonly Color Dark = new Color32(0x33, 0x3c, 0x57, 0xff);
         static readonly Color Gray = new Color32(0x56, 0x6c, 0x86, 0xff);
         static readonly Color Light = new Color32(0x94, 0xb0, 0xc2, 0xff);
@@ -123,6 +123,7 @@ namespace MemosIsland.UI
             {
                 inTeam ? "Sacar del equipo" : "Poner en el equipo",
                 isCompanion ? "Dejar en el refugio" : "Que me acompañe",
+                "Equipar",
                 "Volver",
             };
             _actionsOpen = true;
@@ -133,6 +134,11 @@ namespace MemosIsland.UI
                 {
                     if (!state.ToggleTeam(memo))
                         root.Dialogue.Show(new[] { inTeam ? "El equipo no puede quedar vacío." : "El equipo ya tiene 6 Memos." });
+                }
+                else if (i == 2)
+                {
+                    ChooseSlot(memo);
+                    return;
                 }
                 else if (i == 1)
                 {
@@ -151,6 +157,68 @@ namespace MemosIsland.UI
                 _memos = state.team.Concat(state.refuge).ToList();
                 _selected = Mathf.Clamp(_memos.IndexOf(memo), 0, _memos.Count - 1);
                 Refresh();
+            }, labels.Count - 1);
+        }
+
+        // ------------------------------------------------------------------ Equipar
+
+        void ChooseSlot(MemoInstance memo)
+        {
+            var root = GameRoot.Instance;
+            var slots = new[] { ItemKind.Equipment, ItemKind.Amulet, ItemKind.Accessory };
+            var labels = new List<string>
+            {
+                $"Equipo: {memo.Equipment?.displayName ?? "-"}",
+                $"Amuleto: {memo.Amulet?.displayName ?? "-"}",
+                $"Accesorio: {memo.Accessory?.displayName ?? "-"}",
+                "Volver",
+            };
+            _actionsOpen = true;
+            root.Dialogue.ShowChoice($"¿Qué le ponés a {memo.DisplayName}?", labels, i =>
+            {
+                if (i >= slots.Length)
+                {
+                    _actionsOpen = false;
+                    Refresh();
+                    return;
+                }
+                ChooseItem(memo, slots[i]);
+            }, labels.Count - 1);
+        }
+
+        void ChooseItem(MemoInstance memo, ItemKind slot)
+        {
+            var root = GameRoot.Instance;
+            var state = root.State;
+            var db = MemoDatabase.Instance;
+            var owned = state.inventory.Select(st => db.GetItem(st.id)).Where(it => it != null && it.kind == slot).ToList();
+            var labels = owned.Select(it => it.displayName).ToList();
+            labels.Add("Quitar");
+            labels.Add("Volver");
+            root.Dialogue.ShowChoice(owned.Count > 0 ? "¿Cuál?" : "No tenés objetos de ese tipo.", labels, i =>
+            {
+                _actionsOpen = false;
+                if (i == labels.Count - 1) { Refresh(); return; }
+                var pages = new List<string>();
+                if (i == labels.Count - 2)
+                {
+                    state.Equip(memo, slot, null);
+                }
+                else
+                {
+                    var item = owned[i];
+                    state.Equip(memo, slot, item.id);
+                    pages.Add($"{memo.DisplayName} ahora tiene {item.displayName}. {item.description}");
+                    if (slot == ItemKind.Accessory)
+                    {
+                        var r = MemoCare.TryAccessory(memo, item);
+                        if (!string.IsNullOrEmpty(r.message)) pages.Add(r.message);
+                        if (r.newMemory) World.MemoCareMenu.AddMemoryPages(memo, r.level, pages);
+                    }
+                }
+                _page = 3;
+                Refresh();
+                if (pages.Count > 0) root.Dialogue.Show(pages);
             }, labels.Count - 1);
         }
 
@@ -193,12 +261,13 @@ namespace MemosIsland.UI
             {
                 _portrait.sprite = memo.RaceFrames is { Length: > 0 } f ? f[0] : null;
                 var temperament = memo.Temperament != null ? memo.Temperament.displayName : "-";
-                _subtitle.SetText($"{species?.displayName} Nv.{memo.level}\n{temperament}");
+                string xp = memo.level >= Progression.MaxLevel ? "Nivel máximo" : $"Exp {memo.xp}/{Progression.XpToNext(memo.level)}";
+                _subtitle.SetText($"{species?.displayName} Nv.{memo.level}\n{xp}\n{temperament}");
                 var level = memo.TrustLevel;
                 int filled = Mathf.Max(0, (int)level);
                 _hearts.SetText(new string('♥', filled) + new string('·', 6 - filled));
                 _trustText.SetColor(level <= TrustLevel.Fear ? Red : level >= TrustLevel.Friend ? Green : Dark);
-                _trustText.SetText(TrustRules.Name(level));
+                _trustText.SetText(TrustRules.Name(level) + (memo.IsRebel ? " · Rebelde" : ""));
                 var needs = new[] { Need.Hunger, Need.Sleep, Need.Fun, Need.Social };
                 for (int i = 0; i < needs.Length; i++)
                 {
@@ -216,6 +285,19 @@ namespace MemosIsland.UI
                 memories.Reverse(); // el más nuevo primero
                 var text = memories.Count > 0 ? string.Join("\n\n", memories) : "Todavía no recuerda nada con vos.";
                 var lines = font.Wrap(text, 124);
+                _pageText.SetText(string.Join("\n", lines.Take(8)));
+            }
+            else if (_page == 3)
+            {
+                var lines = new List<string>();
+                void Slot(string label, ItemData item)
+                {
+                    lines.Add($"{label}: {item?.displayName ?? "-"}");
+                    if (item != null) lines.AddRange(font.Wrap(item.description, 120));
+                }
+                Slot("Equipo", memo.Equipment);
+                Slot("Amuleto", memo.Amulet);
+                Slot("Accesorio", memo.Accessory);
                 _pageText.SetText(string.Join("\n", lines.Take(8)));
             }
             else
@@ -270,8 +352,8 @@ namespace MemosIsland.UI
             _portrait.transform.localScale = new Vector3(0.75f, 0.75f, 1f);
             _portrait.transform.localPosition = P(14, 4);
             _subtitle = Text(44, 48, Gray, parent: _bondPage.transform);
-            _trustText = Text(44, 24, Dark, parent: _bondPage.transform);
-            _hearts = Text(44, 13, Red, parent: _bondPage.transform);
+            _trustText = Text(44, 12, Dark, parent: _bondPage.transform);
+            _hearts = Text(44, 1, Red, parent: _bondPage.transform);
             var needs = new[] { Need.Hunger, Need.Sleep, Need.Fun, Need.Social };
             for (int i = 0; i < needs.Length; i++)
             {

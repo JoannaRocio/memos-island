@@ -63,6 +63,8 @@ namespace MemosIsland.Race
             int lane = 1;
             foreach (var r in rivals)
                 Racers.Add(new Racer(r.name, r.team, lane++, false, r.isWild));
+            foreach (var r in Racers)
+                r.Blocked += x => Message?.Invoke(x, $"¡El Cascabel de calma protegió a {x.Active.instance.DisplayName}!");
         }
 
         public float NextRandom() => (float)_rng.NextDouble();
@@ -149,8 +151,13 @@ namespace MemosIsland.Race
             return speed;
         }
 
-        public Effectiveness EffectivenessFor(RacerMemo m, RaceTerrain terrain) =>
-            Chart != null && m.species != null ? Chart.Get(m.species.primaryType, m.species.secondaryType, terrain) : Effectiveness.Normal;
+        public Effectiveness EffectivenessFor(RacerMemo m, RaceTerrain terrain)
+        {
+            var e = Chart != null && m.species != null
+                ? Chart.Get(m.species.primaryType, m.species.secondaryType, terrain)
+                : Effectiveness.Normal;
+            return EquipmentRules.Adjust(e, m.equipment, m.amulet, terrain);
+        }
 
         public static float EnergyFactor(RacerMemo m)
         {
@@ -202,7 +209,7 @@ namespace MemosIsland.Race
         /// <summary>Un Memo con poca confianza a veces hace lo que quiere (GDD §9).</summary>
         void MaybeMisbehave(Racer r, float dt)
         {
-            float chance = TrustRules.DisobeyChance(r.Active.instance.TrustLevel);
+            float chance = r.Active.disobeyChance;
             if (chance <= 0f) return;
             if (NextRandom() < chance * 0.1f * dt)
             {
@@ -262,7 +269,7 @@ namespace MemosIsland.Race
         public bool RequestSwitch(Racer r, int index)
         {
             if (!CanSwitch(r, index)) return false;
-            if (NextRandom() < TrustRules.DisobeyChance(r.Active.instance.TrustLevel))
+            if (NextRandom() < r.Active.disobeyChance)
             {
                 r.pendingSwitch = index;
                 r.pendingSwitchDelay = 2f;
@@ -289,8 +296,9 @@ namespace MemosIsland.Race
                 r.AddEffect(StatusKind.Sprint, 1.5f, 1.15f);
                 FriendshipBoost?.Invoke(r);
             }
-            else if (r.teamBoostPending)
+            else if (r.teamBoostPending || EquipmentRules.Has(r.Active.amulet, AmuletEffect.Relay))
             {
+                // Ráfaga o Amuleto de relevo: entra a toda velocidad.
                 r.teamBoostPending = false;
                 r.speed = TargetSpeed(r) * 1.1f;
             }
@@ -308,7 +316,7 @@ namespace MemosIsland.Race
             var ability = r.Active.species.ability;
             if (ability == null) return false;
 
-            if (!ignoreDisobedience && NextRandom() < TrustRules.DisobeyChance(r.Active.instance.TrustLevel))
+            if (!ignoreDisobedience && NextRandom() < r.Active.disobeyChance)
             {
                 Message?.Invoke(r, $"¡{r.Active.instance.DisplayName} no te hace caso!");
                 return false;

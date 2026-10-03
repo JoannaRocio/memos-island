@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 1f73d30fadec845438fc216713f025b5, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Hornos y fogones abandonados
   description: Sobre el lomo le crecen placas de roca caliente. Protege a los suyos
     con una lealtad feroz.
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: c085d8acafdc1af4fbc00172ec132152, type: 3}
   - {fileID: 21300000, guid: f8926204aff075145aec8a4c0edbb4c2, type: 3}
+  headAnchor: {x: 23, y: 6}
+  neckAnchor: {x: 19, y: 17}

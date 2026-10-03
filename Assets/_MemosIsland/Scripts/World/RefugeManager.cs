@@ -78,7 +78,8 @@ namespace MemosIsland.World
                 if (result.newMemory) QueueMemory(memo, result.level);
 
             RollInsideOutside(state, now);
-            foreach (var m in state.AllMemos.Where(m => m.uid != state.companionUid && m.inside == isInterior))
+            foreach (var m in state.AllMemos.Where(m => m.uid != state.companionUid && m.inside == isInterior
+                                                         && m.awayUntilTicks <= now.Ticks))
                 Spawn(m, RandomFreeCellNear(PlayerCell, 8, minDistance: 2) ?? doorCell);
 
             root.Player.Mover.StepFinished += OnPlayerStep;
@@ -103,9 +104,22 @@ namespace MemosIsland.World
             bool night = GameClock.PhaseFor(GameClock.ToHourOfDay(now)) == DayPhase.Night;
             foreach (var m in state.AllMemos)
             {
-                if (m.TrustLevel <= TrustLevel.Fear) m.inside = true; // los asustados se quedan adentro
+                if (m.TrustLevel == TrustLevel.Hostile)
+                {
+                    // Los hostiles de día andan por ahí; vuelven de noche y se quedan afuera.
+                    m.inside = false;
+                    if (!night && Random.value < 0.6f) m.awayUntilTicks = NextEvening(now).Ticks;
+                }
+                else if (m.TrustLevel <= TrustLevel.Fear) m.inside = true; // los asustados se quedan adentro
                 else m.inside = Random.value < (night ? 0.75f : 0.3f);
             }
+        }
+
+        /// <summary>Las 20:00 de hoy (o de mañana si ya pasaron).</summary>
+        public static DateTime NextEvening(DateTime now)
+        {
+            var evening = now.Date.AddHours(20);
+            return now < evening ? evening : evening.AddDays(1);
         }
 
         // ------------------------------------------------------------------ Actores

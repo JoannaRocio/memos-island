@@ -194,6 +194,7 @@ namespace MemosIsland.Race
             if (_setup.IsCapture)
             {
                 yield return CaptureEnding(result);
+                yield return Progress(result);
             }
             else
             {
@@ -205,6 +206,7 @@ namespace MemosIsland.Race
                 _hud.SetPanel(string.Join("\n", lines));
                 yield return WaitConfirm();
                 _hud.SetPanel(null);
+                yield return Progress(result);
             }
             Finish(result);
         }
@@ -251,6 +253,39 @@ namespace MemosIsland.Race
                     ? $"{wild.DisplayName} se alejó, todavía con miedo."
                     : $"{wild.DisplayName} olfateó la comida… y salió corriendo.");
             }
+        }
+
+        /// <summary>Experiencia, niveles y evoluciones de los Memos que corrieron (GDD §13).</summary>
+        IEnumerator Progress(RaceResult result)
+        {
+            var ran = _sim.Player.memos.Where(m => m.hasRun).ToList();
+            bool fullTeam = _sim.Player.AllMemosRan && _sim.Player.memos.Count > 1;
+            int xp = Progression.RaceXp(_setup.format, result.playerWon, fullTeam);
+            var pages = new List<string>
+            {
+                ran.Count == 1
+                    ? $"{ran[0].instance.DisplayName} ganó {xp} de experiencia."
+                    : $"Los Memos que corrieron ganaron {xp} de experiencia cada uno.",
+            };
+            foreach (var m in ran)
+            {
+                var levels = Progression.AddXp(m.instance, xp);
+                if (levels.Count > 0) pages.Add($"¡{m.instance.DisplayName} subió al nivel {m.instance.level}!");
+            }
+            yield return SayAll(pages);
+
+            foreach (var m in ran)
+            {
+                var target = Progression.EvolutionTarget(m.instance);
+                if (target != null) yield return GameRoot.Instance.Evolution.Run(m.instance, target);
+            }
+        }
+
+        IEnumerator SayAll(IEnumerable<string> pages)
+        {
+            bool done = false;
+            GameRoot.Instance.Dialogue.Show(pages, () => done = true);
+            while (!done) yield return null;
         }
 
         IEnumerator Say(string text)

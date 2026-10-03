@@ -76,8 +76,14 @@ namespace MemosIsland.Memos
                 var text = MemoryFor(m, level);
                 if (text != null) list.Add(text);
             }
+            if (m.grewTogether) list.Add(GrewTogether(m));
             return list;
         }
+
+        /// <summary>Recuerdo especial al superar la etapa rebelde después de evolucionar (GDD §13).</summary>
+        public static string GrewTogether(MemoInstance m) =>
+            $"Después de evolucionar, {m.DisplayName} estaba raro, gruñón, como si no se reconociera. " +
+            "Pero un día volvió a buscarte. Crecieron juntos.";
 
         static int StableHash(string s)
         {

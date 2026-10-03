@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 139b62d9be81fb449a4fbbfaa31f0ddd, type: 2}
   evolvesTo: {fileID: 11400000, guid: 5d511566e2a9f754ba18de35ebdbb4ed, type: 2}
   evolutionLevel: 16
+  evolvesWithTrust: 0
   habitat: Hornos y fogones abandonados
   description: "Su cola es una llamita que crece cuando est\xE1 contento. Se hace
     el duro, pero llora si lo dejan solo de noche."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 1d7abfac576efbc4fbfb080d81d48fb4, type: 3}
   - {fileID: 21300000, guid: dbefc47a401e7ec4b9b6eae2735ae27c, type: 3}
+  headAnchor: {x: 22, y: 7}
+  neckAnchor: {x: 18, y: 18}

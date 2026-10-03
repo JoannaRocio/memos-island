@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 89cf56407df9d6f43acd4f90a96d99a8, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Acantilados Tormenta
   description: "Junta electricidad frot\xE1ndose contra el pasto. Si se emociona,
     se le paran todos los pelos."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: b9e0476b220a4db47be8999d332ca122, type: 3}
   - {fileID: 21300000, guid: 99941ef51d3248747898be31bad9549f, type: 3}
+  headAnchor: {x: 21, y: 11}
+  neckAnchor: {x: 18, y: 21}

@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: f8e6349b3b9d7524e81dd47b74bb1b15, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Mar abierto
   description: "Nada tan r\xE1pido que levanta olas a su paso. Con sus aletas puede
     planear sobre el mar."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 2b3322a3231c70f4f90775fcf7c6087a, type: 3}
   - {fileID: 21300000, guid: 8c941dd945e3ac443bae3b9460163e62, type: 3}
+  headAnchor: {x: 24, y: 8}
+  neckAnchor: {x: 20, y: 18}

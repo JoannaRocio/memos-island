@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: b9af837437252c045aee46431fda802a, type: 2}
   evolvesTo: {fileID: 11400000, guid: 452da2114d26f1c439ed37fd56880dea, type: 2}
   evolutionLevel: 16
+  evolvesWithTrust: 0
   habitat: Bosques tranquilos
   description: "Mira todo con mucha atenci\xF3n antes de acercarse. Su hojita se
     cierra cuando tiene miedo."
@@ -52,3 +53,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 3a6204283b62be64b86ef5f669c8a8f7, type: 3}
   - {fileID: 21300000, guid: 070aaf073d535d14b9548b94d2aafc34, type: 3}
+  headAnchor: {x: 21, y: 9}
+  neckAnchor: {x: 17, y: 21}

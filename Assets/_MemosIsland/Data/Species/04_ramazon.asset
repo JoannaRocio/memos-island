@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 0755548507e75894483a142d54f7426e, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Bosques tranquilos
   description: "Sus ramas florecen cuando est\xE1 en paz. Dicen que donde duerme,
     al d\xEDa siguiente crece pasto nuevo."
@@ -52,3 +53,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 099fe8c71c7c8ef49a6cf0b26bccc40c, type: 3}
   - {fileID: 21300000, guid: 41e3cf02b30a0f441af4117db0d6fd3f, type: 3}
+  headAnchor: {x: 23, y: 7}
+  neckAnchor: {x: 19, y: 18}

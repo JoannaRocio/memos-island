@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: f7af7adbf549b2c469fe17d2d0869991, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Equipo de la Capitana Vera
   description: "Su im\xE1n atrae todo lo met\xE1lico. Las monedas del pueblo tienen
     la mala costumbre de peg\xE1rsele."
@@ -50,3 +51,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 9f640bf86b139104fa7b499d05f33b76, type: 3}
   - {fileID: 21300000, guid: 3058161e583bb774bbe5dc7b3d8f978b, type: 3}
+  headAnchor: {x: 23, y: 8}
+  neckAnchor: {x: 19, y: 18}

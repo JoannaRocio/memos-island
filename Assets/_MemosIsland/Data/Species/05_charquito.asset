@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 503fd8ae222add34fa70249e89099dc8, type: 2}
   evolvesTo: {fileID: 11400000, guid: 1b0bc8c7eca5fae469e08db4f9ffb8c8, type: 2}
   evolutionLevel: 16
+  evolvesWithTrust: 0
   habitat: Charcos y costas
   description: Imita los sonidos de todos para no sentirse solo. Siempre lleva una
     gotita de agua sobre la cabeza.
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 345fa62bd0891504eaa1daa305b0fe1d, type: 3}
   - {fileID: 21300000, guid: 15da2f70217cbbd4796afddd29b7fbaa, type: 3}
+  headAnchor: {x: 22, y: 9}
+  neckAnchor: {x: 18, y: 20}
