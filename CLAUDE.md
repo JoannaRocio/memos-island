@@ -8,6 +8,7 @@ Juego 2D en Unity 6 (URP 2D): vida en una isla + amistad con criaturas ("Memos")
 - El usuario habla español (rioplatense). Respondé en español.
 - Se avanza **por fases** (GDD §22). Una fase a la vez; al terminar, se prueba en Unity y se marca en "Estado" abajo.
 - Cada fase termina con algo **jugable**. Mostrá el resultado (escena, captura o pasos para probar) antes de pasar a la siguiente.
+- Repositorio: https://github.com/JoannaRocio/memos-island (público, rama `main`). Al terminar y probar cada fase, hacer commit y push (preguntar antes de pushear).
 - Usá MCP for Unity (package `com.coplaydev.unity-mcp`) para crear escenas, GameObjects y assets, y revisá la consola después de cada cambio de scripts.
 
 ## Convenciones técnicas
