@@ -317,6 +317,113 @@ for y in range(16):
 track += block("track_finish", 16, 16, [finish.rows()], header=["pivot 0 1"])
 open(os.path.join(OUT, "Track.txt"), "w", encoding="utf-8").write(track)
 
+
+# ================================================================== INTERIOR DEL REFUGIO
+inside = "# Interior del refugio: piso, paredes, ventana, alfombra, felpudo de salida.\n\n"
+
+floor = Canvas(16, 16, 'o')
+for y in range(16):
+    if y % 4 == 3:
+        for x in range(16): floor.set(x, y, 'i')
+    elif y % 4 == 0:
+        for x in range(16): floor.set(x, y, 'p' if x % 7 else 'o')
+for (x, y) in [(5, 1), (5, 2), (12, 5), (12, 6), (2, 9), (2, 10), (9, 13), (9, 14)]:
+    floor.set(x, y, 'i')
+inside += block("in_floor", 16, 16, [floor.rows()], extra=["tile"])
+
+wall = Canvas(16, 16, 'p')
+for (x, y) in [(3, 3), (11, 3), (7, 7), (3, 11), (11, 11)]:
+    wall.set(x, y, 'h'); wall.set(x + 1, y, 'h'); wall.set(x, y + 1, 'h')
+for x in range(16):
+    wall.set(x, 13, 'i'); wall.set(x, 14, 'j'); wall.set(x, 15, 'j')
+    wall.set(x, 12, 'o')
+inside += block("in_wall", 16, 16, [wall.rows()], extra=["tile solid"])
+
+top = Canvas(16, 16, 'j')
+for x in range(16):
+    top.set(x, 0, 'i'); top.set(x, 15, 'f')
+for y in (5, 10):
+    for x in range(16): top.set(x, y, 'i')
+inside += block("in_wall_top", 16, 16, [top.rows()], extra=["tile solid"])
+
+win = Canvas(16, 16)
+win.g = [r[:] for r in wall.g]
+for y in range(2, 11):
+    for x in range(3, 13):
+        win.set(x, y, 'i')
+for y in range(3, 10):
+    for x in range(4, 12):
+        win.set(x, y, 'a' if y > 5 else 'b')
+for y in range(3, 10): win.set(8, y, 'i')
+for x in range(4, 12): win.set(x, 6, 'i')
+win.set(5, 4, 'c'); win.set(10, 7, 'c')
+inside += block("in_window", 16, 16, [win.rows()], extra=["tile solid"])
+
+rug = Canvas(16, 16, '2')
+for y in range(16):
+    for x in range(16):
+        if (x + y) % 8 == 0 or (x - y) % 8 == 0: rug.set(x, y, 'n')
+        if (x + y) % 8 == 4 and (x - y) % 8 == 4: rug.set(x, y, '4')
+inside += block("in_rug", 16, 16, [rug.rows()], extra=["tile"])
+
+mat = Canvas(16, 16)
+mat.g = [r[:] for r in floor.g]
+for y in range(3, 14):
+    for x in range(2, 14):
+        mat.set(x, y, 'n' if 3 < y < 13 and 2 < x < 13 else 'j')
+for x in range(5, 11, 2): mat.set(x, 8, '4')
+inside += block("in_doormat", 16, 16, [mat.rows()], extra=["tile"])
+open(os.path.join(OUT, "Inside.txt"), "w", encoding="utf-8").write(inside)
+
+# Muebles (pivote abajo al centro)
+furniture = "# Muebles del refugio. Pivote abajo al centro.\n\n"
+
+bed = Canvas(32, 32)
+for y in range(4, 31):
+    for x in range(3, 29):
+        bed.set(x, y, 'j' if x in (3, 28) or y in (4, 30) else 'i')
+for y in range(6, 13):
+    for x in range(6, 26):
+        bed.set(x, y, 'c' if y < 11 else 'd')
+for y in range(13, 29):
+    for x in range(5, 27):
+        bed.set(x, y, '9' if (x + y) % 6 else 'a')
+for x in range(5, 27): bed.set(x, 13, 'a')
+furniture += block("bed", 32, 32, [bed.rows()], header=["pivot 0.5 0", "outline 0"])
+
+cushion = Canvas(16, 16)
+shade_ellipse(cushion, 8, 10, 7, 4.5, ('2', 'n', '3'))
+shade_ellipse(cushion, 8, 9.5, 4.5, 2.5, ('n', '3', '4'))
+furniture += block("memo_bed", 16, 16, [cushion.rows()], header=["pivot 0.5 0", "outline 0"])
+
+def bowl(full):
+    cv = Canvas(16, 16)
+    shade_ellipse(cv, 8, 11, 6.5, 3.5, ('e', 'd', 'c'))
+    shade_ellipse(cv, 8, 9.5, 5, 2, ('n', '3', '4') if full else ('f', 'f', 'e'))
+    if full:
+        for (x, y) in [(6, 8), (9, 8), (8, 9)]: cv.set(x, y, '2')
+    return cv
+furniture += block("bowl_full", 16, 16, [bowl(True).rows()], header=["pivot 0.5 0", "outline 0"])
+furniture += block("bowl_empty", 16, 16, [bowl(False).rows()], header=["pivot 0.5 0", "outline 0"])
+
+table = Canvas(32, 24)
+for y in range(4, 14):
+    for x in range(2, 30):
+        table.set(x, y, 'o' if y > 5 else 'p')
+for y in range(14, 23):
+    for x in (4, 5, 26, 27): table.set(x, y, 'j')
+for x in range(2, 30): table.set(x, 13, 'i')
+furniture += block("table", 32, 24, [table.rows()], header=["pivot 0.5 0", "outline 0"])
+
+plant = Canvas(16, 24)
+for (cx, cy, r) in [(8, 8, 5), (5, 11, 3.5), (11, 11, 3.5), (8, 4, 3)]:
+    shade_ellipse(plant, cx, cy, r, r, ('m', '6', '5'))
+for y in range(15, 23):
+    for x in range(4, 12):
+        plant.set(x, y, 'n' if y > 15 else '3')
+furniture += block("plant", 16, 24, [plant.rows()], header=["pivot 0.5 0", "outline 0"])
+open(os.path.join(OUT, "Furniture.txt"), "w", encoding="utf-8").write(furniture)
+
 # ================================================================== UI
 ui = "# Interfaz: caja de texto estilo GBA (9 cortes) y pixel blanco para fundidos.\n\n"
 corner = ["..888888",
@@ -333,6 +440,20 @@ mid = [corner[7] + 'c' * 8 + corner[7][::-1]] * 8
 box = top + mid + top[::-1]
 ui += block("ui_box", 24, 24, [box], header=["border 8 8 8 8"])
 ui += block("ui_pixel", 2, 2, [["cc", "cc"]])
+
+bubble = ["..cccccccccc..",
+          ".cccccccccccc.",
+          "cccccccccccccc",
+          "cccccccccccccc",
+          "cccccccccccccc",
+          "cccccccccccccc",
+          "cccccccccccccc",
+          "cccccccccccccc",
+          ".cccccccccccc.",
+          "..cccccccccc..",
+          "......ccc.....",
+          ".......c......"]
+ui += block("ui_bubble", 14, 12, [bubble], header=["pivot 0.5 0", "outline 0"])
 open(os.path.join(OUT, "UI.txt"), "w", encoding="utf-8").write(ui)
 
 print("ok")

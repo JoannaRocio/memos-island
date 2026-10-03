@@ -37,3 +37,22 @@ cc
 cc
 end
 
+sprite ui_bubble
+size 14 12
+pivot 0.5 0
+outline 0
+frame
+..cccccccccc..
+.cccccccccccc.
+cccccccccccccc
+cccccccccccccc
+cccccccccccccc
+cccccccccccccc
+cccccccccccccc
+cccccccccccccc
+.cccccccccccc.
+..cccccccccc..
+......ccc.....
+.......c......
+end
+

@@ -426,6 +426,7 @@ El primer día que un Memo rescatado **sale de abajo de la cama por su cuenta** 
 ## 12. El refugio vivo
 
 ### Los Memos tienen vida propia
+- **Todos tus Memos viven en el refugio** (no solo los que no están en el equipo). El equipo son los 6 que corren carreras; el **compañero** es el que te sigue por la isla.
 - **Entran y salen de la casa** cuando quieren (por la puerta y con animación).
 - **Rutinas según personalidad y especie:** Bostezo duerme de día y sale de noche, Plumín se sube al techo, Charquito y Pantuflo se meten en el estanque, Topín cava pozos en la huerta (¡y a veces encuentra objetos!).
 - **Necesidades** (de 0 a 100, bajan con el tiempo): Hambre · Sueño · Juego · Compañía.

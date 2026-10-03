@@ -70,11 +70,49 @@ namespace MemosIsland.Memos
         public int trust = 250;
         [Range(0, 100)] public int mood = 50;
 
+        [Header("Necesidades (0 = urgente, 100 = satisfecha)")]
+        public float hunger = 80f;
+        public float sleep = 80f;
+        public float fun = 80f;
+        public float social = 80f;
+        public long needsUpdatedTicks;
+
+        [Header("Cuidados del día (día real)")]
+        public string careDate;
+        public int feedsToday;
+        public bool pettedToday;
+        public bool playedToday;
+        public int nearPointsToday;
+        public string lastBathDate;
+        public float followSeconds;
+
+        [Header("Vínculo")]
+        [Tooltip("Nivel de confianza más alto alcanzado: define qué recuerdos ya recuperó.")]
+        public TrustLevel highestTrust = TrustLevel.Fear;
+        [Tooltip("uid del Memo que lo apadrina (para los recién rescatados).")]
+        public string godparentUid;
+        [Tooltip("Dónde está en el refugio: adentro de la casa o afuera.")]
+        public bool inside;
+        [Tooltip("Lo liberaste de un collar de Ápice.")]
+        public bool rescued;
+
         public MemoSpecies Species => MemoDatabase.Instance != null ? MemoDatabase.Instance.GetSpecies(speciesId) : null;
         public Temperament Temperament => MemoDatabase.Instance != null ? MemoDatabase.Instance.GetTemperament(temperamentId) : null;
         public string DisplayName => string.IsNullOrEmpty(nickname) ? Species?.displayName ?? speciesId : nickname;
         public TrustLevel TrustLevel => TrustRules.LevelFor(trust);
         public ComputedStats Stats => ComputedStats.For(Species.baseStats, level, Temperament);
+
+        public Sprite[] WorldFrames
+        {
+            get
+            {
+                var s = Species;
+                if (s == null) return null;
+                if (collared && s.collarWorldFrames is { Length: > 0 }) return s.collarWorldFrames;
+                if (shiny && s.shinyWorldFrames is { Length: > 0 }) return s.shinyWorldFrames;
+                return s.worldFrames;
+            }
+        }
 
         public Sprite[] RaceFrames
         {
@@ -90,7 +128,11 @@ namespace MemosIsland.Memos
 
         public static MemoInstance Create(string speciesId, int level, string temperamentId = null, int trust = 250)
         {
-            return new MemoInstance { speciesId = speciesId, level = level, temperamentId = temperamentId, trust = trust };
+            return new MemoInstance
+            {
+                speciesId = speciesId, level = level, temperamentId = temperamentId, trust = trust,
+                highestTrust = TrustRules.LevelFor(trust),
+            };
         }
 
         /// <summary>Crea un Memo con temperamento al azar (y 1 en 200 de ser brillante, GDD §7).</summary>
@@ -103,6 +145,7 @@ namespace MemosIsland.Memos
             return new MemoInstance
             {
                 speciesId = speciesId, level = level, temperamentId = temperament, trust = trust,
+                highestTrust = TrustRules.LevelFor(trust),
                 shiny = rng.Next(200) == 0,
             };
         }

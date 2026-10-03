@@ -1,0 +1,134 @@
+# Interior del refugio: piso, paredes, ventana, alfombra, felpudo de salida.
+
+sprite in_floor
+size 16 16
+frame
+oppppppoppppppop
+oooooioooooooooo
+oooooioooooooooo
+iiiiiiiiiiiiiiii
+oppppppoppppppop
+ooooooooooooiooo
+ooooooooooooiooo
+iiiiiiiiiiiiiiii
+oppppppoppppppop
+ooiooooooooooooo
+ooiooooooooooooo
+iiiiiiiiiiiiiiii
+oppppppoppppppop
+oooooooooioooooo
+oooooooooioooooo
+iiiiiiiiiiiiiiii
+tile
+end
+
+sprite in_wall
+size 16 16
+frame
+pppppppppppppppp
+pppppppppppppppp
+pppppppppppppppp
+ppphhpppppphhppp
+ppphppppppphpppp
+pppppppppppppppp
+pppppppppppppppp
+ppppppphhppppppp
+ppppppphpppppppp
+pppppppppppppppp
+pppppppppppppppp
+ppphhpppppphhppp
+oooooooooooooooo
+iiiiiiiiiiiiiiii
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+tile solid
+end
+
+sprite in_wall_top
+size 16 16
+frame
+iiiiiiiiiiiiiiii
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+iiiiiiiiiiiiiiii
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+iiiiiiiiiiiiiiii
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+ffffffffffffffff
+tile solid
+end
+
+sprite in_window
+size 16 16
+frame
+pppppppppppppppp
+pppppppppppppppp
+pppiiiiiiiiiippp
+pppibbbbibbbippp
+pppibcbbibbbippp
+pppibbbbibbbippp
+pppiiiiiiiiiippp
+pppiaaaaiacaippp
+pppiaaaaiaaaippp
+pppiaaaaiaaaippp
+pppiiiiiiiiiippp
+ppphhpppppphhppp
+oooooooooooooooo
+iiiiiiiiiiiiiiii
+jjjjjjjjjjjjjjjj
+jjjjjjjjjjjjjjjj
+tile solid
+end
+
+sprite in_rug
+size 16 16
+frame
+n2224222n2224222
+2n22222n2n22222n
+22n222n222n222n2
+222n2n22222n2n22
+4222n2224222n222
+222n2n22222n2n22
+22n222n222n222n2
+2n22222n2n22222n
+n2224222n2224222
+2n22222n2n22222n
+22n222n222n222n2
+222n2n22222n2n22
+4222n2224222n222
+222n2n22222n2n22
+22n222n222n222n2
+2n22222n2n22222n
+tile
+end
+
+sprite in_doormat
+size 16 16
+frame
+oppppppoppppppop
+oooooioooooooooo
+oooooioooooooooo
+iijjjjjjjjjjjjii
+opjnnnnnnnnnnjop
+oojnnnnnnnnnnjoo
+oojnnnnnnnnnnjoo
+iijnnnnnnnnnnjii
+opjnn4n4n4nnnjop
+oojnnnnnnnnnnjoo
+oojnnnnnnnnnnjoo
+iijnnnnnnnnnnjii
+opjnnnnnnnnnnjop
+oojjjjjjjjjjjjoo
+oooooooooioooooo
+iiiiiiiiiiiiiiii
+tile
+end
+

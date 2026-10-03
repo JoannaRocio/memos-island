@@ -91,6 +91,7 @@ namespace MemosIsland.Core
             var root = GameRoot.Instance;
             yield return root.Fader.Fade(1f, fadeDuration);
             root.Player.gameObject.SetActive(false);
+            root.Companion?.SetHidden(true);
             var load = SceneManager.LoadSceneAsync(Race.RaceLauncher.SceneName);
             while (load != null && !load.isDone) yield return null;
             yield return null;
@@ -120,6 +121,7 @@ namespace MemosIsland.Core
             root.Player.gameObject.SetActive(true);
             if (hasReturn) root.Player.Mover.Teleport(_returnCell, _returnFacing);
             else PlacePlayer(null);
+            root.Companion?.SetHidden(false);
             root.Camera.SetTarget(root.Player.transform);
             root.Camera.SnapNow();
             _returnScene = null;
@@ -135,6 +137,7 @@ namespace MemosIsland.Core
             var root = GameRoot.Instance;
             var spawn = SpawnPoint.Find(spawnId);
             if (spawn != null) root.Player.Mover.Teleport(spawn.Cell, spawn.Facing);
+            root.Companion?.SnapBehind();
             root.Camera.SnapNow();
         }
 

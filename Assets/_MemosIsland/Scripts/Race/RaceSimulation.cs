@@ -39,6 +39,11 @@ namespace MemosIsland.Race
         /// <summary>Se usó una habilidad (corredor, habilidad, mensaje para mostrar).</summary>
         public event Action<Racer, AbilityData> AbilityUsed;
         public event Action<Racer> Switched;
+        /// <summary>Relevo entre mejores amigos: el que entra arranca a toda velocidad (GDD §12).</summary>
+        public event Action<Racer> FriendshipBoost;
+
+        /// <summary>Dice si dos Memos del mismo equipo son mejores amigos (lo arma quien crea la carrera).</summary>
+        public Func<RacerMemo, RacerMemo, bool> AreBestFriends;
         /// <summary>Mensajes para el jugador ("¡Nadie adelante!", "¡No te hace caso!").</summary>
         public event Action<Racer, string> Message;
 
@@ -272,10 +277,19 @@ namespace MemosIsland.Race
         void DoSwitch(Racer r, int index)
         {
             r.pendingSwitch = -1;
+            var previous = r.Active;
             r.activeIndex = index;
             r.Active.hasRun = true;
             r.switchCooldown = SwitchCooldown;
-            if (r.teamBoostPending)
+            bool friends = AreBestFriends != null && AreBestFriends(previous, r.Active);
+            if (friends)
+            {
+                r.teamBoostPending = false;
+                r.speed = TargetSpeed(r) * 1.1f;
+                r.AddEffect(StatusKind.Sprint, 1.5f, 1.15f);
+                FriendshipBoost?.Invoke(r);
+            }
+            else if (r.teamBoostPending)
             {
                 r.teamBoostPending = false;
                 r.speed = TargetSpeed(r) * 1.1f;
