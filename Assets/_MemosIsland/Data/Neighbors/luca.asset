@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: luca
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: luca
+  displayName: Luca
+  role: "Empleado de \xC1pice"
+  portrait: {fileID: 21300000, guid: 8e39fb9df6fdbe74f972661d8f686a31, type: 3}
+  icon: {fileID: 21300000, guid: 6088eda302ec5bd42a7baefd6b11f2ec, type: 3}
+  down:
+  - {fileID: 21300000, guid: e9611cab7de44ae448770f5a0455b625, type: 3}
+  - {fileID: 21300000, guid: 3a9ffc9b666079b40be94367714542ec, type: 3}
+  - {fileID: 21300000, guid: a46d39946e931e6459ce90145793b5c9, type: 3}
+  up:
+  - {fileID: 21300000, guid: b3a791b285e19024bab601fd7e77e47c, type: 3}
+  - {fileID: 21300000, guid: 4e6540ab09d88da43bb270da70155898, type: 3}
+  - {fileID: 21300000, guid: b45fd3e35f78c364481363ee6a2050fa, type: 3}
+  left:
+  - {fileID: 21300000, guid: 0f41202f9d2737c45b3358b7e6296325, type: 3}
+  - {fileID: 21300000, guid: 008881c5f10e0ee4392b7e92e4046658, type: 3}
+  - {fileID: 21300000, guid: 502969b0ec223de47a662cd44ede8f8a, type: 3}
+  right:
+  - {fileID: 21300000, guid: ddf4e522d84ccc04093bb2ded2fb8147, type: 3}
+  - {fileID: 21300000, guid: 96535990ec12ea7499ffc878fbe216d3, type: 3}
+  - {fileID: 21300000, guid: 94e30529e0c46034480ccaa81d6b195c, type: 3}
+  loved:
+  - cuarzo
+  - pure_zapallo
+  liked:
+  - amatista
+  - zapallo
+  - concha
+  disliked:
+  - hierba
+  - alga
+  lovedText: "\xA1Wow, un cuarzo perfecto! \xBFSab\xEDas que se usa en los relojes?
+    \xA1Gracias!"
+  likedText: "\xA1Qu\xE9 amable! Muchas gracias."
+  neutralText: Ah, gracias. Muy considerado.
+  dislikedText: "Oh\u2026 gracias. Es\u2026 interesante. Muy\u2026 natural."
+  firstMeet: "\xA1Hola! Luca, de la oficina de \xC1pice. Vinimos a la isla para traer
+    progreso: trabajo, la Copa, tecnolog\xEDa. \xA1Es un momento emocionante!"
+  linesLow:
+  - "En el continente todo es m\xE1s r\xE1pido. Ac\xE1 la gente saluda por la calle.
+    Me cuesta acostumbrarme\u2026 pero me gusta."
+  - Trabajo en la oficina del muelle. Mucho papeleo. Mucho, mucho papeleo.
+  - "Creo que la tecnolog\xEDa puede hacer la vida de todos m\xE1s f\xE1cil. Hasta
+    la de los Memos."
+  linesMid:
+  - "Ayer com\xED pescado del pap\xE1 de Lalo. Nunca hab\xEDa comido algo tan fresco.
+    En la ciudad viene en cajitas."
+  - "Me gusta hablar con vos. No me mir\xE1s raro por el uniforme."
+  - "A veces me quedo mirando el mar despu\xE9s del trabajo. No s\xE9 bien qu\xE9
+    busco."
+  linesHigh:
+  - "Vine pensando que iba a ense\xF1arle cosas a la isla. Creo que es al rev\xE9s."
+  - "Sos la primera persona de ac\xE1 que me hizo sentir que pertenezco. Gracias."
+  linesRain:
+  - "En el continente la lluvia es gris. Ac\xE1 huele a pasto. Es raro lo distinto
+    que se siente."
+  linesCompanion:
+  - "{memo} es\u2026 muy expresivo. No sab\xEDa que los Memos pod\xEDan ser tan distintos
+    entre s\xED."
+  schedule:
+  - hour: 8
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 29, y: 6}
+    facing: 0
+    activity: oficina
+    line: "Entrando a la oficina. Tengo una pila de formularios as\xED de alta."
+  - hour: 13
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 27, y: 17}
+    facing: 2
+    activity: almuerzo
+    line: "Almuerzo en la plaza. En el continente com\xEDa frente a la computadora."
+  - hour: 13
+    days: 127
+    weather: 2
+    scene: Map_Taberna
+    cell: {x: 6, y: 3}
+    facing: 3
+    activity: almuerzo
+    line: 
+  - hour: 14
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 29, y: 6}
+    facing: 0
+    activity: oficina
+    line: 
+  - hour: 18
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 23, y: 1}
+    facing: 0
+    activity: muelle
+    line: "Me gusta la punta del muelle. Desde ac\xE1 no se ve la oficina."
+  - hour: 20
+    days: 127
+    weather: 0
+    scene: Map_Taberna
+    cell: {x: 6, y: 3}
+    facing: 3
+    activity: taberna
+    line: "Deny me est\xE1 ense\xF1ando a jugar al truco. Pierdo siempre."
+  - hour: 23
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: luca_3
+    hearts: 3
+    scene: 
+    pages:
+    - "\xA1Hola! Perd\xF3n, estoy medio distra\xEDdo. Me lleg\xF3 una carta de mi
+      abuela."
+    - "Dice que la ciudad est\xE1 igual que siempre, que el colectivo sigue tarde,
+      y que le mande una foto del mar."
+    - "Nunca le saqu\xE9 fotos al mar. Siempre me pareci\xF3 que no sal\xEDa igual."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - Mandale una igual
+    - Invitala a la isla
+    answerPoints: 2800000032000000
+    replies:
+    - "Ten\xE9s raz\xF3n. No sale igual, pero algo llega. Gracias."
+    - "\xBFTe imagin\xE1s? Mi abuela en el muelle, retando a Lalo\u2026 Lo voy a
+      pensar."
+  - id: luca_6
+    hearts: 6
+    scene: 
+    pages:
+    - "\xBFTe puedo preguntar algo?"
+    - "Cuando un Memo te elige\u2026 \xBFc\xF3mo sab\xE9s que te quiere? \xBFQue
+      no es solo que le das de comer?"
+    - "En la oficina hablamos de Memos con n\xFAmeros. Velocidad, rendimiento. Pero
+      vos habl\xE1s de ellos como si fueran\u2026 amigos."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - Porque vuelven a vos
+    - Porque te esperan
+    answerPoints: 3200000032000000
+    replies:
+    - "Porque vuelven\u2026 S\xED. Eso no lo mide ninguna planilla. Gracias."
+    - "Te esperan\u2026 Me qued\xE9 pensando. Gracias por contestarme en serio."
+  requests:
+  - kind: 0
+    targetId: cuarzo
+    count: 2
+    reward: 300
+    boardText: "Luca: \"Necesito 2 cuarzos para\u2026 un experimento personal.\""
+    thanks: "\xA1Perfectos! Gracias. Te cuento si funciona."
+  - kind: 0
+    targetId: concha
+    count: 3
+    reward: 200
+    boardText: 'Luca: "Quiero mandarle 3 conchas a mi abuela."'
+    thanks: "\xA1Le van a encantar! Gracias, de verdad."
+  - kind: 1
+    targetId: chispin
+    count: 1
+    reward: 220
+    boardText: "Luca: \"\xBFMe mostr\xE1s un Chisp\xEDn? Quiero ver c\xF3mo hace
+      chispas.\""
+    thanks: "\xA1Incre\xEDble! Ninguna bater\xEDa hace eso. Gracias."

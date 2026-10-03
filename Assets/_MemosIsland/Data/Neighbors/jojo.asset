@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: jojo
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: jojo
+  displayName: Jojo
+  role: Nene del pueblo
+  portrait: {fileID: 21300000, guid: d8f139591c6b0134f90ae28e74660504, type: 3}
+  icon: {fileID: 21300000, guid: 7600ce321a6052b4e8f732af452d2868, type: 3}
+  down:
+  - {fileID: 21300000, guid: a69ee9ed49b03414bafe3e370cfce4b0, type: 3}
+  - {fileID: 21300000, guid: e486250e9087c7344a4f1833654e21b1, type: 3}
+  - {fileID: 21300000, guid: 993b72ca440f7c746bbb96973f2f73b8, type: 3}
+  up:
+  - {fileID: 21300000, guid: f2cd9b7f3b186954ba1f366b9cef034d, type: 3}
+  - {fileID: 21300000, guid: f01a8332222c3ea49bf0c8e8a9a5969b, type: 3}
+  - {fileID: 21300000, guid: 8eeb45548691e9d4e80de1cb4eefaab6, type: 3}
+  left:
+  - {fileID: 21300000, guid: a8b83bb277e14bf4c94bf768cf513492, type: 3}
+  - {fileID: 21300000, guid: 085ba427c00498b4b9414275078301c6, type: 3}
+  - {fileID: 21300000, guid: b25402abaf001844dbb6407318ffd4f6, type: 3}
+  right:
+  - {fileID: 21300000, guid: 48be5cc26aae9f44ca61afca562cce6f, type: 3}
+  - {fileID: 21300000, guid: dff65524fdd6d86478f119c2f222931c, type: 3}
+  - {fileID: 21300000, guid: cdf8b0cc757c6d944934c43ffcc2c986, type: 3}
+  loved:
+  - frutilla
+  - pelota
+  liked:
+  - concha
+  - pluma
+  - fruto_silvestre
+  disliked:
+  - mineral_hierro
+  - hierba
+  lovedText: "\xA1\xA1\xBFPara m\xED?!! \xA1Gracias, gracias, gracias!"
+  likedText: "\xA1Qu\xE9 lindo! Lo voy a guardar en mi caja de tesoros."
+  neutralText: "Ah\u2026 gracias. \xBFEsto para qu\xE9 sirve?"
+  dislikedText: "\xA1Puaj! \u2026Perd\xF3n. Gracias igual."
+  firstMeet: "\xA1Hola! Soy Jojo. Vos ten\xE9s Memos, \xBFno? Yo\u2026 les tengo
+    un poquito de miedo. Un poquito nom\xE1s. \xA1No le digas a nadie!"
+  linesLow:
+  - "Mi mam\xE1 dice que los Memos no muerden. Pero tienen dientes. \xBFPara qu\xE9
+    tienen dientes si no muerden?"
+  - "En la escuela aprendimos que hay veinte Memos distintos. \xA1Veinte! Yo conozco
+    tres de vista. De lejos."
+  - Cuando sea grande voy a ser marinero. O pirata. O los dos.
+  linesMid:
+  - "Ayer un Plum\xEDn se me acerc\xF3 en la plaza \xA1y no sal\xED corriendo! Bueno,
+    camin\xE9 r\xE1pido."
+  - "\xBFC\xF3mo hac\xE9s para que tus Memos te quieran? \xBFLes cant\xE1s?"
+  - "Anni me dijo que el miedo se va de a poquito. Como cuando te sac\xE1s una curita."
+  linesHigh:
+  - "\xA1Ya casi no les tengo miedo! Es gracias a vos, \xBFsab\xEDas?"
+  - "Cuando tenga mi Memo, vos vas a ser su t\xEDo. O t\xEDa. O lo que quieras."
+  linesRain:
+  - "\xA1Con lluvia me dejan ir a la cl\xEDnica a ver a los Memos de Anni! Desde
+    atr\xE1s del mostrador. Por las dudas."
+  linesCompanion:
+  - "\xA1Ay! \xBF{memo} muerde? \xBFSeguro que no? \u2026\xBFSeguro, seguro?"
+  - "{memo} me est\xE1 mirando. \xBFPor qu\xE9 me mira? \xBFLe caigo bien?"
+  schedule:
+  - hour: 8
+    days: 62
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  - hour: 15
+    days: 62
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 21, y: 14}
+    facing: 1
+    activity: plaza
+    line: "\xA1Sal\xED de la escuela! Hoy aprendimos fracciones. No entend\xED nada."
+  - hour: 15
+    days: 62
+    weather: 2
+    scene: Map_Clinica
+    cell: {x: 9, y: 4}
+    facing: 2
+    activity: clinica
+    line: "Miro a los Memos de Anni desde ac\xE1. Es m\xE1s seguro."
+  - hour: 18
+    days: 62
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  - hour: 9
+    days: 65
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 25, y: 15}
+    facing: 0
+    activity: plaza
+    line: "\xA1Es fin de semana! No hay escuela. \xA1Hay plaza!"
+  - hour: 9
+    days: 65
+    weather: 2
+    scene: Map_Clinica
+    cell: {x: 9, y: 4}
+    facing: 2
+    activity: clinica
+    line: 
+  - hour: 12
+    days: 65
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 24, y: 5}
+    facing: 0
+    activity: playa
+    line: "Junto conchas. Tengo cuarenta y dos. Bueno, cuarenta y una, una se rompi\xF3."
+  - hour: 12
+    days: 65
+    weather: 2
+    scene: Map_Clinica
+    cell: {x: 9, y: 4}
+    facing: 2
+    activity: clinica
+    line: 
+  - hour: 17
+    days: 65
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: jojo_3
+    hearts: 3
+    scene: 
+    pages:
+    - "\xA1Psst! \xA1Ven\xED! Mir\xE1 lo que dibuj\xE9."
+    - "(Es un dibujo con crayones de vos y tus Memos. Todos tienen sonrisas enormes.
+      Jojo est\xE1 en una esquina, un poco lejos.)"
+    - "Me dibuj\xE9 lejos porque todav\xEDa me da miedo. Pero el a\xF1o que viene
+      me dibujo m\xE1s cerca."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - "\xA1Dibujate m\xE1s cerca ya!"
+    - "Est\xE1 hermoso as\xED"
+    answerPoints: 2800000028000000
+    replies:
+    - "\xBFYa? \xBFAhora? \u2026Bueno. Un pasito m\xE1s cerca. \xA1Listo!"
+    - "\xBFS\xED? \xA1Lo voy a colgar en mi pieza!"
+  - id: jojo_6
+    hearts: 6
+    scene: 
+    pages:
+    - "\xA1\xA1Adivin\xE1 qu\xE9!! \xA1Ayer acarici\xE9 un Memo! \xA1Un Plum\xEDn!
+      \xA1En la cabeza!"
+    - "Estaba temblando. Yo, no el Plum\xEDn. Bueno, los dos."
+    - "Pero me acord\xE9 de vos, de c\xF3mo te qued\xE1s quieto cerca de tus Memos,
+      y lo hice igual."
+    - Cuando sea grande quiero ser como vos.
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 1
+    targetId: plumin
+    count: 1
+    reward: 150
+    boardText: "Jojo: \"\xBFMe mostr\xE1s un Plum\xEDn? \xA1Pero que no me pique!\""
+    thanks: "\xA1No me pic\xF3! \xA1No me pic\xF3! \xA1Gracias!"
+  - kind: 1
+    targetId: zumbi
+    count: 1
+    reward: 150
+    boardText: 'Jojo: "Quiero ver un Zumbi de cerca. Bueno, de medio cerca."'
+    thanks: "\xA1Zumba re fuerte! \xA1Qu\xE9 miedo! \xA1Qu\xE9 lindo! \xA1Gracias!"
+  - kind: 0
+    targetId: concha
+    count: 1
+    reward: 90
+    boardText: "Jojo: \"Me falta una concha para mi colecci\xF3n. \xBFMe das una?\""
+    thanks: "\xA1Cuarenta y dos de nuevo! \xA1Gracias!"

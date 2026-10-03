@@ -7,11 +7,16 @@ namespace MemosIsland.World
     {
         [SerializeField] string displayName = "Mapa";
         [SerializeField] RectInt bounds = new(0, 0, 32, 22);
+        [Tooltip("Al aire libre (llueve). Los interiores y la cueva van en falso.")]
+        [SerializeField] bool outdoor = true;
 
         public static MapInfo Current { get; private set; }
 
         public string DisplayName => displayName;
         public RectInt Bounds => bounds;
+        public bool Outdoor => outdoor;
+
+        public void SetOutdoor(bool value) => outdoor = value;
 
         public void Setup(string newName, RectInt newBounds)
         {

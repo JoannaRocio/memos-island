@@ -36,6 +36,14 @@ namespace MemosIsland.Core
             if (Keyboard.current.f5Key.wasPressedThisFrame) debugHourOffset--;
             if (Keyboard.current.f6Key.wasPressedThisFrame) debugHourOffset++;
             if (Keyboard.current.f7Key.wasPressedThisFrame) debugHourOffset = 0;
+            // F8: clima de prueba (natural → lluvia → sol → natural).
+            if (Keyboard.current.f8Key.wasPressedThisFrame)
+                Weather.DebugOverride = Weather.DebugOverride switch
+                {
+                    null => WeatherKind.Rainy,
+                    WeatherKind.Rainy => WeatherKind.Sunny,
+                    _ => null,
+                };
         }
 
         // ------------------------------------------------------------ Lógica pura (con tests)

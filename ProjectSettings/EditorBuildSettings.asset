@@ -20,6 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MemosIsland/Scenes/Maps/Map_Cueva.unity
     guid: 3bc30373b010bee4ea34408058265e0d
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Maps/Map_Almacen.unity
+    guid: fd1718ac10af28b49a8ebe8980147cf7
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Maps/Map_Herreria.unity
+    guid: 361bbfed072d6d9429fd31a99f52e69d
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Maps/Map_Clinica.unity
+    guid: 1ed98e8d39223c943b3464742973967e
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Maps/Map_Taberna.unity
+    guid: b60699ab02a5c5d4687fd2eeb2f34789
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

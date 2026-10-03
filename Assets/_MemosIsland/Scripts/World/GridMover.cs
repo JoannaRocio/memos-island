@@ -55,6 +55,7 @@ namespace MemosIsland.World
         public static Vector3 CellToWorld(Vector2Int cell) => new(cell.x + 0.5f, cell.y, 0f);
         public static Vector2 CellCenter(Vector2Int cell) => new(cell.x + 0.5f, cell.y + 0.5f);
         public static Vector2Int WorldToCell(Vector3 p) => new(Mathf.FloorToInt(p.x), Mathf.FloorToInt(p.y + 0.01f));
+        public static bool IsOccupied(Vector2Int cell) => Occupied.ContainsKey(cell);
 
         void OnEnable()
         {

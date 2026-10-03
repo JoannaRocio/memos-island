@@ -157,6 +157,8 @@ Un grito y un destello violeta. Después, silencio. Aparece el título.
 
 **Rutinas:** cada vecino tiene un horario por día y por clima. Ejemplo para Fer: 8:00 abre la herrería, 13:00 almuerza en la plaza, 18:00 cierra, 19:00 taberna, 22:00 casa.
 
+**Decisiones de la Fase 7 (octubre 2026):** el almacén, la herrería, la clínica y la taberna tienen interior; el municipio, el estadio y la oficina de Ápice quedan cerrados hasta la Fase 8. Los negocios atienden solo cuando su dueño está trabajando. Cada vecino tiene 2 eventos de amistad (a los 3 y 6 corazones) **personales, sin trama**: las revelaciones de la historia se suman en la Fase 8. Un regalo y una charla que suma por día y por vecino.
+
 ---
 
 ## 6. La isla
@@ -572,7 +574,7 @@ Lo que se deja en la caja se vende al final del día.
 - **Modo de prueba** (solo en el editor o en builds de desarrollo): F5 / F6 atrasan o adelantan una hora y F7 vuelve a la hora real.
 - **Los días del juego son los días reales**, como en Animal Crossing: los cultivos crecen por días reales regados (si un día no se riega, se pausa; nunca se muere), la mina y la recolección se renuevan cada día real, la caja de envíos paga al día siguiente y los cuidados tienen límites por día real.
 - **Sin energía del jugador ni desmayos:** podés hacer todo lo que quieras; lo que pone el ritmo es el día real (decisión de octubre 2026).
-- **Clima:** soleado, nublado, lluvia (riega sola la huerta) y **tormenta** (aparece Karman).
+- **Clima:** uno por día real, igual todo el día. En la Fase 7 hay **sol y lluvia** (≈1 de cada 4 días; la lluvia riega sola la huerta y los vecinos cambian su rutina). Nublado y **tormenta** (aparece Karman) se suman más adelante. F8 fuerza el clima en modo de prueba.
 - **Días de la semana:** la Copa y las carreras oficiales son los **sábados**.
 - **Iluminación:** amanecer, día, atardecer y noche, con luces 2D en ventanas y faroles.
 

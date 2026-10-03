@@ -29,6 +29,75 @@ namespace MemosIsland.UI
 
         void Awake() => visuals.SetActive(false);
 
+        // ------------------------------------------------------------------ Quién habla (retrato)
+
+        string _speakerName;
+        Sprite _speakerPortrait;
+        GameObject _portraitRoot;
+        SpriteRenderer _portraitImage;
+        SpriteRenderer _nameBox;
+        PixelText _nameText;
+
+        /// <summary>Retrato y nombre para el próximo diálogo (se borran al cerrarlo).</summary>
+        public void SetSpeaker(string speakerName, Sprite portrait)
+        {
+            _speakerName = speakerName;
+            _speakerPortrait = portrait;
+        }
+
+        void ShowSpeaker()
+        {
+            bool show = _speakerPortrait != null || !string.IsNullOrEmpty(_speakerName);
+            if (!show)
+            {
+                if (_portraitRoot != null) _portraitRoot.SetActive(false);
+                return;
+            }
+            if (_portraitRoot == null) BuildSpeaker();
+            _portraitRoot.SetActive(true);
+            _portraitImage.transform.parent.gameObject.SetActive(_speakerPortrait != null);
+            _portraitImage.sprite = _speakerPortrait;
+            _nameText.SetText(_speakerName ?? "");
+            int w = text.Font.MeasureWidth(_speakerName ?? "") + 12;
+            float left = _speakerPortrait != null ? -58f : -116f;
+            _nameBox.size = new Vector2(w / Ppu, 14f / Ppu);
+            _nameBox.transform.localPosition = new Vector3((left + w / 2f) / Ppu, -14.5f / Ppu, 0f);
+            _nameText.transform.localPosition = new Vector3((left + 6f) / Ppu, -10.5f / Ppu, 0f);
+        }
+
+        void BuildSpeaker()
+        {
+            var source = visuals.transform.Find("Box").GetComponent<SpriteRenderer>();
+            _portraitRoot = new GameObject("Speaker");
+            _portraitRoot.transform.SetParent(transform, false);
+
+            SpriteRenderer Box(string name, int order)
+            {
+                var r = new GameObject(name).AddComponent<SpriteRenderer>();
+                r.transform.SetParent(_portraitRoot.transform, false);
+                r.sprite = source.sprite;
+                r.drawMode = SpriteDrawMode.Sliced;
+                r.sharedMaterial = source.sharedMaterial;
+                r.sortingOrder = order;
+                return r;
+            }
+
+            // Marco de 56x56 a la izquierda, apoyado sobre la caja de diálogo; el retrato es de 48x48.
+            var frame = Box("Portrait Frame", source.sortingOrder);
+            frame.size = new Vector2(56f / Ppu, 56f / Ppu);
+            frame.transform.localPosition = new Vector3(-88f / Ppu, 6.5f / Ppu, 0f);
+            _portraitImage = new GameObject("Portrait").AddComponent<SpriteRenderer>();
+            _portraitImage.transform.SetParent(frame.transform, false);
+            _portraitImage.sharedMaterial = source.sharedMaterial;
+            _portraitImage.sortingOrder = source.sortingOrder + 5;
+
+            _nameBox = Box("Name Box", source.sortingOrder);
+            _nameText = new GameObject("Name").AddComponent<PixelText>();
+            _nameText.transform.SetParent(_portraitRoot.transform, false);
+            _nameText.Setup(text.Font, text.Material, source.sortingOrder + 10, new Color32(0xb1, 0x3e, 0x53, 0xff), true);
+            _portraitRoot.SetActive(false);
+        }
+
         public void Show(IEnumerable<string> pages, Action onClosed = null)
         {
             if (IsOpen) return;
@@ -134,11 +203,15 @@ namespace MemosIsland.UI
             IsOpen = true;
             GameRoot.InputLocks++;
             visuals.SetActive(true);
+            ShowSpeaker();
         }
 
         void Close()
         {
             visuals.SetActive(false);
+            if (_portraitRoot != null) _portraitRoot.SetActive(false);
+            _speakerName = null;
+            _speakerPortrait = null;
             GameRoot.InputLocks--;
             IsOpen = false;
         }

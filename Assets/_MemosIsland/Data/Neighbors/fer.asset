@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: fer
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: fer
+  displayName: Fer
+  role: Herrera
+  portrait: {fileID: 21300000, guid: 14a3a4de481ef3144883ac57ff15a9c1, type: 3}
+  icon: {fileID: 21300000, guid: bf4b396b4624a604f8c165144149962c, type: 3}
+  down:
+  - {fileID: 21300000, guid: c013cd5d622fdd1488d650e5a64a2d25, type: 3}
+  - {fileID: 21300000, guid: 6bbd9e7b9dc454a46be1de1c111221e4, type: 3}
+  - {fileID: 21300000, guid: 98f927a884df4d3478975f7439bc3b8a, type: 3}
+  up:
+  - {fileID: 21300000, guid: b6ca4e2cdbc7eb54dbac31ab4179d801, type: 3}
+  - {fileID: 21300000, guid: 66a90f2c650aa8c459bc28749bca20f3, type: 3}
+  - {fileID: 21300000, guid: a00f4fc587d476c44bacdf4ffa6e342f, type: 3}
+  left:
+  - {fileID: 21300000, guid: f1e3c7d739ed07348b2be3122f5480c8, type: 3}
+  - {fileID: 21300000, guid: 6a08e53c81000604ab8c1a9cb45bec13, type: 3}
+  - {fileID: 21300000, guid: 2829c522a3945314290f9aa8b7830941, type: 3}
+  right:
+  - {fileID: 21300000, guid: 2d2d58e5c4169aa4fbf6cb4ae467b1ec, type: 3}
+  - {fileID: 21300000, guid: dbd7a57286ac6664790c6590e6732021, type: 3}
+  - {fileID: 21300000, guid: c488f8bf48b09ce438c1ae88573d1615, type: 3}
+  loved:
+  - lingote_hierro
+  - topacio
+  liked:
+  - lingote_cobre
+  - cuarzo
+  - mineral_hierro
+  disliked:
+  - flor
+  - pastel_frutilla
+  lovedText: "\u2026Hierro bien fundido. Esto es un regalo de verdad. Gracias."
+  likedText: Sirve. Gracias.
+  neutralText: Mmh. Gracias.
+  dislikedText: "\xBFPara qu\xE9 quiero esto? \u2026No importa. La intenci\xF3n cuenta.
+    Eso dicen."
+  firstMeet: "\u2026Fer. Herrer\xEDa. Si quer\xE9s mejorar herramientas, tra\xE9
+    lingotes y plata. Si quer\xE9s charlar\u2026 tambi\xE9n se puede. Poco."
+  linesLow:
+  - "Una herramienta buena dura toda la vida. Una mala, tambi\xE9n, pero te la hace
+    imposible."
+  - El pico de cobre rompe hierro y cuarzo. El de hierro, las gemas. No hay atajos.
+  - "Fundir se hace en la fundici\xF3n del refugio. Tres minerales, un lingote. Paciencia."
+  linesMid:
+  - "Mi pap\xE1 dec\xEDa que el metal escucha. Si le peg\xE1s con bronca, sale torcido."
+  - "Me gusta cuando ven\xEDs. Habl\xE1s menos que el resto del pueblo."
+  - "Tu regadera estaba hecha un desastre. La pr\xF3xima, traela antes."
+  linesHigh:
+  - "\u2026Te hice un lugar en el banco del taller. Para cuando quieras mirar c\xF3mo
+    trabajo."
+  - No tengo muchos amigos. Tengo un yunque. Y ahora, vos.
+  linesRain:
+  - "Con lluvia el fuego de la forja cuesta m\xE1s. Pero sale. Siempre sale."
+  linesCompanion:
+  - "Tu {memo} tiene buenas patas. Con unas herraduras correr\xEDa todav\xEDa mejor."
+  schedule:
+  - hour: 8
+    days: 127
+    weather: 0
+    scene: Map_Herreria
+    cell: {x: 5, y: 5}
+    facing: 0
+    activity: trabajo
+    line: 
+  - hour: 13
+    days: 127
+    weather: 1
+    scene: Map_PuebloPuerto
+    cell: {x: 20, y: 17}
+    facing: 0
+    activity: almuerzo
+    line: "Almuerzo. No molestes. \u2026Bueno, un ratito."
+  - hour: 14
+    days: 127
+    weather: 0
+    scene: Map_Herreria
+    cell: {x: 5, y: 5}
+    facing: 0
+    activity: trabajo
+    line: 
+  - hour: 18
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 24, y: 5}
+    facing: 0
+    activity: muelle
+    line: "Despu\xE9s de la forja, el mar. Enfr\xEDa la cabeza."
+  - hour: 19
+    days: 127
+    weather: 0
+    scene: Map_Taberna
+    cell: {x: 4, y: 3}
+    facing: 2
+    activity: taberna
+    line: "Un vaso de jugo y silencio. Bueno, casi silencio. Deny est\xE1 ac\xE1."
+  - hour: 22
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: fer_3
+    hearts: 3
+    scene: Map_Herreria
+    pages:
+    - "Pas\xE1. Estoy terminando algo."
+    - (Fer martilla una pieza chiquita con mucho cuidado. Es una hebilla con forma
+      de hoja.)
+    - "Era de mi pap\xE1. Se rompi\xF3 hace a\xF1os. La estoy rehaciendo de memoria."
+    - "No te la muestro para que digas nada. Solo\u2026 quer\xEDa que alguien la
+      viera terminada."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - "Le qued\xF3 igual, seguro"
+    - "\xBFMe ense\xF1\xE1s a hacer una?"
+    answerPoints: 2800000032000000
+    replies:
+    - "\u2026No s\xE9 si igual. Pero parecida. Gracias."
+    - "\u2026Alg\xFAn d\xEDa. Primero aprend\xE9 a no martillarte el dedo."
+  - id: fer_6
+    hearts: 6
+    scene: Map_Herreria
+    pages:
+    - "Tom\xE1. No preguntes."
+    - "(Te da un llavero de hierro con forma de Memo. Est\xE1 hecho con mucho detalle.)"
+    - "Me sobraba hierro. \u2026Mentira. Lo compr\xE9 para esto."
+    - La gente que viene al taller me pide cosas. Vos me trajiste cosas. Es distinto.
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 0
+    targetId: mineral_cobre
+    count: 6
+    reward: 260
+    boardText: 'Fer: "Necesito 6 minerales de cobre. De la cueva."'
+    thanks: Bien. Esto me sirve. Gracias.
+  - kind: 0
+    targetId: piedra
+    count: 10
+    reward: 120
+    boardText: "Fer: \"10 piedras para el horno. No pregunten para qu\xE9.\""
+    thanks: "Piedras. Bien. \u2026Era para arreglar el horno, ya que pregunt\xE1s."
+  - kind: 0
+    targetId: lingote_cobre
+    count: 2
+    reward: 420
+    boardText: 'Fer: "2 lingotes de cobre para un encargo urgente."'
+    thanks: Justo a tiempo. Buen trabajo.

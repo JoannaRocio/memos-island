@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: zorak
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: zorak
+  displayName: Zorak
+  role: "Ermita\xF1o de la cueva"
+  portrait: {fileID: 21300000, guid: d922baaad4368ea4790c9dd41af17de6, type: 3}
+  icon: {fileID: 21300000, guid: 8323c17e93fc61748a9eab01201dedc7, type: 3}
+  down:
+  - {fileID: 21300000, guid: 131172d2473c15645a22787c15614675, type: 3}
+  - {fileID: 21300000, guid: 850f5279560f1fc44be38663d629644a, type: 3}
+  - {fileID: 21300000, guid: 9b14f0ab8af29d54795f0be09de20a6e, type: 3}
+  up:
+  - {fileID: 21300000, guid: 030fb9163d04e27489cb3e7f3d7797ac, type: 3}
+  - {fileID: 21300000, guid: f0e94adea9212e4439f2420d9403a58d, type: 3}
+  - {fileID: 21300000, guid: 34149e84580687840a55a6564e417ac2, type: 3}
+  left:
+  - {fileID: 21300000, guid: bfeb6039997d4c948a7e03f512c3bac0, type: 3}
+  - {fileID: 21300000, guid: a3ccbbf65f1f4644f810a77fc1c9a2ec, type: 3}
+  - {fileID: 21300000, guid: e60d529406393e84d88fc1a73221500a, type: 3}
+  right:
+  - {fileID: 21300000, guid: cad50709d86cf514f969279b5de06739, type: 3}
+  - {fileID: 21300000, guid: 0fced5300f8056c42a89a79cebde15c0, type: 3}
+  - {fileID: 21300000, guid: b240d9f2d952abd4d87662f3b5fa4c3f, type: 3}
+  loved:
+  - zapallo
+  - esmeralda
+  liked:
+  - pure_zapallo
+  - topacio
+  - lingote_hierro
+  disliked:
+  - flor
+  - pelota
+  lovedText: "\u2026Zapallo. Como el que hac\xEDa mi madre. \u2026No me mires as\xED.
+    Gracias."
+  likedText: "Mmh. No est\xE1 mal. Gracias."
+  neutralText: "\xBFY esto? \u2026Bueno. Lo dejo por ah\xED."
+  dislikedText: "No necesito esto. Pero\u2026 gracias por acordarte del viejo."
+  firstMeet: "\u2026\xBFQu\xE9 mir\xE1s? Esta es mi cueva. Bueno, no es m\xEDa. Pero
+    yo llegu\xE9 primero. Pic\xE1 las rocas si quer\xE9s. Y no hagas ruido."
+  linesLow:
+  - "Las rocas vuelven a crecer cada d\xEDa. Como los problemas."
+  - "Cinco pisos tiene la cueva. En el \xFAltimo hay Farolitos. Llev\xE1 luz\u2026
+    o un Memo que brille."
+  - "\xBFCarreras? Antes corr\xEDa. Ahora miro. Mirar tambi\xE9n es un arte."
+  linesMid:
+  - "Tu forma de tratar a los Memos\u2026 me recuerda a alguien. No preguntes a qui\xE9n."
+  - "Un Memo no corre por la comida. Corre porque conf\xEDa en que vas a estar en
+    la meta."
+  - "Hoy te traje t\xE9. Est\xE1 fr\xEDo. Igual tomalo."
+  linesHigh:
+  - "Hace mucho que nadie ven\xEDa a visitar al viejo de la cueva. Gracias. De verdad."
+  - "Alg\xFAn d\xEDa te voy a ense\xF1ar a correr a la forma antigua. Cuando sea
+    el momento. Ya casi."
+  linesRain:
+  - "La lluvia no entra en la cueva. Por eso vivo ac\xE1. Bueno, por eso y porque
+    no me gusta la gente."
+  linesCompanion:
+  - "Ese {memo}\u2026 tiene buena mirada. No lo descuides."
+  schedule:
+  - hour: 6
+    days: 127
+    weather: 0
+    scene: Map_RefugioExterior
+    cell: {x: 25, y: 6}
+    facing: 0
+    activity: cueva
+    line: "Vigilo la entrada. Nadie me lo pidi\xF3. Igual lo hago."
+  - hour: 19
+    days: 64
+    weather: 0
+    scene: Map_Taberna
+    cell: {x: 2, y: 4}
+    facing: 0
+    activity: taberna
+    line: "Los s\xE1bados bajo al pueblo. Una vez por semana alcanza."
+  - hour: 19
+    days: 63
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  - hour: 23
+    days: 64
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: zorak_3
+    hearts: 3
+    scene: 
+    pages:
+    - "Ven\xED. Sentate. No, ah\xED no. Ah\xED. Bien."
+    - (Zorak saca de su bolsillo una pelota de trapo vieja, muy remendada.)
+    - Era de un Memo que tuve. Le encantaba que se la tirara lejos, cerca del agua.
+    - "No te voy a contar m\xE1s. Solo\u2026 quer\xEDa que alguien supiera que existi\xF3."
+    question: "\xBFQu\xE9 hac\xE9s?"
+    answers:
+    - Quedarte en silencio
+    - "\xBFC\xF3mo se llamaba?"
+    answerPoints: 3c00000014000000
+    replies:
+    - "\u2026Gracias por no decir nada. Es lo mejor que se puede decir."
+    - "\u2026Otro d\xEDa. Hoy no."
+  - id: zorak_6
+    hearts: 6
+    scene: 
+    pages:
+    - "Te estuve mirando correr con tus Memos. No est\xE1 mal."
+    - "Pero corr\xE9s como si la carrera fuera tuya. No es tuya. Es de ellos."
+    - "Vos solo ten\xE9s que estar ah\xED. Que te vean. Que sepan que pase lo que
+      pase, la meta sos vos."
+    - "\u2026Eso era todo. And\xE1, que se hace tarde."
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 0
+    targetId: zapallo
+    count: 1
+    reward: 350
+    boardText: 'Zorak: "Un zapallo. Uno solo. No pregunten."'
+    thanks: "\u2026Bien. Esta noche hay sopa. Gracias."
+  - kind: 0
+    targetId: lingote_hierro
+    count: 1
+    reward: 380
+    boardText: 'Zorak: "Necesito un lingote de hierro para arreglar algo viejo."'
+    thanks: Buen hierro. Va a quedar como nuevo. Bueno, como viejo, pero sano.
+  - kind: 1
+    targetId: topin
+    count: 1
+    reward: 200
+    boardText: "Zorak: \"Traeme un Top\xEDn. Hace a\xF1os que no veo uno de cerca.\""
+    thanks: "\u2026Igual de cabez\xF3n que siempre. Gracias."

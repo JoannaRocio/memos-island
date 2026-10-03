@@ -1,0 +1,355 @@
+# Pueblo (Fase 7): mostrador, estantes, yunque, barril, camilla, banquito, tablón y carteles. Generado por make_neighbors.py.
+
+sprite counter
+size 16 16
+frame
+................
+................
+pppppppppppppppp
+oooooooooooooooo
+oooooooooooooooo
+oooooooooooooooo
+oooooooooooooooo
+jjjjjjjjjjjjjjjj
+iiiiiiiiiiiiiiii
+iiijiiiiiiijiiii
+iiijiiiiiiijiiii
+iiijiiiiiiijiiii
+iiijiiiiiiijiiii
+iiijiiiiiiijiiii
+iiijiiiiiiijiiii
+iiiiiiiiiiiiiiii
+tile solid
+end
+
+sprite shelf
+size 32 32
+pivot 0.5 0
+outline 0
+frame
+................................
+................................
+.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiidccic44iiiiiiiiiij.
+.jiiiiiiiiiiiccci444iiiiic22iij.
+.jiic44iic66iccci444icaai222iij.
+.jii444ii666iccci444iaaai222iij.
+.jii444ii666iccci444iaaai222iij.
+.jooooooooooooooooooooooooooooj.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiidccic33icaaiiiiiiij.
+.jiiiiiicaaiccci333iaaaiiiiiiij.
+.jiic22iaaaiccci333iaaaiic22iij.
+.jii222iaaaiccci333iaaaii222iij.
+.jii222iaaaiccci333iaaaii222iij.
+.jooooooooooooooooooooooooooooj.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jiiiiiiiiiiiiiiic22iiiiiiiiiij.
+.jiiiiiiiiiiicaai222iiiiiiiiiij.
+.jiicaaiic99iaaai222ic44icaaiij.
+.jiiaaaii999iaaai222i444iaaaiij.
+.jiiaaaii999iaaai222i444iaaaiij.
+.jooooooooooooooooooooooooooooj.
+.jiiiiiiiiiiiiiiiiiiiiiiiiiiiij.
+.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj.
+................................
+end
+
+sprite anvil
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+................
+eeeddddddddddd..
+eeeeeeeeeeeeee..
+..eeeeeeeeeeee..
+.....ffffff.....
+.....ffffff.....
+.....ffffff.....
+...ffffffffff...
+...ffffffffff...
+...ffffffffff...
+................
+end
+
+sprite barrel
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+.....oooooo.....
+....iioooooo....
+..ffffffffffff..
+...iiiiiiiioo...
+..iiiiiiiiiiio..
+..iiiiiiiiiiii..
+..jiiiiiiiiiii..
+..jjjiiiiiiiii..
+..jjjjjiiiiiii..
+...jjjjjjjiii...
+..ffffffffffff..
+....jjjjjjjj....
+.....jjjjjj.....
+................
+end
+
+sprite clinic_bed
+size 32 16
+pivot 0.5 0
+outline 0
+frame
+................................
+................................
+................................
+................................
+.cbbbbbbbcccccccccccccccccccccc.
+.cbbbbbbbcccccccccccccccccccccc.
+.cbbbbbbbcccccccccccccccccccccc.
+.cbbbbbbbcccccccccccccccccccccc.
+.cbbbbbbbcccccccccccccccccccccc.
+.cccccccccccccccccccccccccccccc.
+.dddddddddddddddddddddddddddddd.
+.edddddddddddddddddddddddddddde.
+.e............................e.
+.e............................e.
+.e............................e.
+.e............................e.
+end
+
+sprite stool
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+....oooopppp....
+...oooooooooo...
+...iiiooooooo...
+....iiiiiiii....
+.....j....j.....
+.....j....j.....
+.....j....j.....
+.....j....j.....
+.....j....j.....
+.....j....j.....
+.....j....j.....
+................
+end
+
+sprite board
+size 32 32
+pivot 0.5 0
+outline 0
+frame
+................................
+................................
+.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj.
+.jooooooooooooooooooooooooooooj.
+.joooooooooooccc2ccoooooooooooj.
+.jooccc2cccooccccccoooooooooooj.
+.joocccccccoocddddcooccc2cccooj.
+.joocdddddcooccccccoocccccccooj.
+.joocccccccoocddddcoocdddddcooj.
+.joocdddddcooccccccoocccccccooj.
+.joocccccccoooooooooocdddddcooj.
+.joocdddddcoooooooooocccccccooj.
+.joocccccccoccc2cccoocdddddcooj.
+.joooooooooocccccccoocccccccooj.
+.joooooooooocdddddcoocccccccooj.
+.joooooooooocccccccoooooooooooj.
+.joooooooooocdddddcoooooooooooj.
+.joooooooooocccccccoooooooooooj.
+.jooooooooooooooooooooooooooooj.
+.jooooooooooooooooooooooooooooj.
+.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj.
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+....jj.....................jj...
+end
+
+sprite sign_shop
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.ooooojjjjooooo.
+.oooooojjoooooo.
+.oooo666666oooo.
+.oooo666666oooo.
+.oooo666666oooo.
+.oooo666666oooo.
+.oooo666666oooo.
+.oooo666666oooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_forge
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.oooooooooooooo.
+.oooooooooooooo.
+.oooeeeeeeeeooo.
+.oooeeeeeeeeooo.
+.oooooffffooooo.
+.oooooffffooooo.
+.ooooffffffoooo.
+.ooooffffffoooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_clinic
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.ooccccccccccoo.
+.oocccc22ccccoo.
+.oocccc22ccccoo.
+.ooc22222222coo.
+.ooc22222222coo.
+.oocccc22ccccoo.
+.oocccc22ccccoo.
+.oocccc22ccccoo.
+.ooccccccccccoo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_tavern
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.oooooooooooooo.
+.oooocccccooooo.
+.oooocccccooooo.
+.oooo4444444ooo.
+.oooo4444444ooo.
+.oooo4444444ooo.
+.oooo44444ooooo.
+.oooo44444ooooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_town
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.ooooo44ooooooo.
+.ooooo44ooooooo.
+.ooo4444444oooo.
+.oooo44444ooooo.
+.ooo444444ooooo.
+.ooooo444oooooo.
+.ooooo44ooooooo.
+.oooooooooooooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_stadium
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.oooo444444oooo.
+.ooo44444444ooo.
+.oooo444444oooo.
+.oooo444444oooo.
+.oooo444444oooo.
+.oooooo33oooooo.
+.oooooo33oooooo.
+.oooo333333oooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+
+sprite sign_apice
+size 16 16
+pivot 0.5 0.5
+outline 0
+frame
+....f......f....
+....f......f....
+.pppppppppppppp.
+.oooooooooooooo.
+.oooooffooooooo.
+.oooooffooooooo.
+.ooooffffoooooo.
+.oooofddfoooooo.
+.oooofddffooooo.
+.oooffdddffoooo.
+.ooofdddddfoooo.
+.oofffffffffooo.
+.oooooooooooooo.
+.iiiiiiiiiiiiii.
+................
+................
+end
+

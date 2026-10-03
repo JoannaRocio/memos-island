@@ -31,6 +31,7 @@ namespace MemosIsland.EditorTools
 
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var m = new Phase1WorldBuilder.MapBuilder("Cueva de Zorak", 20, 14);
+            m.Indoor();
 
             m.Fill(m.Ground, T("cave_floor"), 1, 1, 18, 12);
             for (int x = 0; x < 20; x++) m.Set(m.Buildings, T("cave_wall"), (x, 0), (x, 13));
@@ -161,7 +162,7 @@ namespace MemosIsland.EditorTools
             EditorSceneManager.SaveScene(scene);
         }
 
-        static void Forage(Transform props, string name, List<Vector2Int> spots, List<string> items, int perDay)
+        internal static void Forage(Transform props, string name, List<Vector2Int> spots, List<string> items, int perDay)
         {
             var go = new GameObject(name);
             go.transform.SetParent(props, false);

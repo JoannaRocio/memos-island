@@ -44,6 +44,12 @@ namespace MemosIsland.Core
         {
             if (GameClock.Instance == null) return;
             Evaluate(keys, GameClock.Instance.HourOfDay, out var color, out var intensity);
+            // Día de lluvia al aire libre: más gris y un poco más oscuro.
+            if (Weather.IsRainy(GameClock.Instance.Now) && (World.MapInfo.Current == null || World.MapInfo.Current.Outdoor))
+            {
+                color = Color.Lerp(color, new Color(0.62f, 0.68f, 0.8f), 0.45f);
+                intensity *= 0.8f;
+            }
             _light.color = color;
             _light.intensity = intensity;
         }

@@ -9,21 +9,43 @@ using UnityEngine;
 
 namespace MemosIsland.World
 {
-    public enum StationKind { Workbench, Smelter, Processor, ShippingBox, DenyShop, FerForge }
+    public enum StationKind { Workbench, Smelter, Processor, ShippingBox, DenyShop, FerForge, Clinic, Board }
 
     /// <summary>Máquinas del refugio y puestos del pueblo (GDD §15).</summary>
     public class Station : MonoBehaviour, IInteractable
     {
         [SerializeField] StationKind kind;
+        [Tooltip("Vecino que atiende (Fase 7). Vacío = siempre abierto.")]
+        [SerializeField] string keeperId;
 
         public StationKind Kind => kind;
 
-        public void Setup(StationKind stationKind) => kind = stationKind;
+        public void Setup(StationKind stationKind, string keeper = null)
+        {
+            kind = stationKind;
+            keeperId = keeper;
+        }
 
         static DateTime Now => GameClock.Instance != null ? GameClock.Instance.Now : DateTime.Now;
 
         public void Interact(PlayerController player)
         {
+            if (!string.IsNullOrEmpty(keeperId) && KeeperHere())
+            {
+                // Del otro lado del mostrador: se charla con quien atiende (y desde ahí se compra).
+                NeighborDirector.Current.Find(keeperId).Interact(player);
+                return;
+            }
+            if (!string.IsNullOrEmpty(keeperId))
+            {
+                var keeper = MemoDatabase.Instance.GetNeighbor(keeperId);
+                var hours = keeper != null ? Town.NeighborSchedule.HoursText(keeper, "trabajo", Now) : "";
+                GameRoot.Instance.Dialogue.Show(new[]
+                {
+                    $"No hay nadie atendiendo." + (hours.Length > 0 ? $" Horario de {keeper.displayName}: {hours}." : ""),
+                });
+                return;
+            }
             switch (kind)
             {
                 case StationKind.Workbench: IslandMenus.OpenWorkbench(); break;
@@ -32,7 +54,21 @@ namespace MemosIsland.World
                 case StationKind.FerForge: IslandMenus.OpenFerForge(); break;
                 case StationKind.Smelter: UseSmelter(); break;
                 case StationKind.Processor: UseProcessor(); break;
+                case StationKind.Board: TownMenus.OpenBoard(); break;
+                case StationKind.Clinic:
+                {
+                    var anni = MemoDatabase.Instance.GetNeighbor(keeperId);
+                    if (anni != null) GameRoot.Instance.Dialogue.SetSpeaker(anni.displayName, anni.portrait);
+                    GameRoot.Instance.Dialogue.Show(TownMenus.ClinicCheckup());
+                    break;
+                }
             }
+        }
+
+        bool KeeperHere()
+        {
+            var director = NeighborDirector.Current;
+            return director != null && director.IsWorking(keeperId);
         }
 
         static void UseSmelter()
