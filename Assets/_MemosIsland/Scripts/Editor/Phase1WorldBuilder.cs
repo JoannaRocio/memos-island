@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MemosIsland.Core;
@@ -26,7 +27,7 @@ namespace MemosIsland.EditorTools
         const string ResourcesFolder = "Assets/_MemosIsland/Resources";
         const string GameRootPath = ResourcesFolder + "/GameRoot.prefab";
         const string Gen = PixelArtGenerator.GeneratedRoot;
-        const string UnlitMaterialPath = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat";
+        internal const string UnlitMaterialPath = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat";
         const float Ppu = 16f;
 
         const int OrderActors = 10;
@@ -70,9 +71,9 @@ namespace MemosIsland.EditorTools
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        static Sprite S(string path) => AssetDatabase.LoadAssetAtPath<Sprite>($"{Gen}/{path}.png");
+        internal static Sprite S(string path) => AssetDatabase.LoadAssetAtPath<Sprite>($"{Gen}/{path}.png");
         static Sprite[] Frames(string baseName) => new[] { S($"{baseName}_0"), S($"{baseName}_1"), S($"{baseName}_2") };
-        static TileBase T(string name) => AssetDatabase.LoadAssetAtPath<TileBase>($"{PixelArtGenerator.TilesRoot}/{name}.asset");
+        internal static TileBase T(string name) => AssetDatabase.LoadAssetAtPath<TileBase>($"{PixelArtGenerator.TilesRoot}/{name}.asset");
         static Vector3 Px(float x, float y, float z = 0f) => new(x / Ppu, y / Ppu, z);
 
         static void SetField(Object target, string field, Object value)
@@ -200,10 +201,21 @@ namespace MemosIsland.EditorTools
             faderGo.transform.localScale = new Vector3(300f, 170f, 1f);
             var fader = faderGo.AddComponent<ScreenFader>();
 
-            // MemoBox (Fase 2): se abre con Esc/Tab
-            Child(ui.transform, "MemoBox", Vector3.zero).AddComponent<MemoBoxScreen>()
-                .Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
+            // MemoBox (Fase 2) y Mis Memos (Fase 4): se abren desde el menú de pausa (Esc/Tab)
+            var memoBox = Child(ui.transform, "MemoBox", Vector3.zero).AddComponent<MemoBoxScreen>();
+            memoBox.Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
+            var myMemos = Child(ui.transform, "My Memos", Vector3.zero).AddComponent<MyMemosScreen>();
+            myMemos.Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
+            Child(ui.transform, "Pause Menu", Vector3.zero).AddComponent<PauseMenu>().Setup(font, boxSprite, unlit);
 
+            // Compañero que te sigue (Fase 4)
+            var companionGo = Child(root.transform, "Companion", Vector3.zero);
+            var (companionMover, companionView, companionBubble, companionCollider) = BuildMemoActor(companionGo, font, unlit, false);
+            companionGo.AddComponent<CompanionFollower>().Setup(companionMover, companionView, companionBubble, companionCollider);
+
+            SetField(gameRoot, "companion", companionGo.GetComponent<CompanionFollower>());
+            SetField(gameRoot, "myMemos", myMemos);
+            SetField(gameRoot, "memoBox", memoBox);
             SetField(gameRoot, "player", controller);
             SetField(gameRoot, "cameraFollow", follow);
             SetField(gameRoot, "dialogue", dialogue);
@@ -214,11 +226,48 @@ namespace MemosIsland.EditorTools
             Directory.CreateDirectory(ResourcesFolder);
             PrefabUtility.SaveAsPrefabAsset(root, GameRootPath);
             Object.DestroyImmediate(root);
+
+            // Prefab de los Memos del refugio (MemoLife se agrega al crearlos).
+            var actor = new GameObject("MemoActor");
+            BuildMemoActor(actor, font, unlit, true);
+            PrefabUtility.SaveAsPrefabAsset(actor, $"{ResourcesFolder}/MemoActor.prefab");
+            Object.DestroyImmediate(actor);
+        }
+
+        /// <summary>Un Memo en el mundo: GridMover + sprite (MemoSpriteView) + burbuja de emoción + collider para interactuar.</summary>
+        static (GridMover, MemoSpriteView, EmoteBubble, Collider2D) BuildMemoActor(GameObject go, PixelFont font, Material unlit, bool occupiesCell)
+        {
+            var mover = go.AddComponent<GridMover>();
+            var so = new SerializedObject(mover);
+            so.FindProperty("occupiesCell").boolValue = occupiesCell;
+            so.FindProperty("walkSpeed").floatValue = 3f;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            var col = go.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+            col.size = new Vector2(0.9f, 0.9f);
+            col.offset = new Vector2(0f, 0.5f);
+
+            var viewGo = Child(go.transform, "View", Vector3.zero);
+            var renderer = viewGo.AddComponent<SpriteRenderer>();
+            renderer.sortingOrder = OrderActors;
+            var view = viewGo.AddComponent<MemoSpriteView>();
+
+            var bubbleGo = Child(go.transform, "Bubble", new Vector3(0f, 2.15f, 0f));
+            var bubbleRenderer = bubbleGo.AddComponent<SpriteRenderer>();
+            bubbleRenderer.sprite = S("UI/ui_bubble");
+            bubbleRenderer.sharedMaterial = unlit;
+            bubbleRenderer.sortingOrder = OrderActors + 50;
+            var glyph = Child(bubbleGo.transform, "Glyph", Vector3.zero).AddComponent<PixelText>();
+            glyph.Setup(font, unlit, OrderActors + 51, Color.black, false);
+            var bubble = bubbleGo.AddComponent<EmoteBubble>();
+            bubble.Setup(bubbleRenderer, glyph);
+            return (mover, view, bubble, col);
         }
 
         // ------------------------------------------------------------------ Mapas
 
-        class MapBuilder
+        internal class MapBuilder
         {
             public readonly Tilemap Ground, Buildings;
             public readonly Transform Props;
@@ -257,7 +306,7 @@ namespace MemosIsland.EditorTools
                 foreach (var (x, y) in cells) tm.SetTile(new Vector3Int(x, y, 0), tile);
             }
 
-            GameObject Prop(string name, Vector3 pos, Sprite sprite, Vector2 colliderSize, Vector2 colliderOffset)
+            public GameObject Prop(string name, Vector3 pos, Sprite sprite, Vector2 colliderSize, Vector2 colliderOffset)
             {
                 var go = Child(Props, name, pos);
                 go.layer = _solid;
@@ -317,7 +366,7 @@ namespace MemosIsland.EditorTools
                     Set(Buildings, T("house_roof"), (i, y + 3), (i, y + 4));
                 }
                 Set(Buildings, T("house_door"), (doorX, y));
-                Door(doorX, y, doorText);
+                if (doorText.Length > 0) Door(doorX, y, doorText); // sin texto = puerta abierta (con Warp)
                 foreach (var wx in windowXs)
                 {
                     Set(Buildings, T("house_window"), (wx, y + 1));
@@ -349,6 +398,15 @@ namespace MemosIsland.EditorTools
                     }).ToList(), win, lose);
             }
 
+            /// <summary>Refugio: dónde viven los Memos de este lado de la puerta (Fase 4).</summary>
+            public RefugeManager Refuge(bool interior, RectInt area, Vector2Int door, List<Vector2Int> hides,
+                List<Vector2Int> beds, Vector2Int? soulmateSpot, Bowl bowl)
+            {
+                var r = new GameObject("Refuge").AddComponent<RefugeManager>();
+                r.Setup(interior, area, door, hides, beds, soulmateSpot, bowl);
+                return r;
+            }
+
             public void Warp(int x, int y, string scene, string spawn) =>
                 Child(Props, $"Warp → {scene}", new Vector3(x + 0.5f, y)).AddComponent<Warp>().Setup(scene, spawn);
 
@@ -356,7 +414,7 @@ namespace MemosIsland.EditorTools
                 Child(Props, $"Spawn {id}", new Vector3(x + 0.5f, y)).AddComponent<SpawnPoint>().Setup(id, facing);
         }
 
-        static void SaveMap(string sceneName)
+        internal static void SaveMap(string sceneName)
         {
             Directory.CreateDirectory(MapsFolder);
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), $"{MapsFolder}/{sceneName}.unity");
@@ -462,9 +520,12 @@ namespace MemosIsland.EditorTools
 
             for (int x = 4; x <= 10; x++) m.Set(m.Buildings, T("fence"), (x, 3), (x, 8));
 
-            m.House(10, 12, 8, 13, new[] { 11, 15, 16 },
-                "La puerta del refugio está cerrada con llave.",
-                "La llave del abuelo tiene que estar en algún lado…");
+            m.House(10, 12, 8, 13, new[] { 11, 15, 16 }); // puerta abierta: lleva al interior (Fase 4)
+            m.Warp(13, 12, Phase4RefugeBuilder.InteriorScene, "entrada");
+            m.Spawn(13, 11, "puerta", Direction.Down);
+            m.Refuge(false, new RectInt(2, 2, 28, 18), new Vector2Int(13, 11),
+                new List<Vector2Int> { new(4, 16), new(28, 11), new(3, 4), new(27, 17), new(19, 3) },
+                new List<Vector2Int>(), null, null);
 
             m.Sign(11, 11,
                 "REFUGIO DEL ABUELO",

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace MemosIsland.UI
 {
     /// <summary>
-    /// La MemoBox: enciclopedia de Memos. Esc/Tab abre y cierra · ↑↓ elige · A pasa de página (stats, info, habilidad) ·
+    /// La MemoBox: enciclopedia de Memos (se abre desde el menú de pausa). B o Esc cierra · ↑↓ elige · A pasa de página (stats, info, habilidad) ·
     /// ←→ muestra la versión normal, brillante o con collar · B cierra.
     /// Arma su propia interfaz al iniciar (coordenadas en pixels de interfaz: x ±120, y ±67.5).
     /// </summary>
@@ -39,6 +39,7 @@ namespace MemosIsland.UI
         static readonly string[] VariantNames = { "Normal", "Brillante", "Con collar" };
 
         public bool IsOpen { get; private set; }
+        int _openedFrame;
 
         List<MemoSpecies> _species;
         int _selected, _scroll, _variant;
@@ -70,13 +71,7 @@ namespace MemosIsland.UI
 
         void Update()
         {
-            if (!IsOpen)
-            {
-                if (GameInput.MenuPressed && !GameRoot.InputLocked && GameRoot.Instance != null
-                    && !GameRoot.Instance.Player.Mover.IsBusy)
-                    Open();
-                return;
-            }
+            if (!IsOpen || Time.frameCount == _openedFrame) return;
 
             if (GameInput.CancelPressed || GameInput.MenuPressed)
             {
@@ -101,6 +96,7 @@ namespace MemosIsland.UI
                 return;
             }
             _species = db.SpeciesByNumber.ToList();
+            _openedFrame = Time.frameCount;
             IsOpen = true;
             GameRoot.InputLocks++;
             _root.SetActive(true);
@@ -110,6 +106,7 @@ namespace MemosIsland.UI
 
         public void Close()
         {
+            GameRoot.ConsumeUiInput();
             IsOpen = false;
             GameRoot.InputLocks--;
             _root.SetActive(false);

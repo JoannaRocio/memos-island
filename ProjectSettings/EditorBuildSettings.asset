@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MemosIsland/Scenes/Maps/Map_RefugioExterior.unity
     guid: 17d113c141ef79b43b65b7708b00b077
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Race.unity
+    guid: ceade079a55f2424fb044479cdc0386a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -3,6 +3,7 @@ Art/Source/Memos.txt. Cada Memo tiene variante brillante (paleta propia) y con c
 Los tiernos son redondos con ojos grandes; Karman, Draken y Randy son angulosos y oscuros.
 Uso: python make_memos.py"""
 import math
+from collections import Counter
 from pixel_lib import *
 
 GROUND = 61
@@ -614,41 +615,28 @@ MEMOS = [
     ("imanta", imanta, shiny("e>o", "d>4", "f>i")),
 ]
 
-TOSTIN_WORLD_0 = [
-    "................",
-    "................",
-    "..3......3.4....",
-    "..33....33343...",
-    "..333333333424..",
-    "..3333333333....",
-    "..30c3330c33....",
-    "..3003330033....",
-    "..2344444432....",
-    "..334404433.....",
-    "...3333333......",
-    "..334444433.....",
-    "..334444433.....",
-    "..333...333.....",
-    "..222...222.....",
-    "................",
-]
-TOSTIN_WORLD_1 = TOSTIN_WORLD_0[:2] + [
-    "..3......3..4...",
-    "..33....333343..",
-    "..33333333342...",
-] + TOSTIN_WORLD_0[5:13] + [
-    "...333..333.....",
-    "...222..222.....",
-    "................",
-]
+def mini(cv):
+    """64x64 -> 32x32 para el mundo y el refugio: cada bloque de 2x2 toma su color mas comun (sin contar
+    el contorno); despues el generador vuelve a dibujar el contorno."""
+    out = Canvas(32, 32)
+    for y in range(32):
+        for x in range(32):
+            block2 = [cv.g[y * 2 + dy][x * 2 + dx] for dy in (0, 1) for dx in (0, 1)]
+            solid = [p for p in block2 if p != '.']
+            if len(solid) < 2:
+                continue
+            common = Counter(p for p in solid if p != '0').most_common(1)
+            out.set(x, y, common[0][0] if common else '0')
+    return out
+
 
 if __name__ == "__main__":
-    out = "# Memos. Carrera/MemoBox: 64x64 de perfil (pivote abajo). Mundo: 16x16 de frente.\n" \
+    out = "# Memos. Carrera/MemoBox: 64x64 de perfil. Mundo/refugio: 32x32 (reduccion del de carrera). Pivote abajo.\n" \
           "# Generado por Tools/PixelArt/make_memos.py: no editar a mano.\n\n"
-    out += block("tostin_world", 16, 16, [TOSTIN_WORLD_0, TOSTIN_WORLD_1],
-                 header=["pivot 0.5 0", "outline 0"], extra=[MEMOS[0][2], COLLAR])
     for name, fn, shiny_variant in MEMOS:
         out += block(f"{name}_race", 64, 64, [fn(0).rows(), fn(1).rows()],
+                     header=["pivot 0.5 0", "outline 0"], extra=[shiny_variant, COLLAR])
+        out += block(f"{name}_world", 32, 32, [mini(fn(0)).rows(), mini(fn(1)).rows()],
                      header=["pivot 0.5 0", "outline 0"], extra=[shiny_variant, COLLAR])
     open(os.path.join(OUT, "Memos.txt"), "w", encoding="utf-8").write(out)
     print(f"ok: {len(MEMOS)} Memos")

@@ -39,8 +39,10 @@ namespace MemosIsland.Memos
         public Sprite[] shinyRaceFrames;
         [Tooltip("Desaturado: cómo se ve con el collar de Ápice.")]
         public Sprite[] collarRaceFrames;
-        [Tooltip("Sprite chico (16x16) para el mundo y el refugio. Puede faltar hasta la Fase 4.")]
+        [Tooltip("Sprite de 32x32 de perfil para el mundo y el refugio (2 cuadros).")]
         public Sprite[] worldFrames;
+        public Sprite[] shinyWorldFrames;
+        public Sprite[] collarWorldFrames;
 
         public bool HasType(MemoType type) => primaryType == type || (secondaryType != null && secondaryType == type);
 

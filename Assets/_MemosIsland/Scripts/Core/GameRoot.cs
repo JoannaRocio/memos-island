@@ -16,12 +16,20 @@ namespace MemosIsland.Core
         public static int InputLocks;
         public static bool InputLocked => InputLocks > 0;
 
+        /// <summary>Cuadro en el que una pantalla usó Esc/B para cerrarse (evita que otra se abra en el mismo cuadro).</summary>
+        public static int UiConsumedFrame = -1;
+        public static void ConsumeUiInput() => UiConsumedFrame = Time.frameCount;
+        public static bool UiInputConsumed => UiConsumedFrame == Time.frameCount;
+
         [SerializeField] PlayerController player;
         [SerializeField] CameraFollow cameraFollow;
         [SerializeField] DialogueBox dialogue;
         [SerializeField] ScreenFader fader;
         [SerializeField] MapNameBanner banner;
         [SerializeField] MapManager maps;
+        [SerializeField] CompanionFollower companion;
+        [SerializeField] MyMemosScreen myMemos;
+        [SerializeField] MemoBoxScreen memoBox;
         [SerializeField] GameState state = new();
         [Tooltip("Mientras no exista la elección del inicial (Fase 8), arranca con un equipo de prueba.")]
         [SerializeField] bool giveDebugTeam = true;
@@ -32,6 +40,9 @@ namespace MemosIsland.Core
         public ScreenFader Fader => fader;
         public MapNameBanner Banner => banner;
         public MapManager Maps => maps;
+        public CompanionFollower Companion => companion;
+        public MyMemosScreen MyMemos => myMemos;
+        public MemoBoxScreen MemoBox => memoBox;
         public GameState State => state;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

@@ -26,6 +26,11 @@ namespace MemosIsland.UI
         {
             var clock = GameClock.Instance;
             if (clock == null) return;
+            // Se oculta detrás de las pantallas completas (Mis Memos, MemoBox).
+            var root = GameRoot.Instance;
+            bool covered = root != null && (root.MyMemos != null && root.MyMemos.IsOpen || root.MemoBox != null && root.MemoBox.IsOpen);
+            box.enabled = !covered;
+            label.gameObject.SetActive(!covered);
             var text = clock.TimeText;
             if (text == _shown) return;
             _shown = text;

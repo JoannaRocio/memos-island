@@ -42,4 +42,12 @@ MonoBehaviour:
   collarRaceFrames:
   - {fileID: 21300000, guid: ae6be7a5a7f59214c8d85ef6e1202693, type: 3}
   - {fileID: 21300000, guid: b135beecef356124083d28aa36601ae7, type: 3}
-  worldFrames: []
+  worldFrames:
+  - {fileID: 21300000, guid: e68073d331836314ab856bfe52390a56, type: 3}
+  - {fileID: 21300000, guid: fe333ab3d251fa04685edeee3406d817, type: 3}
+  shinyWorldFrames:
+  - {fileID: 21300000, guid: 8907eb957f5b3a048a4ab0569e5cf86c, type: 3}
+  - {fileID: 21300000, guid: 5488b254eed618f42af7b96f3ab49aa9, type: 3}
+  collarWorldFrames:
+  - {fileID: 21300000, guid: 41a481c403b1f9a4fbe0e9f9c0443437, type: 3}
+  - {fileID: 21300000, guid: f21cfabd2130afa41b1c34fd215a353e, type: 3}

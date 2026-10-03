@@ -86,6 +86,13 @@ namespace MemosIsland.Race
                 if (!r.isPlayer) _hud.ShowToast($"{r.name}: ¡{a.displayName}!");
             };
             _sim.Switched += r => { if (r.isPlayer) _cursor = r.activeIndex; };
+            var relationships = root.State.relationships;
+            _sim.AreBestFriends = (a, b) => Friendship.AreBestFriends(relationships, a.instance.uid, b.instance.uid);
+            _sim.FriendshipBoost += r =>
+            {
+                view.ShowPopup(r, "¡Impulso de amistad!");
+                if (r.isPlayer) _hud.ShowToast("♥ ¡Impulso de amistad! ♥");
+            };
             _cursor = 0;
             _hud.Refresh(_cursor);
 
@@ -177,6 +184,13 @@ namespace MemosIsland.Race
                 racers = _sim.Racers.Count,
             };
 
+            // Correr juntos suma confianza (+3, o +6 si ganaron) y les levanta el ánimo.
+            foreach (var m in _sim.Player.memos.Where(m => m.hasRun))
+            {
+                MemoCare.AfterRace(m.instance, result.playerWon);
+                MemoNeeds.Satisfy(m.instance, Need.Fun, 20f);
+            }
+
             if (_setup.IsCapture)
             {
                 yield return CaptureEnding(result);
@@ -221,7 +235,9 @@ namespace MemosIsland.Race
             if (_sim.NextRandom() < acceptChance)
             {
                 // Los rescatados de un collar llegan con miedo; los salvajes, con desconfianza (GDD §10).
+                wild.rescued = wild.collared;
                 wild.trust = wild.collared ? 50 : 150;
+                wild.highestTrust = TrustRules.LevelFor(wild.trust);
                 wild.collared = false;
                 bool toTeam = GameRoot.Instance.State.AddMemo(wild);
                 result.captured = wild;

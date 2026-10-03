@@ -45,3 +45,9 @@ MonoBehaviour:
   worldFrames:
   - {fileID: 21300000, guid: 34eda2ee6f2659a4abfa33c437475801, type: 3}
   - {fileID: 21300000, guid: 0e1b9a02b2869a748b9488dca3569257, type: 3}
+  shinyWorldFrames:
+  - {fileID: 21300000, guid: 6f03de0ab48fb94469c5b561b8535aca, type: 3}
+  - {fileID: 21300000, guid: d6ccf5d73762c294fb05e510d6b1f667, type: 3}
+  collarWorldFrames:
+  - {fileID: 21300000, guid: 1d7abfac576efbc4fbfb080d81d48fb4, type: 3}
+  - {fileID: 21300000, guid: dbefc47a401e7ec4b9b6eae2735ae27c, type: 3}

@@ -290,8 +290,9 @@ namespace MemosIsland.EditorTools
                     s.raceFrames = Frames($"{d.Id}_race");
                     s.shinyRaceFrames = Frames($"{d.Id}_race_brillante");
                     s.collarRaceFrames = Frames($"{d.Id}_race_concollar");
-                    var world = Frames($"{d.Id}_world");
-                    if (world.Length > 0) s.worldFrames = world;
+                    s.worldFrames = Frames($"{d.Id}_world");
+                    s.shinyWorldFrames = Frames($"{d.Id}_world_brillante");
+                    s.collarWorldFrames = Frames($"{d.Id}_world_concollar");
                     if (!fresh) return;
                     freshSpecies.Add(d.Id);
                     s.number = d.Number;
