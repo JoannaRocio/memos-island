@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 03_brotito
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 3
+  id: brotito
+  displayName: Brotito
+  category: 0
+  availability: 0
+  primaryType: {fileID: 11400000, guid: b06572c170abf844ab74859e23200b86, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 5
+    acceleration: 5
+    stamina: 7
+    charge: 7
+  ability: {fileID: 11400000, guid: b9af837437252c045aee46431fda802a, type: 2}
+  evolvesTo: {fileID: 11400000, guid: 452da2114d26f1c439ed37fd56880dea, type: 2}
+  evolutionLevel: 16
+  habitat: Bosques tranquilos
+  description: "Mira todo con mucha atenci\xF3n antes de acercarse. Su hojita se
+    cierra cuando tiene miedo."
+  favoriteFoods:
+  - frutilla
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: a7da92c5bb921ea4e85927a663f0c3ce, type: 3}
+  - {fileID: 21300000, guid: 4f2844eeb8db3724c85576d3c7308c97, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 112515f3ef27db44eaa05debd53338ef, type: 3}
+  - {fileID: 21300000, guid: c850bbf13da4ec549a7aef9e7697eb22, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: e4cb425d3eb0f834b8afb891d1793da7, type: 3}
+  - {fileID: 21300000, guid: fc57d05255071364594e0bb34f307720, type: 3}
+  worldFrames: []

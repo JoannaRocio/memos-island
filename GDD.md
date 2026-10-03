@@ -129,7 +129,7 @@ Un grito y un destello violeta. Después, silencio. Aparece el título.
 1. Anni examina el collar de Pipo. En el metal hay un grabado: **la firma del abuelo**.
 2. Anni confiesa: *"Él lo inventó para calmar a los Memos heridos… no para esto. Lo hicimos juntos."*
 3. Último plano: en una torre de Ápice en el continente, el **Director Sílex** mira una pantalla con la foto del protagonista. Detrás de él, en las sombras, una figura con **la misma bufanda que el abuelo**.
-4. **"Continuará…"** y se muestra la Memodex con Draken y Randy: *"Zona inaccesible: próximamente."*
+4. **"Continuará…"** y se muestra la MemoBox con Draken y Randy: *"Zona inaccesible: próximamente."*
 
 ### Para rejugar
 - Los dos iniciales no elegidos aparecen **en el juego completo** como Memos con collar de los jefes de Ápice. Liberarlos va a pegar fuerte porque el jugador conoce su historia por el diario.
@@ -179,7 +179,7 @@ Un grito y un destello violeta. Después, silencio. Aparece el título.
 | **Volcán Dormido** (Draken) | Un derrumbe tapa la entrada. Fer: *"Hace falta una herramienta que todavía no existe en la isla."* | Foto de Zorak joven con Draken. Recorte de diario: *"Avistan dragón negro sobre el Volcán Dormido"* |
 | **Playa Helada** (Randy) | Muro de hielo. El barco rompehielos está *"en reparación, vuelve pronto"* | Historias de pescadores en la taberna. Cartel de recompensa con dibujo de Randy |
 
-En la Memodex, Draken y Randy aparecen con foto borrosa, descripción y la etiqueta **"Zona inaccesible"**.
+En la MemoBox, Draken y Randy aparecen con foto borrosa, descripción y la etiqueta **"Zona inaccesible"**.
 
 ---
 
@@ -411,10 +411,10 @@ Experiencia para todos los Memos que corrieron, dinero, objetos, y en la Copa un
 - **Descuido:** si pasan varios días sin atenderlo, baja el ánimo (no la confianza). Nunca se pierde un Memo.
 
 ### Comidas favoritas
-Cada especie tiene 1 o 2 favoritas, que se descubren probando. Quedan anotadas en la Memodex.
+Cada especie tiene 1 o 2 favoritas, que se descubren probando. Quedan anotadas en la MemoBox.
 
 ### Diario de vínculo (recuerdos)
-- Cada Memo tiene una página en la **Memodex** con **recuerdos** que se desbloquean al subir de nivel de confianza.
+- Cada Memo tiene una página en la **MemoBox** con **recuerdos** que se desbloquean al subir de nivel de confianza.
 - Los rescatados **recuperan recuerdos de su vida anterior**.
 - Tu inicial recupera recuerdos del abuelo. El primero: el abuelo cantándole para dormir (suena la cajita de música).
 
@@ -651,7 +651,7 @@ Packs de pixel art estilo GBA (itch.io) para el mundo y encargo o dibujo propio 
 - [ ] Tienda, herrería, clínica, tablón y caja de envíos
 - [ ] 11 personajes con rutinas, 9 vecinos con amistad y 2 o 3 eventos cada uno
 - [ ] Historia del Capítulo 1 completa, con el final y el gancho
-- [ ] Memodex con diario de vínculo
+- [ ] MemoBox con diario de vínculo
 - [ ] Guardado y carga
 - [ ] Ciclo de día y noche, clima básico
 
@@ -705,7 +705,7 @@ Cada fase termina con algo **jugable y probado**. El arte es provisorio hasta la
 |---|---|---|
 | **0. Base** | Estructura de carpetas, Pixel Perfect Camera, Input System, **generador de pixel art desde grillas**, paleta, escena de prueba | Se ve un tile y un personaje generados en pantalla, nítidos |
 | **1. Mundo** | Movimiento por casillas en 4 direcciones, tilemaps, colisiones, interacción (botón A), transiciones entre mapas, cámara, reloj de día y noche | Se camina por un mapa de prueba con hora y luz cambiando |
-| **2. Datos de Memos** | ScriptableObjects de tipos, terrenos, efectividad, 20 especies, habilidades y personalidades; Memodex básica; tests de efectividad | La Memodex muestra los 20 con sus datos |
+| **2. Datos de Memos** | ScriptableObjects de tipos, terrenos, efectividad, 20 especies, habilidades y personalidades; MemoBox básica; tests de efectividad | La MemoBox muestra los 20 con sus datos |
 | **3. Carreras** | Pista por tramos, corredores, energía, cambio con espera, habilidades, IA rival, interfaz, formatos (1v1 y 6 tramos), captura | Se puede correr y capturar un Memo, y es divertido |
 | **4. Vínculo y refugio** | Confianza, necesidades, IA de vida, emociones, entrar y salir de la casa, relaciones entre Memos, padrino, compañero que te sigue | El refugio "se siente vivo" |
 | **5. Progreso** | Experiencia, niveles, evolución con escena, etapa rebelde, legendario Hostil, equipamiento | Un inicial evoluciona y se le pone equipo |

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 08_draken
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 8
+  id: draken
+  displayName: Draken
+  category: 1
+  availability: 1
+  primaryType: {fileID: 11400000, guid: c877ef6345e1efe459bda8efc6d8c556, type: 2}
+  secondaryType: {fileID: 11400000, guid: cad15a35a79edbe418ffcb45ac022386, type: 2}
+  mobility: 2
+  baseStats:
+    speed: 10
+    acceleration: 8
+    stamina: 8
+    charge: 7
+  ability: {fileID: 11400000, guid: c30b5f140e7c563409ecea5cf4ec5e79, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: "Volc\xE1n Dormido"
+  description: "Un drag\xF3n negro de escamas encendidas. Los pescadores juran haberlo
+    visto volar sobre el Volc\xE1n Dormido."
+  favoriteFoods: []
+  raceFrames:
+  - {fileID: 21300000, guid: b12cd0c8ad178f34f8397fa31d525fd3, type: 3}
+  - {fileID: 21300000, guid: 76b361550fd09f74e9057a4ef60635b3, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: ad9392897b6d2fe45a49acbf9e3e49df, type: 3}
+  - {fileID: 21300000, guid: ffc5bd59dcec7544abe8556ba1ae7508, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 600e6d51a07921f4387093688ce44f82, type: 3}
+  - {fileID: 21300000, guid: 28609e973e49a604abd5c05a1c5a462c, type: 3}
+  worldFrames: []

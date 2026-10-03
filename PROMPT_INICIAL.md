@@ -37,7 +37,7 @@ Seguimos con la FASE 1 — Mundo del GDD §22: movimiento por casillas en 4 dire
 
 **Fase 2 — Datos de Memos**
 ```
-Seguimos con la FASE 2 — Datos de Memos: ScriptableObjects para tipos, terrenos, la tabla de efectividad (GDD §8, con la regla de tipo doble), las 20 especies con sus stats y habilidades (GDD §7), y las personalidades. Generá los 20 assets de especies, el sprite provisorio de cada Memo (respetando el estilo de cada uno: los tiernos redondos y Karman, Draken y Randy cool) y una Memodex básica. Agregá tests EditMode de efectividad. Contame el plan antes de empezar.
+Seguimos con la FASE 2 — Datos de Memos: ScriptableObjects para tipos, terrenos, la tabla de efectividad (GDD §8, con la regla de tipo doble), las 20 especies con sus stats y habilidades (GDD §7), y las personalidades. Generá los 20 assets de especies, el sprite provisorio de cada Memo (respetando el estilo de cada uno: los tiernos redondos y Karman, Draken y Randy cool) y una MemoBox básica. Agregá tests EditMode de efectividad. Contame el plan antes de empezar.
 ```
 
 **Fase 3 — Carreras**

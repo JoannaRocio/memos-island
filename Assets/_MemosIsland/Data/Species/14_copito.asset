@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 14_copito
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 14
+  id: copito
+  displayName: Copito
+  category: 2
+  availability: 0
+  primaryType: {fileID: 11400000, guid: 7353138aa64cba049a847cfc09d3d6ad, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 5
+    acceleration: 6
+    stamina: 6
+    charge: 7
+  ability: {fileID: 11400000, guid: 8d563287e95ba4943ae3ffb3fa9864ca, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Colina Escarcha
+  description: "Su cuerpo est\xE1 fresquito incluso en verano. Si lo abraz\xE1s un
+    buen rato, te deja la nariz roja."
+  favoriteFoods:
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: d5867f2e624f37d45a1fac856a6db4cc, type: 3}
+  - {fileID: 21300000, guid: f6254d548da192047a576a26842d779f, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 3f29e46f3f15024488ff4c7b9fcf5570, type: 3}
+  - {fileID: 21300000, guid: d823d85a5a17d8e40bf3f368d76fd5b5, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: b4916de5a69f90d49a7097cf964a041a, type: 3}
+  - {fileID: 21300000, guid: 27a143b83c0d6f447995cad40ba689ec, type: 3}
+  worldFrames: []

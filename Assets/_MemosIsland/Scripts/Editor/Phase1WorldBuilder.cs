@@ -199,6 +199,10 @@ namespace MemosIsland.EditorTools
             faderGo.transform.localScale = new Vector3(300f, 170f, 1f);
             var fader = faderGo.AddComponent<ScreenFader>();
 
+            // MemoBox (Fase 2): se abre con Esc/Tab
+            Child(ui.transform, "MemoBox", Vector3.zero).AddComponent<MemoBoxScreen>()
+                .Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
+
             SetField(gameRoot, "player", controller);
             SetField(gameRoot, "cameraFollow", follow);
             SetField(gameRoot, "dialogue", dialogue);
