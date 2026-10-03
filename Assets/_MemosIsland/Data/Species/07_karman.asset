@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 07_karman
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 7
+  id: karman
+  displayName: Karman
+  category: 1
+  availability: 0
+  primaryType: {fileID: 11400000, guid: 5c07bfc4ea3bc9545821167db22d8e2e, type: 2}
+  secondaryType: {fileID: 11400000, guid: c709b01ac1ff0ab41b34d14b46d4cf80, type: 2}
+  mobility: 0
+  baseStats:
+    speed: 9
+    acceleration: 10
+    stamina: 6
+    charge: 8
+  ability: {fileID: 11400000, guid: 70709a699de7c194f8812257b416f8f4, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Acantilados Tormenta (solo con tormenta)
+  description: "Un lobo hecho de tormenta. Nadie lo dom\xF3 jam\xE1s: llega con los
+    truenos y se va con el viento."
+  favoriteFoods: []
+  raceFrames:
+  - {fileID: 21300000, guid: 06c46453d24a2e642a176a42cbce0cb9, type: 3}
+  - {fileID: 21300000, guid: dc5309c8a9516794188f2982a0959b16, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 49f83fb28df28c94fb95b4890b16c54f, type: 3}
+  - {fileID: 21300000, guid: 1da0722b517744847a9edce89abb5ca2, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 1f32649569a2c204fa66e12670aa44dc, type: 3}
+  - {fileID: 21300000, guid: f624da5b86e0a994e939ba91ffca5a64, type: 3}
+  worldFrames: []

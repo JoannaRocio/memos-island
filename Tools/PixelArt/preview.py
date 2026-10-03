@@ -1,4 +1,6 @@
-"""Hoja de contacto ampliada de los sprites (sin dependencias): python preview.py archivo.txt [escala] [salida.png]"""
+"""Hoja de contacto ampliada de los sprites (sin dependencias):
+python preview.py archivo.txt [escala] [salida.png] [columnas] [filtro]
+filtro: solo sprites cuyo nombre contenga ese texto (ej. "_race")."""
 import sys, zlib, struct
 
 PAL = {'0': "1a1c2c", '1': "5d275d", '2': "b13e53", '3': "ef7d57", '4': "ffcd75", '5': "a7f070", '6': "38b764",
@@ -40,24 +42,32 @@ def outline(f, c):
 def main():
     src = sys.argv[1]; sc = int(sys.argv[2]) if len(sys.argv) > 2 else 6
     out = sys.argv[3] if len(sys.argv) > 3 else "preview.png"
+    cols = int(sys.argv[4]) if len(sys.argv) > 4 else 999
+    filt = sys.argv[5] if len(sys.argv) > 5 else ""
     frames = []
     for s in parse(src):
+        if filt not in s['name']:
+            continue
         for f in s['frames']:
             frames.append(outline(f, s['outline']) if s['outline'] else f)
     pad = 4
-    W = sum(len(f[0]) * sc + pad for f in frames) + pad
-    H = max(len(f) for f in frames) * sc + 2 * pad
+    cell_w = max(len(f[0]) for f in frames) * sc + pad
+    cell_h = max(len(f) for f in frames) * sc + pad
+    ncols = min(cols, len(frames))
+    nrows = (len(frames) + ncols - 1) // ncols
+    W = ncols * cell_w + pad
+    H = nrows * cell_h + pad
     img = [[BG] * W for _ in range(H)]
-    x0 = pad
-    for f in frames:
+    for k, f in enumerate(frames):
+        x0 = pad + (k % ncols) * cell_w
+        y0 = pad + (k // ncols) * cell_h
         for y, row in enumerate(f):
             for x, ch in enumerate(row):
                 if ch in PAL:
-                    col = tuple(int(PAL[ch][k:k + 2], 16) for k in (0, 2, 4))
+                    col = tuple(int(PAL[ch][i:i + 2], 16) for i in (0, 2, 4))
                     for yy in range(sc):
                         for xx in range(sc):
-                            img[pad + y * sc + yy][x0 + x * sc + xx] = col
-        x0 += len(f[0]) * sc + pad
+                            img[y0 + y * sc + yy][x0 + x * sc + xx] = col
     raw = b''.join(b'\x00' + bytes(c for px in row for c in px) for row in img)
     def chunk(t, d): return struct.pack('>I', len(d)) + t + d + struct.pack('>I', zlib.crc32(t + d) & 0xffffffff)
     png = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', W, H, 8, 2, 0, 0, 0)) + \

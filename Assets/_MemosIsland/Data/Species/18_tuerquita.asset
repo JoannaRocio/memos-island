@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 18_tuerquita
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 18
+  id: tuerquita
+  displayName: Tuerquita
+  category: 3
+  availability: 2
+  primaryType: {fileID: 11400000, guid: 21f344ffaae6aaa47aadf8d8624db666, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 6
+    acceleration: 6
+    stamina: 7
+    charge: 7
+  ability: {fileID: 11400000, guid: 57cac295e9d237b4cbe657746f213fdf, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Equipo de la Capitana Vera
+  description: Arregla todo lo que encuentra roto. La Capitana Vera lo cuida como
+    a un hijo.
+  favoriteFoods: []
+  raceFrames:
+  - {fileID: 21300000, guid: 31738e6c2cad30a42b5295e397c6311a, type: 3}
+  - {fileID: 21300000, guid: 35b34cf06aba7b24d9f90ed083a0574a, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: ee65cf9ef0904d04db849a3d96b1931b, type: 3}
+  - {fileID: 21300000, guid: 6dd7d867e736a894682c0f62eed5aaa9, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 8dc2d96cd9d81b44895e72d62bff6cb6, type: 3}
+  - {fileID: 21300000, guid: 6be0c2bc03315f34e923a7187e79ed78, type: 3}
+  worldFrames: []

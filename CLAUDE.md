@@ -42,12 +42,15 @@ Juego 2D en Unity 6 (URP 2D): vida en una isla + amistad con criaturas ("Memos")
 - **Orden de dibujo:** el Renderer 2D ordena por eje Y; actores y props usan `sortingOrder` 10, suelo 0, edificios 1, interfaz 1000+, fundido 5000.
 - **Interfaz:** cuelga de la cámara con escala ×2; sus coordenadas son pixels de una pantalla virtual de 240×135 (escala GBA). Usa el material `Sprite-Unlit-Default` para que la noche no la oscurezca. Textos con `PixelText`; diálogos con `GameRoot.Instance.Dialogue.Show(páginas)`.
 - **Reloj real:** `GameClock` (hora del sistema; F5/F6/F7 para probar). Luz global con `DayNightLighting`; faroles y ventanas con `NightLight`.
+- **Datos de Memos (Fase 2):** ScriptableObjects en `Data/` (`MemoType`, `RaceTerrain`, `EffectivenessChart`, `AbilityData`, `Temperament`, `MemoSpecies`) indexados por `Resources/MemoDatabase` (`MemoDatabase.Instance`). Se crean con **Memos Island ▸ Fase 2 ▸ Crear datos de Memos (solo faltantes)**, que no pisa lo editado a mano (solo actualiza sprites); **Restablecer datos desde el GDD** vuelve todo a los valores del documento. La tabla de efectividad se edita como grilla en su inspector. Las habilidades solo tienen datos: sus efectos se implementan en la Fase 3.
+- **Sprites de Memos:** `Tools/PixelArt/make_memos.py` compone los 20 Memos de 64×64 (perfil, 2 cuadros) + variantes `_brillante` y `_concollar`. Sprites de mundo 16×16: por ahora solo Tostín; el resto llega en la Fase 4 (refugio).
+- **MemoBox:** `UI/MemoBoxScreen` (arma su interfaz en código). Por ahora se abre con Esc/Tab directo; cuando exista el menú de pausa, pasa a ser una opción del menú.
 - Constructores: **Memos Island ▸ Fase 1 ▸ Construir mundo de prueba** regenera arte, fuente, GameRoot y los mapas `Map_PuebloPuerto` y `Map_RefugioExterior` (sobrescribe esas escenas).
 
 ## Estado
 - [x] Fase 0 — Base (octubre 2026)
 - [x] Fase 1 — Mundo (octubre 2026; reloj real en vez del ciclo acelerado del GDD original)
-- [ ] Fase 2 — Datos de Memos
+- [x] Fase 2 — Datos de Memos (octubre 2026; la "Memodex" se llama **MemoBox**)
 - [ ] Fase 3 — Carreras
 - [ ] Fase 4 — Vínculo y refugio
 - [ ] Fase 5 — Progreso

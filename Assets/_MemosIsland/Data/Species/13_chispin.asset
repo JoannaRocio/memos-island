@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 13_chispin
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 13
+  id: chispin
+  displayName: "Chisp\xEDn"
+  category: 2
+  availability: 0
+  primaryType: {fileID: 11400000, guid: 5c07bfc4ea3bc9545821167db22d8e2e, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 7
+    acceleration: 9
+    stamina: 3
+    charge: 6
+  ability: {fileID: 11400000, guid: 89cf56407df9d6f43acd4f90a96d99a8, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Acantilados Tormenta
+  description: "Junta electricidad frot\xE1ndose contra el pasto. Si se emociona,
+    se le paran todos los pelos."
+  favoriteFoods:
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: fffd4151a4959f54d99f84a25fe6b6e6, type: 3}
+  - {fileID: 21300000, guid: 0be25464add6bbd4b8ed2984f313101b, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 81ec8c9bd50c8c04ca19107a7245c0ad, type: 3}
+  - {fileID: 21300000, guid: bbc4d590c4f322744b66938c439451a1, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 40c133d6fa88530469ae1247d5631655, type: 3}
+  - {fileID: 21300000, guid: 63471cdf1eeeb7d4bac67774c75f7e4b, type: 3}
+  worldFrames: []

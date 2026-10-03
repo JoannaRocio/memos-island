@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 01_tostin
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 1
+  id: tostin
+  displayName: "Tost\xEDn"
+  category: 0
+  availability: 0
+  primaryType: {fileID: 11400000, guid: c877ef6345e1efe459bda8efc6d8c556, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 6
+    acceleration: 7
+    stamina: 5
+    charge: 6
+  ability: {fileID: 11400000, guid: 139b62d9be81fb449a4fbbfaa31f0ddd, type: 2}
+  evolvesTo: {fileID: 11400000, guid: 5d511566e2a9f754ba18de35ebdbb4ed, type: 2}
+  evolutionLevel: 16
+  habitat: Hornos y fogones abandonados
+  description: "Su cola es una llamita que crece cuando est\xE1 contento. Se hace
+    el duro, pero llora si lo dejan solo de noche."
+  favoriteFoods:
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: fa6463dd68fec8f4ebfdeb796d244af0, type: 3}
+  - {fileID: 21300000, guid: bfb98db48bb2cd245b11b3da6e13fb10, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 5a339ce3aac2edd43a09e8e4e2f20afa, type: 3}
+  - {fileID: 21300000, guid: edb3a7d6d3a332142bb7d60c033710da, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: da926d5fca2ae5c449084b48f69813ed, type: 3}
+  - {fileID: 21300000, guid: 3f5aca58f7c7f7e46b8aa9f8d3849d70, type: 3}
+  worldFrames:
+  - {fileID: 21300000, guid: 34eda2ee6f2659a4abfa33c437475801, type: 3}
+  - {fileID: 21300000, guid: 0e1b9a02b2869a748b9488dca3569257, type: 3}

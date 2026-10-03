@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d68358d60358e429c53f15ac6d0609, type: 3}
+  m_Name: remontador
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.Temperament
+  id: remontador
+  displayName: Remontador
+  raceDescription: "Corre m\xE1s r\xE1pido cuando va \xFAltimo."
+  refugeDescription: Le encanta jugar a perseguir.
+  speedMultiplier: 1
+  accelerationMultiplier: 1
+  staminaMultiplier: 1
+  chargeMultiplier: 1
+  trustGainMultiplier: 1
+  trait: 2

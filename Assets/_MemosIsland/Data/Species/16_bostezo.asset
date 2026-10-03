@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 16_bostezo
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 16
+  id: bostezo
+  displayName: Bostezo
+  category: 2
+  availability: 0
+  primaryType: {fileID: 11400000, guid: cad15a35a79edbe418ffcb45ac022386, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 0
+  baseStats:
+    speed: 5
+    acceleration: 5
+    stamina: 6
+    charge: 9
+  ability: {fileID: 11400000, guid: f9962a02701068a479657f03657bb761, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Bosque Susurro (solo de noche)
+  description: "Duerme todo el d\xEDa y sale de noche. Si bosteza cerca tuyo, es
+    casi imposible no bostezar tambi\xE9n."
+  favoriteFoods:
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: 621e3a51645818546b5b83002c8f661d, type: 3}
+  - {fileID: 21300000, guid: 9c9ad45088681124caa055ca79239aa9, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 359ea314a45667b45ad344993183822a, type: 3}
+  - {fileID: 21300000, guid: d5f8dcc7ed9c83d4c9014932fb16a209, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 05f28589520a69f45a1f773e1e573fd5, type: 3}
+  - {fileID: 21300000, guid: bca96d179bf145c4a85a2d6271400748, type: 3}
+  worldFrames: []

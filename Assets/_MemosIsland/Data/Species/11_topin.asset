@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 11_topin
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 11
+  id: topin
+  displayName: "Top\xEDn"
+  category: 2
+  availability: 0
+  primaryType: {fileID: 11400000, guid: 386a96ad562079047bff572a3ca8c6c8, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 3
+  baseStats:
+    speed: 5
+    acceleration: 4
+    stamina: 8
+    charge: 6
+  ability: {fileID: 11400000, guid: 6184d74792f65f94c8481b1cd0f8682b, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Cueva de Zorak
+  description: Casi no ve, pero su nariz encuentra cualquier tesoro escondido bajo
+    tierra.
+  favoriteFoods:
+  - zanahoria
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: d91d1904c7a54554180725937433da0f, type: 3}
+  - {fileID: 21300000, guid: 1b0bddacca61e664cb0454fe9bfec8e5, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: b2a9c6f4bcc1c244c99173a0bf1e3420, type: 3}
+  - {fileID: 21300000, guid: a11b72d511685ba4dbd0c23d6dfb0259, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: af40717d1e06ea249b721b1bd3474e9b, type: 3}
+  - {fileID: 21300000, guid: 8fbc5ed6a59d7b34f8219f3b5703e3ec, type: 3}
+  worldFrames: []

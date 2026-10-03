@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 10_plumin
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 10
+  id: plumin
+  displayName: "Plum\xEDn"
+  category: 2
+  availability: 0
+  primaryType: {fileID: 11400000, guid: c709b01ac1ff0ab41b34d14b46d4cf80, type: 2}
+  secondaryType: {fileID: 0}
+  mobility: 2
+  baseStats:
+    speed: 6
+    acceleration: 8
+    stamina: 4
+    charge: 7
+  ability: {fileID: 11400000, guid: 75cbf3f4ce0ea774fa1cffaf718ed532, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Ruta Pradera
+  description: Una bolita de plumas tan liviana que el viento la lleva de paseo.
+    Le encanta dormir en los techos.
+  favoriteFoods:
+  - frutilla
+  - bayamemo
+  raceFrames:
+  - {fileID: 21300000, guid: e0addb60dc8fb7a43a4a8302e0b54e61, type: 3}
+  - {fileID: 21300000, guid: 5d4ad55a0e2c38249b654c4fa7eab0c8, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 88f51c6a5b122ee4e996e36e51ceb29e, type: 3}
+  - {fileID: 21300000, guid: 997a098aa8e5bc34b80bbfef77b28376, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 3e8f3e76a262a044eaf9f1e36fc077d4, type: 3}
+  - {fileID: 21300000, guid: 284f43be47fb56943b4290b962625c05, type: 3}
+  worldFrames: []

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20bc763db7d9ff41905796b1059bf90, type: 3}
+  m_Name: 20_imanta
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.MemoSpecies
+  number: 20
+  id: imanta
+  displayName: Imanta
+  category: 3
+  availability: 2
+  primaryType: {fileID: 11400000, guid: 21f344ffaae6aaa47aadf8d8624db666, type: 2}
+  secondaryType: {fileID: 11400000, guid: 5c07bfc4ea3bc9545821167db22d8e2e, type: 2}
+  mobility: 0
+  baseStats:
+    speed: 7
+    acceleration: 7
+    stamina: 7
+    charge: 7
+  ability: {fileID: 11400000, guid: f7af7adbf549b2c469fe17d2d0869991, type: 2}
+  evolvesTo: {fileID: 0}
+  evolutionLevel: 0
+  habitat: Equipo de la Capitana Vera
+  description: "Su im\xE1n atrae todo lo met\xE1lico. Las monedas del pueblo tienen
+    la mala costumbre de peg\xE1rsele."
+  favoriteFoods: []
+  raceFrames:
+  - {fileID: 21300000, guid: e92c80515d92b3c4e9db665c3644b502, type: 3}
+  - {fileID: 21300000, guid: a43ea6174cccd834faa018bbd98711ea, type: 3}
+  shinyRaceFrames:
+  - {fileID: 21300000, guid: 055645b1a2a232e4c9860a5fcbf48226, type: 3}
+  - {fileID: 21300000, guid: b7f80eec8daf29f4dbb3e877a07a73bb, type: 3}
+  collarRaceFrames:
+  - {fileID: 21300000, guid: 45f490f3dca0de04db85e28865c8408a, type: 3}
+  - {fileID: 21300000, guid: 91b5948291743ea4fbd0e360812ad927, type: 3}
+  worldFrames: []
