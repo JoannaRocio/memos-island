@@ -17,13 +17,15 @@ namespace MemosIsland.EditorTools.PixelArt
     ///   size 16 16               ancho y alto en pixels
     ///   pivot 0.5 0              pivote normalizado (opcional, por defecto 0.5 0.5)
     ///   outline 0                contorno exterior automático con ese color (opcional)
+    ///   border 8 8 8 8           bordes de 9 cortes en pixels: izquierda abajo derecha arriba (opcional)
     ///   frame                    las siguientes "alto" líneas son la grilla (un carácter = un color de PixelPalette)
     ///   flip 0                   nuevo cuadro = cuadro 0 espejado horizontalmente
     ///   shift 0 0 1              nuevo cuadro = cuadro 0 desplazado (dx, dy; dy positivo = hacia abajo)
     ///   copyfrom otro            copia los cuadros de un sprite anterior del mismo archivo
     ///   mirror                   espeja horizontalmente todos los cuadros actuales
     ///   variant brillante 3>9 2>8   exporta una copia con colores cambiados (sufijo _brillante)
-    ///   tile [fps] [solid]       además crea un Tile (o AnimatedTile si hay varios cuadros) en Art/Tiles/
+    ///   tile [fps] [solid]       además crea un Tile (o AnimatedTile si hay varios cuadros) en Art/Tiles/;
+    ///                            "solid" le da colisión de celda completa
     ///   end                      termina el sprite
     /// </summary>
     public static class PixelArtGenerator
@@ -37,6 +39,9 @@ namespace MemosIsland.EditorTools.PixelArt
         /// <summary>Pivotes a aplicar en el próximo import (los lee PixelArtImportSettings).</summary>
         internal static readonly Dictionary<string, Vector2> PendingPivots = new();
 
+        /// <summary>Bordes de 9 cortes a aplicar en el próximo import (izquierda, abajo, derecha, arriba).</summary>
+        internal static readonly Dictionary<string, Vector4> PendingBorders = new();
+
         class SpriteDef
         {
             public string Name;
@@ -48,6 +53,7 @@ namespace MemosIsland.EditorTools.PixelArt
             public bool IsTile;
             public float TileFps = 4f;
             public bool TileSolid;
+            public Vector4 Border;
         }
 
         [MenuItem("Memos Island/Arte/Regenerar todo el pixel art")]
@@ -113,7 +119,11 @@ namespace MemosIsland.EditorTools.PixelArt
             finally
             {
                 AssetDatabase.StopAssetEditing();
-                foreach (var p in written) PendingPivots.Remove(p);
+                foreach (var p in written)
+                {
+                    PendingPivots.Remove(p);
+                    PendingBorders.Remove(p);
+                }
             }
 
             foreach (var (def, paths) in tileJobs)
@@ -134,6 +144,7 @@ namespace MemosIsland.EditorTools.PixelArt
                 File.WriteAllBytes(path, tex.EncodeToPNG());
                 UnityEngine.Object.DestroyImmediate(tex);
                 PendingPivots[path] = def.Pivot;
+                PendingBorders[path] = def.Border;
                 paths.Add(path);
             }
             return paths;
@@ -189,7 +200,7 @@ namespace MemosIsland.EditorTools.PixelArt
             if (sprites.Count == 0) return;
 
             var tilePath = $"{TilesRoot}/{def.Name}.asset";
-            var collider = def.TileSolid ? Tile.ColliderType.Sprite : Tile.ColliderType.None;
+            var collider = def.TileSolid ? Tile.ColliderType.Grid : Tile.ColliderType.None;
 
             if (sprites.Count == 1)
             {
@@ -251,6 +262,10 @@ namespace MemosIsland.EditorTools.PixelArt
                     case "pivot":
                         Need(cur, Err);
                         cur.Pivot = new Vector2(F(parts[1]), F(parts[2]));
+                        break;
+                    case "border":
+                        Need(cur, Err);
+                        cur.Border = new Vector4(F(parts[1]), F(parts[2]), F(parts[3]), F(parts[4]));
                         break;
                     case "outline":
                         Need(cur, Err);

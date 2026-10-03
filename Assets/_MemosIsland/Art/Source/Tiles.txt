@@ -327,3 +327,47 @@ jiiijiiijiiijiii
 tile solid
 end
 
+sprite sand
+size 16 16
+frame
+4444444444444444
+4444444p4oo44444
+4444444444444444
+44oo4p4444444444
+4444444444444444
+4444444444444444
+4444444444444444
+444p444444444oo4
+4444444444444444
+4444444444444444
+44444oo444444444
+44444444p4444444
+4444444p44444444
+44444444444oo444
+poo4444444444444
+44444444444p4444
+tile
+end
+
+sprite dock
+size 16 16
+frame
+ippppppppppppppi
+iofoooooooooofoi
+iooooooooooooooi
+ijjjjjjjjjjjjjji
+ippppppppppppppi
+iofoooooooooofoi
+iooooooooooooooi
+ijjjjjjjjjjjjjji
+ippppppppppppppi
+iofoooooooooofoi
+iooooooooooooooi
+ijjjjjjjjjjjjjji
+ippppppppppppppi
+iofoooooooooofoi
+iooooooooooooooi
+ijjjjjjjjjjjjjji
+tile
+end
+

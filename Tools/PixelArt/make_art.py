@@ -264,6 +264,28 @@ for y in range(13, 16):
             eave.set(x, y, 'o')
 tiles += block("house_roof_edge", 16, 16, [eave.rows()], extra=["tile solid"])
 
+
+# Arena de playa
+sand = Canvas(16, 16, '4')
+rnd = random.Random(5)
+for (x, y) in [(2, 3), (9, 1), (13, 7), (5, 10), (11, 13), (1, 14)]:
+    wrap_set(sand, x, y, 'o'); wrap_set(sand, x + 1, y, 'o')
+for _ in range(7):
+    wrap_set(sand, rnd.randrange(16), rnd.randrange(16), 'p')
+tiles += block("sand", 16, 16, [sand.rows()], extra=["tile"])
+
+# Tablas del muelle (sobre el agua, se camina)
+dock = Canvas(16, 16, 'o')
+for y in range(16):
+    if y % 4 == 3:
+        for x in range(16): dock.set(x, y, 'j')
+    elif y % 4 == 0:
+        for x in range(16): dock.set(x, y, 'p')
+    dock.set(0, y, 'i'); dock.set(15, y, 'i')
+for y in (1, 5, 9, 13):
+    dock.set(2, y, 'f'); dock.set(13, y, 'f')
+tiles += block("dock", 16, 16, [dock.rows()], extra=["tile"])
+
 open(os.path.join(OUT, "Tiles.txt"), "w", encoding="utf-8").write(tiles)
 
 # ================================================================== PROPS
@@ -297,6 +319,43 @@ def tree():
     return cv
 
 props += block("tree", 32, 32, [tree().rows()], header=["pivot 0.5 0", "outline 0"])
+
+def pad(rows, w, h):
+    rows = [r.ljust(w, '.')[:w] for r in rows]
+    return ['.' * w] * (h - len(rows)) + rows
+
+sign = pad([
+    "..oooooooooooo..",
+    "..oppppppppppo..",
+    "..ojjjoojjjjoo..",
+    "..oooooooooooo..",
+    "..ojjjjoojjjoo..",
+    "..oooooooooooo..",
+    "..iiiiiiiiiiii..",
+    "......ij........",
+    "......ij........",
+    "......ij........",
+    "......ij........",
+    "......jj........",
+    "................",
+], 16, 16)
+props += block("sign", 16, 16, [sign], header=["pivot 0.5 0", "outline 0"])
+
+lamp = pad([
+    ".....ffffff.....",
+    "....ffeeeeff....",
+    ".....f4pp4f.....",
+    ".....f4pp4f.....",
+    ".....f4444f.....",
+    ".....ffffff.....",
+] + [".......ef......."] * 16 + [
+    "......ffff......",
+    ".....feeeff.....",
+    ".....ffffff.....",
+    "................",
+], 16, 32)
+props += block("lamp", 16, 32, [lamp], header=["pivot 0.5 0", "outline 0"])
+
 open(os.path.join(OUT, "Props.txt"), "w", encoding="utf-8").write(props)
 
 # ================================================================== MEMOS
@@ -409,4 +468,23 @@ def tostin_race(phase):
 memos += block("tostin_race", 64, 64, [tostin_race(0).rows(), tostin_race(1).rows()],
                header=["pivot 0.5 0", "outline 0"], extra=[SHINY, COLLAR])
 open(os.path.join(OUT, "Memos.txt"), "w", encoding="utf-8").write(memos)
+
+# ================================================================== UI
+ui = "# Interfaz: caja de texto estilo GBA (9 cortes) y pixel blanco para fundidos.\n\n"
+corner = ["..888888",
+          ".8aaaaaa",
+          "8aaaaaaa",
+          "8aa99999",
+          "8aa9cccc",
+          "8aa9cccc",
+          "8aa9cccc",
+          "8aa9cccc"]
+edge_col = [r[7] for r in corner]
+top = [corner[y] + edge_col[y] * 8 + corner[y][::-1] for y in range(8)]
+mid = [corner[7] + 'c' * 8 + corner[7][::-1]] * 8
+box = top + mid + top[::-1]
+ui += block("ui_box", 24, 24, [box], header=["border 8 8 8 8"])
+ui += block("ui_pixel", 2, 2, [["cc", "cc"]])
+open(os.path.join(OUT, "UI.txt"), "w", encoding="utf-8").write(ui)
+
 print("ok")
