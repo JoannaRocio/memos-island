@@ -41,7 +41,7 @@ namespace MemosIsland.World
         void Update()
         {
             MemoNeeds.Decay(Memo, Time.deltaTime / 3600f, IsAsleep);
-            View.Trembling = Memo.TrustLevel <= TrustLevel.Fear && PlayerDistance() <= 3;
+            View.Trembling = Memo.TrustLevel == TrustLevel.Fear && PlayerDistance() <= 3;
         }
 
         public void Interact(PlayerController player)
@@ -80,6 +80,15 @@ namespace MemosIsland.World
             var level = Memo.TrustLevel;
             int playerDist = PlayerDistance();
             bool night = GameClock.Instance != null && GameClock.Instance.Phase == DayPhase.Night;
+
+            // Hostil (legendarios): gruñe, mantiene distancia y de día se va del refugio.
+            if (level == TrustLevel.Hostile)
+            {
+                if (!night && Random.value < 0.25f) return LeaveForTheDay();
+                if (playerDist <= 4) return Growl();
+                if (Memo.hunger < 50f && _refuge.BowlHasFood && playerDist > 5) return Eat();
+                return Wander(3);
+            }
 
             // Miedo: se esconde si estás cerca; si no, a veces se anima a comer.
             if (level <= TrustLevel.Fear)
@@ -130,6 +139,29 @@ namespace MemosIsland.World
             if (spot.HasValue) yield return WalkTo(spot.Value, run: true);
             if (Random.value < 0.4f) Bubble.Show(Emote.Scared);
             yield return new WaitForSeconds(Random.Range(2f, 4f));
+        }
+
+        IEnumerator Growl()
+        {
+            ActivityName = "gruñir";
+            Mover.Facing = DirectionTo(_refuge.PlayerCell);
+            Bubble.Show(Emote.Angry, 1.5f);
+            yield return new WaitForSeconds(0.8f);
+            var away = _refuge.CellAwayFromPlayer(Mover.Cell, 5);
+            if (away.HasValue) yield return WalkTo(away.Value);
+            yield return new WaitForSeconds(Random.Range(1.5f, 3f));
+        }
+
+        /// <summary>Los hostiles salen por la puerta (o se alejan) y no vuelven hasta la noche.</summary>
+        IEnumerator LeaveForTheDay()
+        {
+            ActivityName = "irse";
+            yield return WalkTo(_refuge.DoorCell, run: true);
+            View.FadeTo(0f);
+            while (!View.FadeDone) yield return null;
+            Memo.awayUntilTicks = RefugeManager.NextEvening(Now()).Ticks;
+            Memo.inside = false;
+            _refuge.Despawn(this);
         }
 
         IEnumerator KeepDistance()

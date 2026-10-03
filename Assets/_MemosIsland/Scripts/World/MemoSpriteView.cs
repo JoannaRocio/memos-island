@@ -11,9 +11,13 @@ namespace MemosIsland.World
     public class MemoSpriteView : MonoBehaviour
     {
         [SerializeField] GridMover mover;
+        [Tooltip("Accesorio estético (gorrito, moño, bufanda…) dibujado encima del Memo.")]
+        [SerializeField] SpriteRenderer accessory;
 
         SpriteRenderer _renderer;
         Sprite[] _frames;
+        MemoInstance _memo;
+        string _shownAccessory;
         bool _facingLeft;
         float _anim;
         float _alpha = 1f, _targetAlpha = 1f;
@@ -29,8 +33,12 @@ namespace MemosIsland.World
             SetMemo(memo);
         }
 
+        public void SetAccessoryRenderer(SpriteRenderer r) => accessory = r;
+
         public void SetMemo(MemoInstance memo)
         {
+            _memo = memo;
+            _shownAccessory = null;
             _frames = memo?.WorldFrames;
             if (_renderer == null) _renderer = GetComponent<SpriteRenderer>();
             _renderer.sprite = _frames is { Length: > 0 } ? _frames[0] : null;
@@ -70,6 +78,32 @@ namespace MemosIsland.World
             var c = Asleep ? new Color(0.85f, 0.88f, 1f) : Color.white;
             c.a = _alpha;
             _renderer.color = c;
+            UpdateAccessory(c);
+        }
+
+        /// <summary>Dibuja el accesorio en el punto de cabeza o cuello de la especie (en pixels del sprite de 32x32).</summary>
+        void UpdateAccessory(Color tint)
+        {
+            if (accessory == null) return;
+            var item = _memo?.Accessory;
+            if (item == null || item.accessorySprite == null || _memo.Species == null)
+            {
+                accessory.enabled = false;
+                return;
+            }
+            if (_shownAccessory != item.id)
+            {
+                _shownAccessory = item.id;
+                accessory.sprite = item.accessorySprite;
+            }
+            var anchor = item.accessorySlot == AccessorySlot.Head ? _memo.Species.headAnchor : _memo.Species.neckAnchor;
+            float x = (_facingLeft ? 16 - anchor.x : anchor.x - 16) / 16f;
+            float y = (32 - anchor.y) / 16f;
+            accessory.transform.localPosition = new Vector3(x, y, 0f);
+            accessory.flipX = _facingLeft;
+            accessory.sortingOrder = _renderer.sortingOrder + 1;
+            accessory.color = tint;
+            accessory.enabled = true;
         }
     }
 }

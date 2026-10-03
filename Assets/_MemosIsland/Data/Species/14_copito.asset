@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 8d563287e95ba4943ae3ffb3fa9864ca, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Colina Escarcha
   description: "Su cuerpo est\xE1 fresquito incluso en verano. Si lo abraz\xE1s un
     buen rato, te deja la nariz roja."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: ca17df05808efd64fbc3e4482c7d191b, type: 3}
   - {fileID: 21300000, guid: d6161d69a0f20cb489fbdb4a580f18fc, type: 3}
+  headAnchor: {x: 15, y: 16}
+  neckAnchor: {x: 18, y: 25}

@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: f9a4be5677a68e4479fbd391ac9a75ba, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Ruta Pradera y Bosque Susurro
   description: "Vuela en zigzag y nunca en l\xEDnea recta. Su zumbido suena distinto
     seg\xFAn su humor."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 41a481c403b1f9a4fbe0e9f9c0443437, type: 3}
   - {fileID: 21300000, guid: f21cfabd2130afa41b1c34fd215a353e, type: 3}
+  headAnchor: {x: 20, y: 15}
+  neckAnchor: {x: 17, y: 22}

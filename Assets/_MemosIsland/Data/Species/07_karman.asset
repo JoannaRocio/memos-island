@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 70709a699de7c194f8812257b416f8f4, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Acantilados Tormenta (solo con tormenta)
   description: "Un lobo hecho de tormenta. Nadie lo dom\xF3 jam\xE1s: llega con los
     truenos y se va con el viento."
@@ -50,3 +51,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: cfd1db6a9f2139e44813750653323123, type: 3}
   - {fileID: 21300000, guid: 752cd4ce7d9808349b540f79e78962d3, type: 3}
+  headAnchor: {x: 23, y: 9}
+  neckAnchor: {x: 20, y: 16}

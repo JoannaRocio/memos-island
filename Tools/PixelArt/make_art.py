@@ -424,6 +424,36 @@ for y in range(15, 23):
 furniture += block("plant", 16, 24, [plant.rows()], header=["pivot 0.5 0", "outline 0"])
 open(os.path.join(OUT, "Furniture.txt"), "w", encoding="utf-8").write(furniture)
 
+
+# ================================================================== ACCESORIOS (Fase 5)
+accessories = "# Accesorios estéticos que se ven sobre los Memos. Cabeza: pivote abajo al centro. Cuello: pivote al centro.\n\n"
+
+def acc_canvas(rows):
+    w = max(len(r) for r in rows)
+    return [r.ljust(w, '.') for r in rows], w, len(rows)
+
+HEAD = {
+    "acc_gorrito_rojo": ["...44...", "..2222..", ".223322.", ".222222.", "pppppppp"],
+    "acc_gorrito_azul": ["...cc...", "..9999..", ".99aa99.", ".999999.", "cccccccc"],
+    "acc_mono_rosa": ["22...22.", "2n2.2n2.", ".22222..", "2n2.2n2.", "22...22."],
+    "acc_corona_flores": [".2.4.c.2.", "626565626", "666666666"],
+    "acc_sombrero_paja": ["...oooo...", "..o4444o..", "..o2222o..", "oooooooooo", ".4444444.."],
+    "acc_estrellita": ["..4..", ".444.", "44p44", ".444.", "4...4"],
+}
+NECK = {
+    "acc_bufanda_roja": ["2222222222", "2323232322", ".......22.", ".......32.", ".......22."],
+    "acc_bufanda_verde": ["6666666666", "6565656566", ".......66.", ".......56.", ".......66."],
+    "acc_panuelo_azul": ["9999999999", ".9aa9aa99.", "..9a9a99..", "...999...", "....9....."],
+    "acc_cascabel": ["2222222222", "....44....", "...4p44...", "...4444...", "....00...."],
+}
+for name, rows in HEAD.items():
+    rows, w, h = acc_canvas(rows)
+    accessories += block(name, w, h, [rows], header=["pivot 0.5 0", "outline 0"])
+for name, rows in NECK.items():
+    rows, w, h = acc_canvas(rows)
+    accessories += block(name, w, h, [rows], header=["pivot 0.5 0.5", "outline 0"])
+open(os.path.join(OUT, "Accessories.txt"), "w", encoding="utf-8").write(accessories)
+
 # ================================================================== UI
 ui = "# Interfaz: caja de texto estilo GBA (9 cortes) y pixel blanco para fundidos.\n\n"
 corner = ["..888888",

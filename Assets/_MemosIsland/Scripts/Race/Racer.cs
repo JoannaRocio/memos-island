@@ -23,18 +23,27 @@ namespace MemosIsland.Race
         public readonly MemoInstance instance;
         public readonly MemoSpecies species;
         public readonly ComputedStats stats;
+        public readonly ItemData equipment, amulet;
         public readonly float maxEnergy;
+        /// <summary>Probabilidad de desobedecer (confianza + etapa rebelde), fija durante la carrera.</summary>
+        public readonly float disobeyChance;
         public float energy;
         public float charge; // 0..1
         public bool hasRun;
+        public bool calmBellAvailable;
 
         public RacerMemo(MemoInstance instance)
         {
             this.instance = instance;
             species = instance.Species;
+            equipment = instance.Equipment;
+            amulet = instance.Amulet;
             stats = instance.Stats;
             maxEnergy = Mathf.Max(10f, stats.Stamina * 10f);
             energy = maxEnergy;
+            disobeyChance = Progression.DisobeyChance(instance, System.DateTime.Now);
+            if (EquipmentRules.Has(amulet, AmuletEffect.ChargeStart)) charge = 1f;
+            calmBellAvailable = EquipmentRules.Has(amulet, AmuletEffect.CalmBell);
         }
 
         public bool AbilityReady => charge >= 1f;
@@ -82,9 +91,21 @@ namespace MemosIsland.Race
         public bool IsHidden => Has(StatusKind.Teleport);
         public bool AllMemosRan => memos.All(m => m.hasRun);
 
+        /// <summary>Un efecto molesto fue bloqueado por el Cascabel de calma.</summary>
+        public event System.Action<Racer> Blocked;
+
+        static bool IsHindering(StatusKind kind) => kind is StatusKind.Slow or StatusKind.Root or StatusKind.Stun
+            or StatusKind.Sleep or StatusKind.Blind or StatusKind.Zigzag or StatusKind.Magnet;
+
         public void AddEffect(StatusKind kind, float seconds, float strength = 1f, float delay = 0f)
         {
             if (seconds <= 0f) return;
+            if (IsHindering(kind) && Active.calmBellAvailable)
+            {
+                Active.calmBellAvailable = false;
+                Blocked?.Invoke(this);
+                return;
+            }
             var existing = effects.Find(e => e.kind == kind && e.delay <= 0f);
             if (existing != null && delay <= 0f)
             {

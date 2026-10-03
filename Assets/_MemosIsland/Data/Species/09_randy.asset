@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 1892fa46c172c494dbb5b01b29d5385e, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Playa Helada
   description: "Un tibur\xF3n de hielo, burl\xF3n y orgulloso. Se divierte persiguiendo
     barcos en la Playa Helada."
@@ -50,3 +51,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 5d6073626a821cd42b87a7e796b1dc48, type: 3}
   - {fileID: 21300000, guid: c265e0809a1086441896653e2b592a2f, type: 3}
+  headAnchor: {x: 25, y: 17}
+  neckAnchor: {x: 22, y: 23}

@@ -14,6 +14,7 @@ namespace MemosIsland.Memos
         public List<AbilityData> abilities = new();
         public List<Temperament> temperaments = new();
         public List<MemoSpecies> species = new();
+        public List<ItemData> items = new();
 
         static MemoDatabase _instance;
 
@@ -33,6 +34,7 @@ namespace MemosIsland.Memos
         public MemoType GetMemoType(string id) => types.Find(t => t != null && t.id == id);
         public RaceTerrain GetTerrain(string id) => terrains.Find(t => t != null && t.id == id);
         public Temperament GetTemperament(string id) => temperaments.Find(t => t != null && t.id == id);
+        public ItemData GetItem(string id) => string.IsNullOrEmpty(id) ? null : items.Find(i => i != null && i.id == id);
 
         /// <summary>Qué tan bien corre una especie sobre un terreno.</summary>
         public Effectiveness EffectivenessFor(MemoSpecies s, RaceTerrain terrain) =>

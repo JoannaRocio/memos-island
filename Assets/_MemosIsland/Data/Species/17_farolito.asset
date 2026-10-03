@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: f0ccaa0d7eeabd344aeff9293f7a0be5, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Cueva de Zorak, piso 5
   description: "Su luz se vuelve m\xE1s c\xE1lida cuando conf\xEDa en alguien. Gu\xEDa
     a los perdidos en lo profundo de la cueva."
@@ -51,3 +52,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: f7113cabe204be444ae11ce0e0e0ddd0, type: 3}
   - {fileID: 21300000, guid: 2e90846145dbb85428a267781a5632f6, type: 3}
+  headAnchor: {x: 19, y: 13}
+  neckAnchor: {x: 16, y: 21}

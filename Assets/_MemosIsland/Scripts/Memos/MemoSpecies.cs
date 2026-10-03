@@ -26,6 +26,8 @@ namespace MemosIsland.Memos
         public MemoSpecies evolvesTo;
         [Tooltip("Nivel al que evoluciona (0 = no evoluciona por nivel).")]
         public int evolutionLevel;
+        [Tooltip("Evoluciona al llegar a Alma gemela (GDD §13).")]
+        public bool evolvesWithTrust;
 
         [Header("MemoBox")]
         public string habitat;
@@ -43,6 +45,9 @@ namespace MemosIsland.Memos
         public Sprite[] worldFrames;
         public Sprite[] shinyWorldFrames;
         public Sprite[] collarWorldFrames;
+        [Tooltip("Dónde va un accesorio de cabeza / de cuello, en pixels del sprite de mundo (32x32, mirando a la derecha, y desde arriba).")]
+        public Vector2Int headAnchor = new(16, 8);
+        public Vector2Int neckAnchor = new(16, 18);
 
         public bool HasType(MemoType type) => primaryType == type || (secondaryType != null && secondaryType == type);
 

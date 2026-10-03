@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5b970b4cb74b94eaa0440f1438a0cc, type: 3}
+  m_Name: gema_arena
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.ItemData
+  id: gema_arena
+  displayName: Gema de arena
+  description: En arena siempre corre como si fuera muy eficaz.
+  kind: 2
+  price: 450
+  icon: {fileID: 0}
+  terrainRule: 0
+  terrains: []
+  speedBonus: 0
+  staminaBonus: 0
+  amuletEffect: 5
+  gemTerrain: {fileID: 11400000, guid: c34b2c670a20e534ca2f96ae54012254, type: 2}
+  accessorySlot: 0
+  accessorySprite: {fileID: 0}

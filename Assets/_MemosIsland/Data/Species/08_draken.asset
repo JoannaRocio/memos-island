@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: c30b5f140e7c563409ecea5cf4ec5e79, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: "Volc\xE1n Dormido"
   description: "Un drag\xF3n negro de escamas encendidas. Los pescadores juran haberlo
     visto volar sobre el Volc\xE1n Dormido."
@@ -50,3 +51,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: affcf92cc37bc2d4ebe7faae05b9e1ab, type: 3}
   - {fileID: 21300000, guid: 0b2feeafb9c5d87458997ea1703e93f1, type: 3}
+  headAnchor: {x: 24, y: 9}
+  neckAnchor: {x: 20, y: 16}

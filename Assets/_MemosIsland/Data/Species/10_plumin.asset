@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 75cbf3f4ce0ea774fa1cffaf718ed532, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Ruta Pradera
   description: Una bolita de plumas tan liviana que el viento la lleva de paseo.
     Le encanta dormir en los techos.
@@ -52,3 +53,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 439e6a0d19740164ebf52186842da1fd, type: 3}
   - {fileID: 21300000, guid: 61b218071607d84428f5e5b29d89518d, type: 3}
+  headAnchor: {x: 16, y: 15}
+  neckAnchor: {x: 18, y: 24}

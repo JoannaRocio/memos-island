@@ -13,6 +13,8 @@ namespace MemosIsland.Memos
         /// <summary>Si subió a un nivel de confianza nunca alcanzado: recupera un recuerdo.</summary>
         public bool newMemory;
         public TrustLevel level;
+        /// <summary>Terminó la etapa rebelde recuperando la confianza: recuerdo "crecimos juntos".</summary>
+        public bool grewTogether;
     }
 
     /// <summary>
@@ -34,6 +36,7 @@ namespace MemosIsland.Memos
             ResetDayIfNeeded(m, now);
             var level = m.TrustLevel;
             bool scared = level <= TrustLevel.Fear;
+            bool hostile = level == TrustLevel.Hostile;
             string name = m.DisplayName;
 
             switch (action)
@@ -44,10 +47,12 @@ namespace MemosIsland.Memos
                         return Fail($"{name} ya comió suficiente por hoy.");
                     m.feedsToday++;
                     return Gain(m, favoriteFood ? FavoriteFeedTrust : FeedTrust,
+                        hostile ? $"{name} agarró la comida de un tirón y se fue a comer solo." :
                         scared ? $"{name} esperó a que te alejaras… y comió." :
                         favoriteFood ? $"¡A {name} le encantó! ♥" : $"{name} comió con ganas.");
 
                 case CareAction.Pet:
+                    if (hostile) return Fail($"{name} te gruñe. Mejor no tocarlo… todavía.");
                     if (scared) return Fail($"{name} retrocede asustado…");
                     if (m.pettedToday) return Fail($"{name} ya recibió mimos hoy. Igual se ve contento.");
                     m.pettedToday = true;
@@ -57,6 +62,7 @@ namespace MemosIsland.Memos
                         : Gain(m, PetTrust, $"{name} cierra los ojos mientras lo acariciás. ♥");
 
                 case CareAction.Play:
+                    if (hostile) return Fail($"{name} te da la espalda.");
                     if (scared) return Fail($"{name} no quiere jugar. Te mira desde lejos.");
                     MemoNeeds.Satisfy(m, Need.Fun, 40f);
                     if (m.playedToday) return Fail($"{name} jugó un rato, pero ya está cansado de la pelota.");
@@ -64,6 +70,7 @@ namespace MemosIsland.Memos
                     return Gain(m, PlayTrust, $"¡{name} corre detrás de la pelota! ♪");
 
                 case CareAction.Bath:
+                    if (hostile) return Fail($"{name} sacude la cola y te salpica. No quiere saber nada.");
                     if (scared) return Fail($"{name} se escapa del agua.");
                     if (!string.IsNullOrEmpty(m.lastBathDate) &&
                         (now.Date - DateTime.Parse(m.lastBathDate)).TotalDays < BathEveryDays)
@@ -85,7 +92,35 @@ namespace MemosIsland.Memos
         public static CareResult DailyVisit(MemoInstance m, bool hasGodparent) =>
             Gain(m, RefugeDayTrust + (hasGodparent ? GodparentDayTrust : 0), null);
 
-        public static CareResult AfterRace(MemoInstance m, bool won) => Gain(m, won ? RaceWinTrust : RaceTrust, null);
+        /// <summary>Correr juntos (+3, +6 si ganan; ×1,5 con el Moño de amistad).</summary>
+        public static CareResult AfterRace(MemoInstance m, bool won)
+        {
+            int points = won ? RaceWinTrust : RaceTrust;
+            if (EquipmentRules.Has(m.Amulet, AmuletEffect.FriendshipBow)) points = Mathf.RoundToInt(points * 1.5f);
+            return Gain(m, points, null);
+        }
+
+        public const int AccessoryLikedTrust = 10;
+
+        /// <summary>
+        /// La primera vez que se pone un accesorio: si le gusta, +10 de confianza (GDD §14).
+        /// A cada Memo le gustan unos y otros no (siempre los mismos).
+        /// </summary>
+        public static CareResult TryAccessory(MemoInstance m, ItemData accessory)
+        {
+            if (accessory == null || m.accessoriesTried.Contains(accessory.id)) return Fail(null);
+            m.accessoriesTried.Add(accessory.id);
+            if (!LikesAccessory(m, accessory.id))
+                return Fail($"{m.DisplayName} no parece muy convencido con {accessory.displayName}…");
+            return Gain(m, AccessoryLikedTrust, $"¡A {m.DisplayName} le encanta {accessory.displayName}! ♥");
+        }
+
+        public static bool LikesAccessory(MemoInstance m, string accessoryId)
+        {
+            int h = 17;
+            foreach (var c in (m.uid ?? "") + accessoryId) h = (h * 31 + c) & 0x7fffffff;
+            return h % 3 != 0;
+        }
 
         /// <summary>El compañero gana confianza mientras te sigue (+2 por hora).</summary>
         public static CareResult AddFollowTime(MemoInstance m, float seconds)
@@ -116,7 +151,12 @@ namespace MemosIsland.Memos
             var level = m.TrustLevel;
             bool newMemory = level > m.highestTrust;
             if (newMemory) m.highestTrust = level;
-            return new CareResult { success = true, trustGained = gained, message = message, newMemory = newMemory, level = level };
+            bool grewTogether = Progression.CheckRebelRecovery(m, DateTime.Now);
+            return new CareResult
+            {
+                success = true, trustGained = gained, message = message, newMemory = newMemory, level = level,
+                grewTogether = grewTogether,
+            };
         }
 
         static CareResult Fail(string message) => new() { success = false, message = message };

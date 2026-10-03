@@ -207,6 +207,8 @@ namespace MemosIsland.EditorTools
             var myMemos = Child(ui.transform, "My Memos", Vector3.zero).AddComponent<MyMemosScreen>();
             myMemos.Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
             Child(ui.transform, "Pause Menu", Vector3.zero).AddComponent<PauseMenu>().Setup(font, boxSprite, unlit);
+            var evolution = Child(ui.transform, "Evolution", Vector3.zero).AddComponent<EvolutionScreen>();
+            evolution.Setup(S("UI/ui_pixel"), unlit);
 
             // Compañero que te sigue (Fase 4)
             var companionGo = Child(root.transform, "Companion", Vector3.zero);
@@ -216,6 +218,7 @@ namespace MemosIsland.EditorTools
             SetField(gameRoot, "companion", companionGo.GetComponent<CompanionFollower>());
             SetField(gameRoot, "myMemos", myMemos);
             SetField(gameRoot, "memoBox", memoBox);
+            SetField(gameRoot, "evolution", evolution);
             SetField(gameRoot, "player", controller);
             SetField(gameRoot, "cameraFollow", follow);
             SetField(gameRoot, "dialogue", dialogue);
@@ -252,6 +255,9 @@ namespace MemosIsland.EditorTools
             var renderer = viewGo.AddComponent<SpriteRenderer>();
             renderer.sortingOrder = OrderActors;
             var view = viewGo.AddComponent<MemoSpriteView>();
+            var accessory = Child(viewGo.transform, "Accessory", Vector3.zero).AddComponent<SpriteRenderer>();
+            accessory.sortingOrder = OrderActors + 1;
+            view.SetAccessoryRenderer(accessory);
 
             var bubbleGo = Child(go.transform, "Bubble", new Vector3(0f, 2.15f, 0f));
             var bubbleRenderer = bubbleGo.AddComponent<SpriteRenderer>();

@@ -1,0 +1,120 @@
+# Accesorios estéticos que se ven sobre los Memos. Cabeza: pivote abajo al centro. Cuello: pivote al centro.
+
+sprite acc_gorrito_rojo
+size 8 5
+pivot 0.5 0
+outline 0
+frame
+...44...
+..2222..
+.223322.
+.222222.
+pppppppp
+end
+
+sprite acc_gorrito_azul
+size 8 5
+pivot 0.5 0
+outline 0
+frame
+...cc...
+..9999..
+.99aa99.
+.999999.
+cccccccc
+end
+
+sprite acc_mono_rosa
+size 8 5
+pivot 0.5 0
+outline 0
+frame
+22...22.
+2n2.2n2.
+.22222..
+2n2.2n2.
+22...22.
+end
+
+sprite acc_corona_flores
+size 9 3
+pivot 0.5 0
+outline 0
+frame
+.2.4.c.2.
+626565626
+666666666
+end
+
+sprite acc_sombrero_paja
+size 10 5
+pivot 0.5 0
+outline 0
+frame
+...oooo...
+..o4444o..
+..o2222o..
+oooooooooo
+.4444444..
+end
+
+sprite acc_estrellita
+size 5 5
+pivot 0.5 0
+outline 0
+frame
+..4..
+.444.
+44p44
+.444.
+4...4
+end
+
+sprite acc_bufanda_roja
+size 10 5
+pivot 0.5 0.5
+outline 0
+frame
+2222222222
+2323232322
+.......22.
+.......32.
+.......22.
+end
+
+sprite acc_bufanda_verde
+size 10 5
+pivot 0.5 0.5
+outline 0
+frame
+6666666666
+6565656566
+.......66.
+.......56.
+.......66.
+end
+
+sprite acc_panuelo_azul
+size 10 5
+pivot 0.5 0.5
+outline 0
+frame
+9999999999
+.9aa9aa99.
+..9a9a99..
+...999....
+....9.....
+end
+
+sprite acc_cascabel
+size 10 5
+pivot 0.5 0.5
+outline 0
+frame
+2222222222
+....44....
+...4p44...
+...4444...
+....00....
+end
+

@@ -28,6 +28,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: c10c23297bcc24a4f972401501a72b7a, type: 2}
   evolvesTo: {fileID: 0}
   evolutionLevel: 0
+  evolvesWithTrust: 0
   habitat: Equipo de la Capitana Vera
   description: Estudia a sus rivales en silencio y copia sus movimientos. Es el orgullo
     del equipo de Vera.
@@ -50,3 +51,5 @@ MonoBehaviour:
   collarWorldFrames:
   - {fileID: 21300000, guid: 99f1d7dcedfb20a4fa84b91d375bda62, type: 3}
   - {fileID: 21300000, guid: c8ce08bfb4eb59942925719bda09e7cc, type: 3}
+  headAnchor: {x: 23, y: 9}
+  neckAnchor: {x: 20, y: 16}
