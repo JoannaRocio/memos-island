@@ -51,7 +51,7 @@ namespace MemosIsland.World
             view.gameObject.SetActive(visible);
             interactCollider.enabled = visible;
             if (Memo == null) return;
-            view.SetMemo(Memo);
+            view.Setup(mover, Memo); // conecta la vista con el movimiento (dirección y animación)
             if (at.HasValue) mover.Teleport(at.Value, mover.Facing);
             else SnapBehind();
         }
@@ -86,6 +86,10 @@ namespace MemosIsland.World
         void Update()
         {
             if (Memo == null || _hidden || GameRoot.Instance.Maps.IsTransitioning) return;
+
+            // Quieto, mira hacia donde mira el jugador (si el jugador gira en el lugar, el compañero también).
+            var player = GameRoot.Instance.Player.Mover;
+            if (!mover.IsMoving && !player.IsMoving && !GameRoot.InputLocked) mover.Facing = player.Facing;
 
             MemoNeeds.Decay(Memo, Time.deltaTime / 3600f);
             MemoNeeds.Satisfy(Memo, Need.Social, Time.deltaTime / 60f); // con vos no se siente solo
