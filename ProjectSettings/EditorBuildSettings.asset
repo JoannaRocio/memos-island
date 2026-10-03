@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MemosIsland/Scenes/Maps/Map_RefugioInterior.unity
     guid: da2c032dd950457478967bd20a1e92ed
+  - enabled: 1
+    path: Assets/_MemosIsland/Scenes/Maps/Map_Cueva.unity
+    guid: 3bc30373b010bee4ea34408058265e0d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

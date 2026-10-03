@@ -414,231 +414,237 @@ MonoBehaviour:
       y: 25
       width: 4
       height: 11
-  - character: 48
+  - character: 36
     rect:
       x: 16
+      y: 25
+      width: 5
+      height: 11
+  - character: 48
+    rect:
+      x: 24
       y: 25
       width: 4
       height: 11
   - character: 49
     rect:
-      x: 24
+      x: 32
       y: 25
       width: 3
       height: 11
   - character: 50
     rect:
-      x: 32
+      x: 40
       y: 25
       width: 4
       height: 11
   - character: 51
     rect:
-      x: 40
+      x: 48
       y: 25
       width: 4
       height: 11
   - character: 52
     rect:
-      x: 48
+      x: 56
       y: 25
       width: 4
       height: 11
   - character: 53
     rect:
-      x: 56
+      x: 64
       y: 25
       width: 4
       height: 11
   - character: 54
     rect:
-      x: 64
+      x: 72
       y: 25
       width: 4
       height: 11
   - character: 55
     rect:
-      x: 72
+      x: 80
       y: 25
       width: 4
       height: 11
   - character: 56
     rect:
-      x: 80
+      x: 88
       y: 25
       width: 4
       height: 11
   - character: 57
     rect:
-      x: 88
+      x: 96
       y: 25
       width: 4
       height: 11
   - character: 46
     rect:
-      x: 96
+      x: 104
       y: 25
       width: 2
       height: 11
   - character: 44
     rect:
-      x: 104
+      x: 112
       y: 25
       width: 2
       height: 11
   - character: 58
     rect:
-      x: 112
+      x: 120
       y: 25
       width: 1
       height: 11
   - character: 59
     rect:
-      x: 120
-      y: 25
+      x: 0
+      y: 13
       width: 2
       height: 11
   - character: 33
     rect:
-      x: 0
+      x: 8
       y: 13
       width: 1
       height: 11
   - character: 161
     rect:
-      x: 8
+      x: 16
       y: 13
       width: 1
       height: 11
   - character: 63
     rect:
-      x: 16
+      x: 24
       y: 13
       width: 4
       height: 11
   - character: 191
     rect:
-      x: 24
+      x: 32
       y: 13
       width: 4
       height: 11
   - character: 39
     rect:
-      x: 32
+      x: 40
       y: 13
       width: 1
       height: 11
   - character: 34
     rect:
-      x: 40
+      x: 48
       y: 13
       width: 3
       height: 11
   - character: 45
     rect:
-      x: 48
+      x: 56
       y: 13
       width: 3
       height: 11
   - character: 40
     rect:
-      x: 56
+      x: 64
       y: 13
       width: 2
       height: 11
   - character: 41
     rect:
-      x: 64
+      x: 72
       y: 13
       width: 2
       height: 11
   - character: 47
     rect:
-      x: 72
+      x: 80
       y: 13
       width: 3
       height: 11
   - character: 43
     rect:
-      x: 80
+      x: 88
       y: 13
       width: 3
       height: 11
   - character: 37
     rect:
-      x: 88
+      x: 96
       y: 13
       width: 5
       height: 11
   - character: 8230
     rect:
-      x: 96
+      x: 104
       y: 13
       width: 5
       height: 11
   - character: 42
     rect:
-      x: 104
+      x: 112
       y: 13
       width: 3
       height: 11
   - character: 9829
     rect:
-      x: 112
+      x: 120
       y: 13
       width: 5
       height: 11
   - character: 9660
     rect:
-      x: 120
-      y: 13
+      x: 0
+      y: 1
       width: 5
       height: 11
   - character: 9654
     rect:
-      x: 0
+      x: 8
       y: 1
       width: 4
       height: 11
   - character: 8592
     rect:
-      x: 8
+      x: 16
       y: 1
       width: 5
       height: 11
   - character: 8594
     rect:
-      x: 16
+      x: 24
       y: 1
       width: 5
       height: 11
   - character: 9650
     rect:
-      x: 24
+      x: 32
       y: 1
       width: 5
       height: 11
   - character: 183
     rect:
-      x: 32
+      x: 40
       y: 1
       width: 2
       height: 11
   - character: 186
     rect:
-      x: 40
+      x: 48
       y: 1
       width: 3
       height: 11
   - character: 9834
     rect:
-      x: 48
+      x: 56
       y: 1
       width: 4
       height: 11
   - character: 215
     rect:
-      x: 56
+      x: 64
       y: 1
       width: 5
       height: 11

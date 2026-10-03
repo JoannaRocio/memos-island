@@ -18,6 +18,9 @@ MonoBehaviour:
   kind: 3
   price: 150
   icon: {fileID: 21300000, guid: 95903c94cf2f49040b1eaa0e57a674b3, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 0
   terrains: []
   speedBonus: 0

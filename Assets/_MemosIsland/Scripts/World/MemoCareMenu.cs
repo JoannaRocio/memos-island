@@ -12,11 +12,6 @@ namespace MemosIsland.World
     /// </summary>
     public static class MemoCareMenu
     {
-        static readonly Dictionary<string, string> FoodNames = new()
-        {
-            ["bayamemo"] = "Bayamemo", ["frutilla"] = "Frutilla", ["zanahoria"] = "Zanahoria", ["zapallo"] = "Zapallo",
-        };
-
         /// <param name="react">Muestra una emoción sobre el Memo.</param>
         /// <param name="companionChanged">Avisa que cambió el compañero (para crear o quitar actores).</param>
         public static void Open(MemoInstance memo, Action<Emote> react, Action companionChanged)
@@ -46,18 +41,40 @@ namespace MemosIsland.World
                 options.Select(o => o.label).ToList(), i => options[i].action(), options.Count - 1);
         }
 
+        /// <summary>Comidas que tenés, con las favoritas del Memo primero (marcadas con ♥).</summary>
+        public static List<ItemData> FoodsFor(MemoInstance memo, GameState state) =>
+            state.inventory.Select(s => MemoDatabase.Instance.GetItem(s.id))
+                .Where(i => i != null && i.kind == ItemKind.Food)
+                .OrderByDescending(i => MemoCare.IsFavorite(memo, i)).ToList();
+
         static void ChooseFood(MemoInstance memo, Action<Emote> react)
         {
             var root = GameRoot.Instance;
-            var favorites = memo.Species.favoriteFoods.Where(FoodNames.ContainsKey).ToList();
-            var labels = favorites.Select(f => FoodNames[f]).ToList();
-            labels.Add("Comida básica");
+            var foods = FoodsFor(memo, root.State);
+            if (foods.Count == 0)
+            {
+                root.Dialogue.Show(new[] { "No tenés comida. Cosechá en la huerta, fabricala en la mesa de trabajo o comprala en lo de Deny." });
+                return;
+            }
+            var labels = foods.Select(f => $"{(MemoCare.IsFavorite(memo, f) ? "♥ " : "")}{f.displayName} ×{root.State.CountOf(f.id)}").ToList();
             labels.Add("Nada");
             root.Dialogue.ShowChoice($"¿Qué le das a {memo.DisplayName}?", labels, i =>
             {
-                if (i == labels.Count - 1) return;
-                Care(memo, CareAction.Feed, react, favorite: i < favorites.Count);
+                if (i >= foods.Count) return;
+                Feed(memo, foods[i], react);
             }, labels.Count - 1);
+        }
+
+        static void Feed(MemoInstance memo, ItemData food, Action<Emote> react)
+        {
+            var root = GameRoot.Instance;
+            var result = MemoCare.ApplyFood(memo, food, GameClock.Instance != null ? GameClock.Instance.Now : DateTime.Now);
+            if (result.success) root.State.RemoveItem(food.id);
+            react?.Invoke(result.success ? Emote.Music : Emote.Dots);
+            var pages = new List<string>();
+            if (!string.IsNullOrEmpty(result.message)) pages.Add(result.message);
+            if (result.newMemory) AddMemoryPages(memo, result.level, pages);
+            if (pages.Count > 0) root.Dialogue.Show(pages);
         }
 
         public static void Care(MemoInstance memo, CareAction action, Action<Emote> react, bool favorite = false)

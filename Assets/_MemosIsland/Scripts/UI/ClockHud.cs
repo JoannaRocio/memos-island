@@ -29,6 +29,7 @@ namespace MemosIsland.UI
             // Se oculta detrás de las pantallas completas (Mis Memos, MemoBox, evolución).
             var root = GameRoot.Instance;
             bool covered = root != null && (root.MyMemos != null && root.MyMemos.IsOpen || root.MemoBox != null && root.MemoBox.IsOpen
+                                            || root.Lists != null && root.Lists.IsOpen
                                             || root.Evolution != null && root.Evolution.IsRunning);
             box.enabled = !covered;
             label.gameObject.SetActive(!covered);

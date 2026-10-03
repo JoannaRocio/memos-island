@@ -28,6 +28,7 @@ namespace MemosIsland.Core
         public string lastDailyDate;
         public int bowlServings;
         public List<ItemStack> inventory = new();
+        public Farm.IslandState island = new();
 
         // ------------------------------------------------------------------ Inventario
 
@@ -162,6 +163,14 @@ namespace MemosIsland.Core
                          "acc_estrellita", "acc_bufanda_roja", "acc_bufanda_verde", "acc_panuelo_azul", "acc_cascabel",
                      })
                 AddItem(id);
+            // Comida y semillas para empezar (Fase 6).
+            foreach (var (id, n) in new[]
+                     {
+                         ("comida_memo", 10), ("bayamemo", 4), ("frutilla", 3), ("zanahoria", 3),
+                         ("semilla_nabo", 6), ("semilla_frutilla", 3), ("semilla_bayamemo", 2), ("tela", 2), ("pluma", 1),
+                     })
+                AddItem(id, n);
+            island = new Farm.IslandState();
             tostin.accessoryId = "acc_panuelo_azul"; // (una bufanda roja casi no se vería sobre un Memo de fuego)
 
             // Tostín y Brotito ya son mejores amigos (impulso de amistad en los relevos).

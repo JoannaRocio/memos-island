@@ -207,6 +207,8 @@ namespace MemosIsland.EditorTools
             var myMemos = Child(ui.transform, "My Memos", Vector3.zero).AddComponent<MyMemosScreen>();
             myMemos.Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
             Child(ui.transform, "Pause Menu", Vector3.zero).AddComponent<PauseMenu>().Setup(font, boxSprite, unlit);
+            var lists = Child(ui.transform, "Lists", Vector3.zero).AddComponent<ListScreen>(); // mochila, tienda, mesa (Fase 6)
+            lists.Setup(font, boxSprite, S("UI/ui_pixel"), unlit);
             var evolution = Child(ui.transform, "Evolution", Vector3.zero).AddComponent<EvolutionScreen>();
             evolution.Setup(S("UI/ui_pixel"), unlit);
 
@@ -219,6 +221,7 @@ namespace MemosIsland.EditorTools
             SetField(gameRoot, "myMemos", myMemos);
             SetField(gameRoot, "memoBox", memoBox);
             SetField(gameRoot, "evolution", evolution);
+            SetField(gameRoot, "lists", lists);
             SetField(gameRoot, "player", controller);
             SetField(gameRoot, "cameraFollow", follow);
             SetField(gameRoot, "dialogue", dialogue);

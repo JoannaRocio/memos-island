@@ -78,6 +78,7 @@ namespace MemosIsland.World
                     return;
                 }
             }
+            CellInteractables.At(cell)?.InteractCell(this, cell);
         }
     }
 }

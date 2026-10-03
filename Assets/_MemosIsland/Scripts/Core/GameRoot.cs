@@ -31,6 +31,7 @@ namespace MemosIsland.Core
         [SerializeField] MyMemosScreen myMemos;
         [SerializeField] MemoBoxScreen memoBox;
         [SerializeField] EvolutionScreen evolution;
+        [SerializeField] ListScreen lists;
         [SerializeField] GameState state = new();
         [Tooltip("Mientras no exista la elección del inicial (Fase 8), arranca con un equipo de prueba.")]
         [SerializeField] bool giveDebugTeam = true;
@@ -45,6 +46,7 @@ namespace MemosIsland.Core
         public MyMemosScreen MyMemos => myMemos;
         public MemoBoxScreen MemoBox => memoBox;
         public EvolutionScreen Evolution => evolution;
+        public ListScreen Lists => lists;
         public GameState State => state;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

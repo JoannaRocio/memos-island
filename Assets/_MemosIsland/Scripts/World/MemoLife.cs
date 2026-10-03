@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using MemosIsland.Core;
+using MemosIsland.Farm;
 using MemosIsland.Memos;
 using UnityEngine;
 
@@ -111,6 +112,7 @@ namespace MemosIsland.World
             if (Random.value < (night ? 0.12f : 0.05f) && !_refuge.IsInterior) return ChangeSide(true);
             if (Random.value < (night ? 0.02f : 0.08f) && _refuge.IsInterior) return ChangeSide(false);
 
+            if (!night && Random.value < 0.3f && WorkSpot().HasValue) return Work();
             if (level >= TrustLevel.Trusting && playerDist <= 7 && Random.value < 0.3f) return FollowPlayer();
             if (Memo.fun < 60f || Random.value < 0.2f) return Play();
             if (Memo.social < 60f || Random.value < 0.25f) return Socialize();
@@ -118,6 +120,26 @@ namespace MemosIsland.World
         }
 
         // ------------------------------------------------------------------ Conductas
+
+        /// <summary>Lugar de trabajo de este Memo, si hoy trabaja (confianza y ánimo suficientes, GDD §15).</summary>
+        Vector2Int? WorkSpot()
+        {
+            var now = GameClock.Instance != null ? GameClock.Instance.Now : System.DateTime.Now;
+            if (!IslandDay.Workers(GameRoot.Instance.State, now).Contains(Memo)) return null;
+            return _refuge.WorkSpotFor(IslandDay.RoleOf(Memo));
+        }
+
+        IEnumerator Work()
+        {
+            var role = IslandDay.RoleOf(Memo);
+            ActivityName = IslandDay.RoleName(role);
+            yield return WalkNear(WorkSpot().Value, 1);
+            for (int i = 0; i < 3; i++)
+            {
+                Bubble.Show(i == 1 ? Emote.Love : Emote.Music, 1.2f);
+                yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
+            }
+        }
 
         IEnumerator Greet()
         {

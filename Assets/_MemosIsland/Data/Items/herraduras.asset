@@ -17,7 +17,10 @@ MonoBehaviour:
   description: "El barro y la monta\xF1a le resultan m\xE1s f\xE1ciles."
   kind: 1
   price: 350
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7bcb970fd858c9747b5b8d4a413a710f, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 1
   terrains:
   - {fileID: 11400000, guid: 7ec6dc87461318e4e94e40254db21673, type: 2}

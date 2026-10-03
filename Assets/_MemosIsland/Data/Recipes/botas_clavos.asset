@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d761fd536a0fd4882103d5d586c682, type: 3}
+  m_Name: botas_clavos
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Farm.RecipeData
+  id: botas_clavos
+  station: 0
+  inputs:
+  - id: lingote_hierro
+    count: 2
+  - id: cuero
+    count: 1
+  output:
+    id: botas_clavos
+    count: 1
+  minutes: 0

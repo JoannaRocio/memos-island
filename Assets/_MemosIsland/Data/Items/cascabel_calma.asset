@@ -17,7 +17,10 @@ MonoBehaviour:
   description: Lo protege de una habilidad molesta por carrera.
   kind: 2
   price: 600
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 75336baaa4b723c44b1ef5a8c25bc214, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 0
   terrains: []
   speedBonus: 0
