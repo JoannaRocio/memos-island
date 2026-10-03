@@ -612,3 +612,21 @@ MonoBehaviour:
       y: 1
       width: 5
       height: 11
+  - character: 9650
+    rect:
+      x: 24
+      y: 1
+      width: 5
+      height: 11
+  - character: 183
+    rect:
+      x: 32
+      y: 1
+      width: 2
+      height: 11
+  - character: 186
+    rect:
+      x: 40
+      y: 1
+      width: 3
+      height: 11

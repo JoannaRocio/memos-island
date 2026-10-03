@@ -298,8 +298,8 @@ Pradera · Bosque · Arena · Barro · Río · Hielo · Nieve · Ceniza · Monta
 ## 9. Carreras
 
 ### Controles (simples, como Monster Race)
-- **Cambiar:** abre la fila de 6 retratos; elegís cualquier Memo y entra. Hay que esperar **8 s** entre cambio y cambio. La transición dura 0,5 s.
-- **Habilidad:** la barra se carga sola según CAR. Cuando está llena, el botón activa la habilidad del Memo que está corriendo.
+- **Cambiar:** con **← →** elegís cualquiera de los 6 retratos y con **B** entra. Hay que esperar **8 s** entre cambio y cambio. La transición dura 0,5 s.
+- **Habilidad:** la barra se carga sola según CAR mientras el Memo corre. Cuando está llena, **A** activa la habilidad del Memo que está corriendo. Si no tiene sentido usarla (por ejemplo, Enredadera sin nadie adelante), no se gasta.
 - Todo lo demás es automático.
 
 ### Formatos
@@ -368,7 +368,7 @@ Experiencia para todos los Memos que corrieron, dinero, objetos, y en la Copa un
 1. Caminando por zonas con terreno (pasto alto, barro, nieve…) hay **encuentros aleatorios**, como en Pokémon. Algunos Memos raros se ven en el mapa.
 2. Empieza una **carrera 1 vs 1** en una pista de **un solo terreno**: el del lugar del encuentro. El jugador elige qué Memo de su equipo corre.
 3. **Ganás o lo cansás** (si su energía llega a 0 antes del final, se rinde).
-4. **Momento de comida:** elegís qué darle. Si es su favorita, sube mucho la probabilidad de que acepte.
+4. **Momento de comida:** elegís qué darle. Favorita: 90% de que acepte · comida básica: 60% · nada: se va. (Hasta la Fase 6 la comida no se gasta del inventario.)
 5. El Memo **te sigue al refugio** con la confianza inicial según cómo lo hayas conseguido:
    - Salvaje normal: **Desconfianza**
    - Rescatado de un collar: **Miedo**

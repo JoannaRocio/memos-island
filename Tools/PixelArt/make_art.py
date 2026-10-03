@@ -272,6 +272,51 @@ props += block("lamp", 16, 32, [lamp], header=["pivot 0.5 0", "outline 0"])
 
 open(os.path.join(OUT, "Props.txt"), "w", encoding="utf-8").write(props)
 
+
+# ================================================================== PISTA DE CARRERA
+track = "# Pista de carrera (vista de perfil): suelo de cada terreno (16x16), bandera de tramo y meta.\n\n"
+
+# (id, base, superficie, luz, detalles)
+TERRAIN_LOOK = [
+    ("pradera", '6', '5', 'c', 'm'), ("bosque", 'm', '6', '5', 'j'), ("arena", '4', 'p', 'c', 'o'),
+    ("barro", 'i', 'o', 'p', 'j'), ("rio", '9', 'a', 'c', '8'), ("hielo", 'a', 'b', 'c', '9'),
+    ("nieve", 'c', 'c', 'c', 'd'), ("ceniza", 'f', 'e', 'd', '2'), ("montana", 'e', 'd', 'c', 'f'),
+    ("cueva", 'f', 'e', 'd', '0'), ("tormenta", '8', '9', 'b', '0'), ("aire", 'c', 'b', 'c', 'a'),
+]
+for i, (tid, base, top, light, detail) in enumerate(TERRAIN_LOOK):
+    cv = Canvas(16, 16, base)
+    rnd = random.Random(100 + i)
+    for x in range(16):
+        cv.set(x, 0, top); cv.set(x, 1, top)
+        if rnd.random() < .35: cv.set(x, 0, light)
+        if rnd.random() < .3: cv.set(x, 2, top)
+    for _ in range(9):
+        x, y = rnd.randrange(16), rnd.randrange(3, 16)
+        cv.set(x, y, detail)
+        if rnd.random() < .5: cv.set((x + 1) % 16, y, detail)
+    if tid in ("rio", "tormenta"):
+        for y in (5, 10, 14):
+            off = rnd.randrange(16)
+            for k in range(4): cv.set((off + k) % 16, y, top)
+    if tid == "ceniza":
+        for _ in range(4): cv.set(rnd.randrange(16), rnd.randrange(3, 16), '3')
+    if tid == "aire":
+        for y in (6, 11):
+            off = rnd.randrange(16)
+            for k in range(6): cv.set((off + k) % 16, y, 'd')
+    track += block(f"track_{tid}", 16, 16, [cv.rows()], header=["pivot 0 1"])
+
+flag = [("..f" + ("22222" if y < 5 else ".....") + "........")[:16] for y in range(24)]
+flag = [r[:2] + 'f' + r[3:] for r in flag]
+track += block("track_flag", 16, 24, [flag], header=["pivot 0.15 0", "outline 0"])
+
+finish = Canvas(16, 16)
+for y in range(16):
+    for x in range(16):
+        finish.set(x, y, 'c' if ((x // 4) + (y // 4)) % 2 == 0 else '0')
+track += block("track_finish", 16, 16, [finish.rows()], header=["pivot 0 1"])
+open(os.path.join(OUT, "Track.txt"), "w", encoding="utf-8").write(track)
+
 # ================================================================== UI
 ui = "# Interfaz: caja de texto estilo GBA (9 cortes) y pixel blanco para fundidos.\n\n"
 corner = ["..888888",
