@@ -17,7 +17,10 @@ MonoBehaviour:
   description: Planea sobre las corrientes de aire.
   kind: 1
   price: 500
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ea6cfe80071c71048a09bb767d91c587, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 2
   terrains:
   - {fileID: 11400000, guid: f64617eeaa17eb742a616c3983ec5c4f, type: 2}

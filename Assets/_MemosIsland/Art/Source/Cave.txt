@@ -1,0 +1,266 @@
+# Cueva de Zorak: piso, paredes, piso áspero (encuentros), rocas, escaleras y entrada.
+
+sprite cave_floor
+size 16 16
+frame
+fffffffeffffffff
+fffffeffffffffff
+fffffff0fffffeff
+ff0fffffffffffff
+ffffffffffffffff
+fffffffffffffffe
+ffffffffffffffff
+fffffff0ffffffff
+ffffffffffffffff
+ffffffffffffffff
+feffffffffffffff
+fffeffffffffffff
+ffffffffffefffff
+fffff0fffffff0ff
+efffffffffffffff
+fffffffff0ffffff
+tile
+end
+
+sprite cave_rough
+size 16 16
+frame
+fffffffeffffffff
+fffffeffffdfffff
+fffdfff0feeffeff
+ffeefffffeffffff
+ffefffffffffffff
+ffffffffffffdffe
+fffffffffffeefff
+fffffff0fffeffff
+ffffffdfffffffff
+fffffeefffffffff
+fefffefffffffdff
+fffeffffffffeeff
+ffffdfffffefefff
+fffee0fffffff0ff
+effeffffffffffff
+fffffffff0ffffff
+tile
+end
+
+sprite cave_wall
+size 16 16
+frame
+f0000000000f0000
+000000000f000000
+0000000f00000000
+00000f0000000000
+000f0000000000f0
+0f0000000000f000
+0000000000f00000
+00000000f0000000
+000000f000000000
+0000f0000000000f
+00f0000000000f00
+f0000000000f0000
+000000000f000000
+0000000f00000000
+00000f0000000000
+ffffffffffffffff
+tile solid
+end
+
+sprite rock_stone
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+.....dddddd.....
+...eeeddddddd...
+..eeeeeeeddddd..
+..eeeeeeeeeeed..
+..eeeeeeeeeeee..
+..ffeeeeeeeeee..
+..ffffffeeeeee..
+..fffffffffeee..
+...ffffffffff...
+.....ffffff.....
+................
+end
+
+sprite rock_copper
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+.....dddddd.....
+...eeeddddddd...
+..eeeeeee3nddd..
+..eeen3eeeeeed..
+..eeeeeeeeeeee..
+..ffeeeeeeeeee..
+..ffff3neen3ee..
+..fffffffffeee..
+...ffffffffff...
+.....ffffff.....
+................
+end
+
+sprite rock_iron
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+.....dddddd.....
+...eeeddddddd...
+..eeeeeeedcddd..
+..eeecdeeeeeed..
+..eeeeeeeeeeee..
+..ffeeeeeeeeee..
+..ffffdceecdee..
+..fffffffffeee..
+...ffffffffff...
+.....ffffff.....
+................
+end
+
+sprite rock_quartz
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+.....dddddd.....
+...eeeddddddd...
+..eeeeeeebcddd..
+..eeecbeeeeeed..
+..eeeeeeeeeeee..
+..ffeeeeeeeeee..
+..ffffbceecbee..
+..fffffffffeee..
+...ffffffffff...
+.....ffffff.....
+................
+end
+
+sprite rock_gem
+size 16 16
+pivot 0.5 0
+outline 0
+frame
+................
+................
+................
+................
+................
+.....dddddd.....
+...eeeddddddd...
+..eeeeeee46ddd..
+..eeea4eeeeeed..
+..eeeeeeeeeeee..
+..ffeeeeeeeeee..
+..ffffa4ee6aee..
+..fffffffffeee..
+...ffffffffff...
+.....ffffff.....
+................
+end
+
+sprite ladder_down
+size 16 16
+frame
+................
+................
+................
+....fjfffffj....
+...00j0ffffjf...
+..000jiiiiijff..
+..000j00000j0f..
+..000j00000j00..
+..000jiiiiij00..
+..000j00000j00..
+..000j00000j00..
+...00jiiiiij0...
+....0j00000j....
+.....j.....j....
+................
+................
+tile
+end
+
+sprite ladder_up
+size 16 16
+frame
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiooooooiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiooooooiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiooooooiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiffffffiffff
+ffffiooooooiffff
+ffffiffffffiffff
+tile
+end
+
+sprite cave_entrance
+size 32 32
+pivot 0.5 0
+outline 0
+frame
+................................
+................................
+................................
+................................
+................................
+................................
+.........cc.....................
+............dddddddd............
+.........dddddddddddddd.........
+.......dddddddddddddddddd.......
+......eeeeddddddddddddddcc......
+.....eeeeeeeedddddddddddddd.....
+....ecceeeeeeeeedddddddddddd....
+...eeeeeeeeeeeeeeeedddddddddd...
+..eeeeeeeeeeeeeeeeeeeeeddddddd..
+..eeeeeeeeeeeeeeeeeeeeeeeedddd..
+..eeeeeeeeeee000000eecceeeeeed..
+.eeeeeeeeee0000000000eeeeeeeeee.
+.eeeeeeeee000000000000eeeeeeeee.
+.feeeeeee00000000000000eeeeeeee.
+.ffffeeee00000000000000eeeeeeee.
+.fffffff0000000000000000eeeeeee.
+.fffffff0000000000000000eeeeeee.
+..ffffff0000000000000000eeeeee..
+..ffffff0000000000000000eeeeee..
+..ffffff0000000000000000eeeeee..
+...fffff0000000000000000eeeee...
+....fffff00000000000000fffee....
+.....ffff00000000000000ffff.....
+......ffff000000000000ffff......
+.......ffffffffffffffffff.......
+........fffffffffffffffff.......
+end
+

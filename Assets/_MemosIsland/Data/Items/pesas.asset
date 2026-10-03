@@ -17,7 +17,10 @@ MonoBehaviour:
   description: "+1 de velocidad, \u22121 de resistencia."
   kind: 1
   price: 300
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 206c9eb7edde60e458f5ac3cf211c6ab, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 0
   terrains: []
   speedBonus: 1

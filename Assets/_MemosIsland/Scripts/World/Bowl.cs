@@ -32,11 +32,19 @@ namespace MemosIsland.World
                 GameRoot.Instance.Dialogue.Show(new[] { "El comedero está lleno." });
                 return;
             }
+            if (!state.RemoveItem("comida_memo"))
+            {
+                GameRoot.Instance.Dialogue.Show(new[]
+                {
+                    "Para llenar el comedero necesitás Comida para Memos. Se hace en la mesa de trabajo o se compra en lo de Deny.",
+                });
+                return;
+            }
             state.bowlServings = servingsPerFill;
             Refresh();
             GameRoot.Instance.Dialogue.Show(new[]
             {
-                "Llenaste el comedero. Los Memos van a comer cuando tengan hambre…",
+                "Llenaste el comedero con Comida para Memos. Los Memos van a comer cuando tengan hambre…",
                 "…y los que tienen miedo, cuando no los estés mirando.",
             });
         }

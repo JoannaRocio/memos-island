@@ -17,7 +17,10 @@ MonoBehaviour:
   description: "En el r\xEDo corre como si fuera de tipo Agua."
   kind: 1
   price: 400
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a392bd323bc04f54cb694be0dff6f464, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 2
   terrains:
   - {fileID: 11400000, guid: ef6fa3c5f6abdf143adb4f52333dd709, type: 2}

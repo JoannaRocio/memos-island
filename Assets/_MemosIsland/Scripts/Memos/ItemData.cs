@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MemosIsland.Memos
 {
-    public enum ItemKind { Food, Equipment, Amulet, Accessory, Material }
+    public enum ItemKind { Food, Equipment, Amulet, Accessory, Material, Seed, Toy }
 
     /// <summary>Cómo cambia un equipo la efectividad en ciertos terrenos (GDD §14).</summary>
     public enum TerrainRule
@@ -26,9 +26,21 @@ namespace MemosIsland.Memos
         public string displayName;
         [TextArea(2, 4)] public string description;
         public ItemKind kind;
-        [Tooltip("Precio de venta en la tienda (Fase 6).")]
+        [Tooltip("Valor del objeto: se compra a este precio y se vende a la mitad.")]
         public int price;
         public Sprite icon;
+
+        [Header("Semilla (Fase 6)")]
+        [Tooltip("Qué se cosecha (id del objeto).")]
+        public string growsInto;
+        [Tooltip("Días reales regados que tarda en estar listo.")]
+        public int growDays;
+
+        [Header("Comida")]
+        [Tooltip("Confianza extra al darla (además de la regla de comida favorita).")]
+        public int foodTrustBonus;
+
+        public int SellPrice => Mathf.Max(1, price / 2);
 
         [Header("Equipo")]
         public TerrainRule terrainRule;

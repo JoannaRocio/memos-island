@@ -17,7 +17,10 @@ MonoBehaviour:
   description: "Gana 50% m\xE1s de confianza en las carreras."
   kind: 2
   price: 600
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 11fdb0764a173ca4d8f35ac923595d42, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 0
   terrains: []
   speedBonus: 0

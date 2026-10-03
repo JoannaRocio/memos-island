@@ -526,7 +526,7 @@ Gorritos, bufandas, moños y anteojos. Se ven en el sprite del mundo y del refug
 
 ### ⛏️ Cueva de Zorak (mina diaria)
 - **5 pisos** en la demo. Las rocas **se regeneran cada día**.
-- Se pica con el pico (la herramienta tiene energía del jugador).
+- Se pica con el pico (sin energía: cada roca se pica una vez por día; el pico mejorado abre minerales más duros).
 - Materiales: Piedra, Cobre, Hierro, Cuarzo; gemas raras: Amatista, Topacio, Esmeralda.
 - Escaleras para bajar de piso. En el piso 5 está **Farolito** (raro) y unas ruinas.
 - Un Memo excavador en el equipo encuentra más materiales.
@@ -570,8 +570,8 @@ Lo que se deja en la caja se vende al final del día.
 - **El reloj del juego es el reloj real del jugador**, como en Pokémon Oro/Plata: si en tu casa son las 4:00, en la isla también es de madrugada. El día de la semana también es el real.
 - **Fases del día:** Noche (20:00–5:00) · Amanecer (5:00–7:00) · Día (7:00–17:00) · Atardecer (17:00–20:00). Cambian la luz, y más adelante los Memos que aparecen (Bostezo solo de noche), las rutinas de los vecinos y los horarios de las tiendas.
 - **Modo de prueba** (solo en el editor o en builds de desarrollo): F5 / F6 atrasan o adelantan una hora y F7 vuelve a la hora real.
-- ⚠️ **A definir antes de la Fase 6:** con reloj real, ¿cómo avanzan los días del juego (cultivos, mina, pedidos)? ¿Con los días reales (como Animal Crossing) o al dormir? ¿Qué pasa con el desmayo a las 2:00 y la energía del jugador?
-- **Energía del jugador:** la gastan las herramientas. Dormir y comer la recuperan.
+- **Los días del juego son los días reales**, como en Animal Crossing: los cultivos crecen por días reales regados (si un día no se riega, se pausa; nunca se muere), la mina y la recolección se renuevan cada día real, la caja de envíos paga al día siguiente y los cuidados tienen límites por día real.
+- **Sin energía del jugador ni desmayos:** podés hacer todo lo que quieras; lo que pone el ritmo es el día real (decisión de octubre 2026).
 - **Clima:** soleado, nublado, lluvia (riega sola la huerta) y **tormenta** (aparece Karman).
 - **Días de la semana:** la Copa y las carreras oficiales son los **sábados**.
 - **Iluminación:** amanecer, día, atardecer y noche, con luces 2D en ventanas y faroles.

@@ -88,6 +88,24 @@ namespace MemosIsland.Memos
             return Fail(null);
         }
 
+        /// <summary>Dar de comer un objeto del inventario: favorita = más confianza; algunas comidas suman extra.</summary>
+        public static CareResult ApplyFood(MemoInstance m, ItemData food, DateTime now)
+        {
+            bool favorite = food != null && m.Species != null && m.Species.favoriteFoods.Contains(food.id);
+            var result = Apply(m, CareAction.Feed, now, favorite);
+            if (result.success && food != null && food.foodTrustBonus > 0)
+            {
+                var extra = Gain(m, food.foodTrustBonus, null);
+                result.trustGained += extra.trustGained;
+                result.newMemory |= extra.newMemory;
+                result.level = extra.level;
+            }
+            return result;
+        }
+
+        public static bool IsFavorite(MemoInstance m, ItemData food) =>
+            food != null && m.Species != null && m.Species.favoriteFoods.Contains(food.id);
+
         /// <summary>Lo que se gana por cada día en el refugio (y por tener padrino).</summary>
         public static CareResult DailyVisit(MemoInstance m, bool hasGodparent) =>
             Gain(m, RefugeDayTrust + (hasGodparent ? GodparentDayTrust : 0), null);

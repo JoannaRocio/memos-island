@@ -17,7 +17,10 @@ MonoBehaviour:
   description: "+2 de resistencia: aguanta m\xE1s."
   kind: 1
   price: 300
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6ed7788e9410ea34c968bb51ef5380ba, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
   terrainRule: 0
   terrains: []
   speedBonus: 0

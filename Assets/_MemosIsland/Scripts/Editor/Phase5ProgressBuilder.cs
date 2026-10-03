@@ -131,7 +131,9 @@ namespace MemosIsland.EditorTools
                 items.Add(item);
             }
 
-            db.items = items;
+            db.items.RemoveAll(i => i == null);
+            foreach (var it in items)
+                if (!db.items.Contains(it)) db.items.Add(it);
             EditorUtility.SetDirty(db);
 
             foreach (var s in db.species)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MemosIsland.UI
 {
-    /// <summary>Menú de pausa estilo GBA (arriba a la derecha): Mis Memos · MemoBox · Cerrar. Se abre con Esc/Tab.</summary>
+    /// <summary>Menú de pausa estilo GBA (arriba a la derecha): Mis Memos · MemoBox · Mochila · Cerrar. Se abre con Esc/Tab.</summary>
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] PixelFont font;
@@ -12,7 +12,7 @@ namespace MemosIsland.UI
 
         const float Ppu = PixelFont.PixelsPerUnit;
         const int Order = 1200, RowHeight = 12;
-        static readonly string[] Options = { "Mis Memos", "MemoBox", "Cerrar" };
+        static readonly string[] Options = { "Mis Memos", "MemoBox", "Mochila", "Cerrar" };
 
         GameObject _root;
         PixelText _cursor;
@@ -31,7 +31,7 @@ namespace MemosIsland.UI
         {
             _root = new GameObject("Pause Menu");
             _root.transform.SetParent(transform, false);
-            const int width = 70, height = 46, right = 118, top = 64;
+            const int width = 70, height = 58, right = 118, top = 64;
             var box = new GameObject("Box").AddComponent<SpriteRenderer>();
             box.transform.SetParent(_root.transform, false);
             box.sprite = boxSprite;
@@ -91,6 +91,7 @@ namespace MemosIsland.UI
                 Close();
                 if (choice == 0) root.MyMemos.Open(null);
                 else if (choice == 1) root.MemoBox.Open();
+                else if (choice == 2) IslandMenus.OpenBag();
             }
         }
 

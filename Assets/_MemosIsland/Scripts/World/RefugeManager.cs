@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MemosIsland.Core;
+using MemosIsland.Farm;
 using MemosIsland.Memos;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,6 +26,8 @@ namespace MemosIsland.World
         [SerializeField] Vector2Int soulmateSpot;
         [SerializeField] Bowl bowl;
         [SerializeField] int maxGreeters = 2;
+        [SerializeField] bool hasWorkSpots;
+        [SerializeField] Vector2Int farmSpot, smelterSpot, processorSpot;
 
         const float RerollAfterMinutes = 15f;
         /// <summary>Las amistades tardan días reales en formarse, no minutos.</summary>
@@ -77,6 +80,15 @@ namespace MemosIsland.World
             foreach (var (memo, result) in state.RunDailyVisit(now))
                 if (result.newMemory) QueueMemory(memo, result.level);
 
+            // Vida en la isla (Fase 6): pasan los días de la huerta, los envíos y el trabajo de los Memos.
+            var report = IslandDay.Process(state, MemoDatabase.Instance, now);
+            if (report.messages.Count > 0) _messages.Enqueue(new List<string>(report.messages));
+            if (IslandDay.HasHelper(state, now, WorkRole.Water))
+            {
+                var field = FindAnyObjectByType<FarmField>();
+                if (field != null) field.WaterAllByMemos();
+            }
+
             RollInsideOutside(state, now);
             foreach (var m in state.AllMemos.Where(m => m.uid != state.companionUid && m.inside == isInterior
                                                          && m.awayUntilTicks <= now.Ticks))
@@ -116,6 +128,25 @@ namespace MemosIsland.World
         }
 
         /// <summary>Las 20:00 de hoy (o de mañana si ya pasaron).</summary>
+        /// <summary>Dónde trabajan los Memos (huerta, fundición, procesadora). Solo en el exterior (Fase 6).</summary>
+        public void SetWorkSpots(Vector2Int farm, Vector2Int smelter, Vector2Int processor)
+        {
+            hasWorkSpots = true;
+            (farmSpot, smelterSpot, processorSpot) = (farm, smelter, processor);
+        }
+
+        public Vector2Int? WorkSpotFor(WorkRole role)
+        {
+            if (!hasWorkSpots) return null;
+            return role switch
+            {
+                WorkRole.Smelt => smelterSpot,
+                WorkRole.Process => processorSpot,
+                WorkRole.None => null,
+                _ => farmSpot,
+            };
+        }
+
         public static DateTime NextEvening(DateTime now)
         {
             var evening = now.Date.AddHours(20);

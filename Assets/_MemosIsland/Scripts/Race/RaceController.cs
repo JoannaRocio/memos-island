@@ -23,11 +23,6 @@ namespace MemosIsland.Race
         [SerializeField] Material uiMaterial;
         [SerializeField] Color skyColor = new Color32(0x73, 0xc4, 0xf7, 0xff);
 
-        static readonly Dictionary<string, string> FoodNames = new()
-        {
-            ["bayamemo"] = "Bayamemo", ["frutilla"] = "Frutilla", ["zanahoria"] = "Zanahoria", ["zapallo"] = "Zapallo",
-        };
-
         RaceSetup _setup;
         RaceSimulation _sim;
         RaceHud _hud;
@@ -227,13 +222,19 @@ namespace MemosIsland.Race
                 ? $"¡{wild.DisplayName} está agotado! Te mira con desconfianza…"
                 : $"¡Le ganaste a {wild.DisplayName}! Respira agitado y te mira…");
 
-            var foods = wild.Species.favoriteFoods.Where(FoodNames.ContainsKey).Select(f => FoodNames[f]).ToList();
-            var options = new List<string>(foods) { "Comida básica", "Nada" };
+            var state = GameRoot.Instance.State;
+            var foods = World.MemoCareMenu.FoodsFor(wild, state);
+            var options = foods.Select(f => $"{(MemoCare.IsFavorite(wild, f) ? "♥ " : "")}{f.displayName} ×{state.CountOf(f.id)}").ToList();
+            options.Add("Nada");
             int chosen = -1;
-            dialogue.ShowChoice($"¿Qué le das de comer a {wild.DisplayName}?", options, i => chosen = i, options.Count - 1);
+            dialogue.ShowChoice(foods.Count > 0 ? $"¿Qué le das de comer a {wild.DisplayName}?" : $"No tenés comida para {wild.DisplayName}…",
+                options, i => chosen = i, options.Count - 1);
             while (chosen < 0) yield return null;
 
-            float acceptChance = chosen < foods.Count ? 0.9f : chosen == foods.Count ? 0.6f : 0f;
+            // Favorita: 90 % de que acepte; otra comida: 60 %; nada: se va (GDD §10).
+            bool gaveFood = chosen < foods.Count;
+            float acceptChance = !gaveFood ? 0f : MemoCare.IsFavorite(wild, foods[chosen]) ? 0.9f : 0.6f;
+            if (gaveFood) state.RemoveItem(foods[chosen].id);
             if (_sim.NextRandom() < acceptChance)
             {
                 // Los rescatados de un collar llegan con miedo; los salvajes, con desconfianza (GDD §10).
@@ -243,7 +244,7 @@ namespace MemosIsland.Race
                 wild.collared = false;
                 bool toTeam = GameRoot.Instance.State.AddMemo(wild);
                 result.captured = wild;
-                string liked = chosen < foods.Count ? " ¡Le encantó!" : "";
+                string liked = gaveFood && MemoCare.IsFavorite(wild, foods[chosen]) ? " ¡Le encantó!" : "";
                 yield return Say($"¡{wild.DisplayName} aceptó la comida!{liked} " +
                                  (toTeam ? "Se unió a tu equipo." : "Te espera en el refugio."));
             }

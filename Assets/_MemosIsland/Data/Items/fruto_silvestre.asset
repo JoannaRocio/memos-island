@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5b970b4cb74b94eaa0440f1438a0cc, type: 3}
+  m_Name: fruto_silvestre
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Memos.ItemData
+  id: fruto_silvestre
+  displayName: Fruto silvestre
+  description: "Lo encontr\xE1s en el pasto. Comida simple."
+  kind: 0
+  price: 30
+  icon: {fileID: 21300000, guid: 67f78409b5d6fc64da4d36494e2c8f28, type: 3}
+  growsInto: 
+  growDays: 0
+  foodTrustBonus: 0
+  terrainRule: 0
+  terrains: []
+  speedBonus: 0
+  staminaBonus: 0
+  amuletEffect: 0
+  gemTerrain: {fileID: 0}
+  accessorySlot: 0
+  accessorySprite: {fileID: 0}
