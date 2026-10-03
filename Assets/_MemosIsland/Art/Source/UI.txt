@@ -1,0 +1,39 @@
+# Interfaz: caja de texto estilo GBA (9 cortes) y pixel blanco para fundidos.
+
+sprite ui_box
+size 24 24
+border 8 8 8 8
+frame
+..88888888888888888888..
+.8aaaaaaaaaaaaaaaaaaaa8.
+8aaaaaaaaaaaaaaaaaaaaaa8
+8aa999999999999999999aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa9cccccccccccccccc9aa8
+8aa999999999999999999aa8
+8aaaaaaaaaaaaaaaaaaaaaa8
+.8aaaaaaaaaaaaaaaaaaaa8.
+..88888888888888888888..
+end
+
+sprite ui_pixel
+size 2 2
+frame
+cc
+cc
+end
+

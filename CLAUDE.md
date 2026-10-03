@@ -31,11 +31,22 @@ Juego 2D en Unity 6 (URP 2D): vida en una isla + amistad con criaturas ("Memos")
   - `Tools/PixelArt/make_art.py` compone los sprites grandes con formas sombreadas (tiles, árbol, Tostín 64×64) y escribe Tiles.txt, Props.txt y Memos.txt. **Characters.txt se dibuja a mano.** Si editás a mano un archivo que genera el script, se pierde al volver a correrlo: elegí uno de los dos caminos.
   - `Tools/PixelArt/preview.py archivo.txt [escala] [salida.png]` genera una hoja ampliada para revisar sprites sin abrir Unity (Python puro, sin dependencias).
 - Escena de prueba: menú **Memos Island ▸ Fase 0 ▸ Crear escena de prueba** → `Scenes/Fase0_Prueba.unity`.
+- **Fuente pixel:** `Art/FontSource/MemosFont.txt` (un glifo por línea, con tildes, ñ, ¿ ¡) → `Art/Generated/Fonts/MemosFont.asset` (`PixelFont`). Se regenera al guardar o con **Memos Island ▸ Arte ▸ Regenerar fuente**.
 - Los Memos tiernos son redondos con ojos grandes; los legendarios (Karman, Draken, Randy) son angulosos y oscuros con detalles brillantes.
+
+## Arquitectura (Fase 1)
+- Ensamblados: `MemosIsland.Runtime` (Scripts/), `MemosIsland.Editor` (Scripts/Editor/), `MemosIsland.Tests.EditMode` (Tests/EditMode/). Un componente por archivo (Unity lo exige para guardarlo en escenas).
+- **GameRoot** (`Resources/GameRoot.prefab`, `DontDestroyOnLoad`): jugador, cámara pixel perfect, interfaz, `GameClock`, `MapManager`, luz global. Se crea solo al darle Play a cualquier escena que tenga un `MapInfo`. Las escenas de mapa **no** llevan cámara ni luz global.
+- **Mapas** = escenas en `Scenes/Maps/` con: `MapInfo` (nombre y límites), tilemaps `Ground`/`Buildings` en la capa **Solid** con `TilemapCollider2D` (solo las tiles `solid` bloquean), props con `BoxCollider2D` en Solid, `SpawnPoint` (id + dirección) y `Warp` (escena + spawn de destino). Tienen que estar en Build Settings.
+- **Movimiento:** `GridMover` (casillas; la posición es el borde inferior central de la casilla) + `PlayerController` (toque = girar, mantener = caminar, B = correr, A = interactuar con `IInteractable` de frente).
+- **Orden de dibujo:** el Renderer 2D ordena por eje Y; actores y props usan `sortingOrder` 10, suelo 0, edificios 1, interfaz 1000+, fundido 5000.
+- **Interfaz:** cuelga de la cámara con escala ×2; sus coordenadas son pixels de una pantalla virtual de 240×135 (escala GBA). Usa el material `Sprite-Unlit-Default` para que la noche no la oscurezca. Textos con `PixelText`; diálogos con `GameRoot.Instance.Dialogue.Show(páginas)`.
+- **Reloj real:** `GameClock` (hora del sistema; F5/F6/F7 para probar). Luz global con `DayNightLighting`; faroles y ventanas con `NightLight`.
+- Constructores: **Memos Island ▸ Fase 1 ▸ Construir mundo de prueba** regenera arte, fuente, GameRoot y los mapas `Map_PuebloPuerto` y `Map_RefugioExterior` (sobrescribe esas escenas).
 
 ## Estado
 - [x] Fase 0 — Base (octubre 2026)
-- [ ] Fase 1 — Mundo
+- [x] Fase 1 — Mundo (octubre 2026; reloj real en vez del ciclo acelerado del GDD original)
 - [ ] Fase 2 — Datos de Memos
 - [ ] Fase 3 — Carreras
 - [ ] Fase 4 — Vínculo y refugio

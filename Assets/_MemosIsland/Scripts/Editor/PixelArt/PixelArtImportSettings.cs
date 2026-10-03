@@ -31,6 +31,9 @@ namespace MemosIsland.EditorTools.PixelArt
             settings.spritePixelsPerUnit = PixelArtGenerator.PixelsPerUnit;
             settings.spriteMeshType = SpriteMeshType.FullRect;
             settings.spriteExtrude = 0;
+            settings.spriteBorder = fromGenerator && PixelArtGenerator.PendingBorders.TryGetValue(assetPath, out var border)
+                ? border
+                : Vector4.zero;
             importer.SetTextureSettings(settings);
 
             importer.filterMode = FilterMode.Point;
@@ -43,18 +46,22 @@ namespace MemosIsland.EditorTools.PixelArt
 
         static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)
         {
-            List<string> changed = null;
+            List<string> changed = null, fonts = null;
             foreach (var path in imported)
             {
-                if (path.StartsWith(PixelArtGenerator.SourceRoot + "/") && path.EndsWith(".txt"))
+                if (!path.EndsWith(".txt")) continue;
+                if (path.StartsWith(PixelArtGenerator.SourceRoot + "/"))
                     (changed ??= new List<string>()).Add(path);
+                else if (path.StartsWith(PixelFontGenerator.FontSourceRoot + "/"))
+                    (fonts ??= new List<string>()).Add(path);
             }
-            if (changed == null) return;
+            if (changed == null && fonts == null) return;
 
             // Se difiere para no importar assets en medio de otro import.
             EditorApplication.delayCall += () =>
             {
-                foreach (var path in changed) PixelArtGenerator.GenerateFile(path);
+                if (changed != null) foreach (var path in changed) PixelArtGenerator.GenerateFile(path);
+                if (fonts != null) foreach (var path in fonts) PixelFontGenerator.Generate(path);
             };
         }
     }

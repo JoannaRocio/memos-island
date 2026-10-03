@@ -566,8 +566,10 @@ Lo que se deja en la caja se vende al final del día.
 
 ## 16. Ciclo de día y tiempo
 
-- **El día va de 6:00 a 2:00.** 10 minutos de juego = 7 segundos reales (≈ 14 minutos reales por día).
-- A las 2:00 el personaje se desmaya y despierta en casa (pierde un poco de dinero, como en Stardew).
+- **El reloj del juego es el reloj real del jugador**, como en Pokémon Oro/Plata: si en tu casa son las 4:00, en la isla también es de madrugada. El día de la semana también es el real.
+- **Fases del día:** Noche (20:00–5:00) · Amanecer (5:00–7:00) · Día (7:00–17:00) · Atardecer (17:00–20:00). Cambian la luz, y más adelante los Memos que aparecen (Bostezo solo de noche), las rutinas de los vecinos y los horarios de las tiendas.
+- **Modo de prueba** (solo en el editor o en builds de desarrollo): F5 / F6 atrasan o adelantan una hora y F7 vuelve a la hora real.
+- ⚠️ **A definir antes de la Fase 6:** con reloj real, ¿cómo avanzan los días del juego (cultivos, mina, pedidos)? ¿Con los días reales (como Animal Crossing) o al dormir? ¿Qué pasa con el desmayo a las 2:00 y la energía del jugador?
 - **Energía del jugador:** la gastan las herramientas. Dormir y comer la recuperan.
 - **Clima:** soleado, nublado, lluvia (riega sola la huerta) y **tormenta** (aparece Karman).
 - **Días de la semana:** la Copa y las carreras oficiales son los **sábados**.
