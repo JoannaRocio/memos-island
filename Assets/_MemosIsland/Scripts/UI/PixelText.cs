@@ -23,6 +23,7 @@ namespace MemosIsland.UI
         bool _built;
 
         public PixelFont Font => font;
+        public Material Material => material;
         public string Text => text;
 
         public void Setup(PixelFont newFont, Material newMaterial, int order, Color textColor, bool withShadow)

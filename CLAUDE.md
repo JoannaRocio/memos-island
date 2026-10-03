@@ -45,13 +45,17 @@ Juego 2D en Unity 6 (URP 2D): vida en una isla + amistad con criaturas ("Memos")
 - **Datos de Memos (Fase 2):** ScriptableObjects en `Data/` (`MemoType`, `RaceTerrain`, `EffectivenessChart`, `AbilityData`, `Temperament`, `MemoSpecies`) indexados por `Resources/MemoDatabase` (`MemoDatabase.Instance`). Se crean con **Memos Island ▸ Fase 2 ▸ Crear datos de Memos (solo faltantes)**, que no pisa lo editado a mano (solo actualiza sprites); **Restablecer datos desde el GDD** vuelve todo a los valores del documento. La tabla de efectividad se edita como grilla en su inspector. Las habilidades solo tienen datos: sus efectos se implementan en la Fase 3.
 - **Sprites de Memos:** `Tools/PixelArt/make_memos.py` compone los 20 Memos de 64×64 (perfil, 2 cuadros) + variantes `_brillante` y `_concollar`. Sprites de mundo 16×16: por ahora solo Tostín; el resto llega en la Fase 4 (refugio).
 - **MemoBox:** `UI/MemoBoxScreen` (arma su interfaz en código). Por ahora se abre con Esc/Tab directo; cuando exista el menú de pausa, pasa a ser una opción del menú.
-- Constructores: **Memos Island ▸ Fase 1 ▸ Construir mundo de prueba** regenera arte, fuente, GameRoot y los mapas `Map_PuebloPuerto` y `Map_RefugioExterior` (sobrescribe esas escenas).
+- **Partida:** `GameState` (en `GameRoot.State`): equipo (máx. 6) y refugio de `MemoInstance` (especie, nivel, temperamento, confianza, ánimo, brillante, collar). Mientras no exista la elección del inicial, `GameRoot` da un equipo de prueba (`giveDebugTeam`). Reglas de confianza en `TrustRules`.
+- **Carreras (Fase 3):** `Race/RaceSimulation` es la lógica pura y determinista (paso fijo de 1/60 s, semilla): velocidad = base(VEL) × efectividad × energía × confianza × ánimo × efectos; energía, carga de habilidad, cambio con 8 s de espera, zonas y cambios de terreno. `AbilityResolver` traduce cada `AbilityEffect` a efectos (`StatusKind`). `RaceAI` maneja rivales. La escena `Scenes/Race.unity` tiene `RaceController` (flujo y controles: ←→ elegir, B cambiar, A habilidad), `RaceView` (carriles de perfil) y `RaceHud`. Se entra con `RaceLauncher.Start(setup, onFinished)`; `MapManager` guarda la casilla del jugador y lo devuelve ahí. Formatos en `RaceSetup` / `RaceSetups`.
+- **Encuentros y desafíos:** `WildEncounters` (pasto alto del mapa → captura sobre el terreno del lugar, con salvajes nocturnos y con collar) y `RaceChallenge` (carteles de prueba en Pueblo Puerto hasta que existan los vecinos).
+- **Diálogos con opciones:** `Dialogue.ShowChoice(pregunta, opciones, callback, índiceCancelar)`.
+- Constructores: **Memos Island ▸ Fase 3 ▸ Construir carreras (y mundo)** corre todo lo anterior y además crea la escena de carrera. **Memos Island ▸ Fase 1 ▸ Construir mundo de prueba** regenera arte, fuente, GameRoot y los mapas `Map_PuebloPuerto` y `Map_RefugioExterior` (sobrescribe esas escenas).
 
 ## Estado
 - [x] Fase 0 — Base (octubre 2026)
 - [x] Fase 1 — Mundo (octubre 2026; reloj real en vez del ciclo acelerado del GDD original)
 - [x] Fase 2 — Datos de Memos (octubre 2026; la "Memodex" se llama **MemoBox**)
-- [ ] Fase 3 — Carreras
+- [x] Fase 3 — Carreras (octubre 2026; arte simple, a embellecer en la Fase 9)
 - [ ] Fase 4 — Vínculo y refugio
 - [ ] Fase 5 — Progreso
 - [ ] Fase 6 — Vida en la isla

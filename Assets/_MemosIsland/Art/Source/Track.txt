@@ -1,0 +1,319 @@
+# Pista de carrera (vista de perfil): suelo de cada terreno (16x16), bandera de tramo y meta.
+
+sprite track_pradera
+size 16 16
+pivot 0 1
+frame
+c555cc5ccc5c555c
+5555555555555555
+6666666656666556
+6666666666666666
+6m66666666666666
+666666666666m666
+66666mm666666666
+6666666666666666
+6666666666666666
+6666666666666666
+66666666666mm666
+6666666666m66666
+6mm6666666666666
+mm66666666666666
+666666666m666666
+66666666666666m6
+end
+
+sprite track_bosque
+size 16 16
+pivot 0 1
+frame
+6665555565665666
+6666666666666666
+6mm6mm6mmm6mmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmjmmmmmmmmmmmm
+mjjmmmmmmmmmmmmm
+jjmmmjmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmjmmmmmmm
+mmmmmmmmmmmjmmmm
+mmmmmmmmmmmjjmmm
+mmjjmmmmmmmmmmmm
+end
+
+sprite track_arena
+size 16 16
+pivot 0 1
+frame
+ccppcpppcppccpcc
+pppppppppppppppp
+4444444p444444p4
+4444444444444444
+4444444444444444
+444444444444o444
+4444444444444444
+4444444444444444
+44444oo4o4444444
+444444oo44444444
+4444444444444444
+4444o44444444444
+4444444444444444
+4444444oo44444oo
+4444444444444o44
+4444444444444444
+end
+
+sprite track_barro
+size 16 16
+pivot 0 1
+frame
+oopooopopppooopo
+oooooooooooooooo
+iiooiooooiiiiiii
+iiiiiiiiijjiiiii
+iiiiiiiijjijiiii
+iiiijjiiiiiiiiii
+iiiiiiiiiiiiiiii
+iijjiiiiiiiiiiij
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiijj
+iiijiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiijiiiiiiiii
+end
+
+sprite track_rio
+size 16 16
+pivot 0 1
+frame
+aacacccaaaaaccac
+aaaaaaaaaaaaaaaa
+9a9a9999999a9999
+9999989999999999
+9999998899999999
+9889aaaa89999999
+9999999999999999
+9999999999999999
+9989999999999999
+9999999999999999
+9999999aaaa99999
+9999999999999999
+9999998899999999
+8999999999999998
+999aaaa999999999
+9999999999999989
+end
+
+sprite track_hielo
+size 16 16
+pivot 0 1
+frame
+bbccccbbbbbbbbbb
+bbbbbbbbbbbbbbbb
+aaabaabaabaababa
+aaaaaaaaaaaaaaaa
+aaaa9aaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaa9aaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+99aaaaaaaaaaaaaa
+a9a99aaaaaaaaaa9
+aaaaaaaaaaaaaaaa
+aaaaa9aaa99aaaaa
+aaaaaaaaa9aaaaaa
+end
+
+sprite track_nieve
+size 16 16
+pivot 0 1
+frame
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+ccccccddcccccccc
+dcccccccccccdccd
+cccccccccccccccc
+ccccccdccccccccc
+cccccccccccccccc
+ccccccccddcccccc
+cccccccccccdcccc
+ccccdccccccccccc
+cccccccdcccccccc
+cccccccccccccccc
+cccccccccccccccc
+end
+
+sprite track_ceniza
+size 16 16
+pivot 0 1
+frame
+deedeeedeeedddee
+eeeeeeeeeeeeeeee
+ffffefeefeefefef
+ffffffffffffffff
+ffffffffffffffff
+fffffffff22fffff
+3fffffffffffff2f
+ffffffffff3fffff
+ffffffffffffff22
+f2ffffffffffffff
+f2fffffffffffff2
+ffffffffffffffff
+fff2ffffffffffff
+fff3ff22ffffffff
+ffffffffffff3fff
+fffffffff22fffff
+end
+
+sprite track_montana
+size 16 16
+pivot 0 1
+frame
+cdccccdcdddddddd
+dddddddddddddddd
+eeddedeeeedeeede
+eeeefffeeeeeeeee
+ffeeeeeeeeeeeeee
+eeeeeeeeeeeeeeee
+eeeeefeeeefeeeee
+eeeeeeeeeeeeeeee
+feeeeeeeeeeeeeee
+eeeffeeeeeeeeeee
+feeeeeeeeeeeeeef
+eeeeeeeeeeeeeeee
+eeeeeffeeeeeeeee
+eeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeee
+end
+
+sprite track_cueva
+size 16 16
+pivot 0 1
+frame
+deeeeddeededeeed
+eeeeeeeeeeeeeeee
+feffffffefffffef
+fffffffffffffff0
+fffffffffffff00f
+ffffffffffffffff
+ffffffffffffffff
+fff0ffffffffffff
+ffffff0fffffffff
+ffffffffffff0fff
+ffffffff00ffffff
+ffffffffffffff0f
+fffffff00fffffff
+fff0ffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+end
+
+sprite track_tormenta
+size 16 16
+pivot 0 1
+frame
+99999b9999999999
+9999999999999999
+8999889889888899
+8888888888800888
+8888888888888888
+8999988800888888
+8888888888888808
+8888800888888888
+0888888888888880
+8888888888880800
+8888888888999988
+0888888888888880
+8888888888888888
+8888888888888888
+9888888800888999
+8888888888888888
+end
+
+sprite track_aire
+size 16 16
+pivot 0 1
+frame
+bbbcbbbcbbbbbcbc
+bbbbbbbbbbbbbbbb
+bccbbcbcccbccbbc
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+ddccccccccccdddd
+cccccccccccccccc
+accccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+dddddcccccccccad
+ccccaccccccccccc
+ccccccccccccccca
+aacccccccaacccaa
+ccccaacccccccccc
+end
+
+sprite track_flag
+size 16 24
+pivot 0.15 0
+outline 0
+frame
+..f22222........
+..f22222........
+..f22222........
+..f22222........
+..f22222........
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+..f.............
+end
+
+sprite track_finish
+size 16 16
+pivot 0 1
+frame
+cccc0000cccc0000
+cccc0000cccc0000
+cccc0000cccc0000
+cccc0000cccc0000
+0000cccc0000cccc
+0000cccc0000cccc
+0000cccc0000cccc
+0000cccc0000cccc
+cccc0000cccc0000
+cccc0000cccc0000
+cccc0000cccc0000
+cccc0000cccc0000
+0000cccc0000cccc
+0000cccc0000cccc
+0000cccc0000cccc
+0000cccc0000cccc
+end
+

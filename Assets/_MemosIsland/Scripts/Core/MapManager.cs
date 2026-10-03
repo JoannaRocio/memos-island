@@ -28,7 +28,12 @@ namespace MemosIsland.Core
         {
             if (IsTransitioning) return;
             var warp = Warp.At(cell);
-            if (warp != null) GoTo(warp.TargetScene, warp.TargetSpawn);
+            if (warp != null)
+            {
+                GoTo(warp.TargetScene, warp.TargetSpawn);
+                return;
+            }
+            WildEncounters.Current?.TryEncounter(cell);
         }
 
         public void GoTo(string sceneName, string spawnId)
@@ -60,6 +65,69 @@ namespace MemosIsland.Core
             GameRoot.InputLocks--;
             IsTransitioning = false;
             ShowBannerIfNewMap();
+        }
+
+        // ------------------------------------------------------------------ Carreras
+
+        string _returnScene;
+        Vector2Int _returnCell;
+        Direction _returnFacing;
+
+        /// <summary>Guarda dónde está el jugador y pasa a la escena de carrera.</summary>
+        public void EnterRace()
+        {
+            if (IsTransitioning) return;
+            var root = GameRoot.Instance;
+            _returnScene = SceneManager.GetActiveScene().name;
+            _returnCell = root.Player.Mover.Cell;
+            _returnFacing = root.Player.Mover.Facing;
+            StartCoroutine(LoadRaceScene());
+        }
+
+        IEnumerator LoadRaceScene()
+        {
+            IsTransitioning = true;
+            GameRoot.InputLocks++;
+            var root = GameRoot.Instance;
+            yield return root.Fader.Fade(1f, fadeDuration);
+            root.Player.gameObject.SetActive(false);
+            var load = SceneManager.LoadSceneAsync(Race.RaceLauncher.SceneName);
+            while (load != null && !load.isDone) yield return null;
+            yield return null;
+            yield return root.Fader.Fade(0f, fadeDuration);
+            GameRoot.InputLocks--;
+            IsTransitioning = false;
+        }
+
+        /// <summary>Vuelve al mapa y a la casilla donde estaba el jugador antes de la carrera.</summary>
+        public void ReturnFromRace(System.Action afterReturn)
+        {
+            StartCoroutine(LoadReturnScene(afterReturn));
+        }
+
+        IEnumerator LoadReturnScene(System.Action afterReturn)
+        {
+            IsTransitioning = true;
+            GameRoot.InputLocks++;
+            var root = GameRoot.Instance;
+            yield return root.Fader.Fade(1f, fadeDuration);
+
+            bool hasReturn = !string.IsNullOrEmpty(_returnScene);
+            var load = hasReturn ? SceneManager.LoadSceneAsync(_returnScene) : SceneManager.LoadSceneAsync(0);
+            while (load != null && !load.isDone) yield return null;
+            yield return null;
+
+            root.Player.gameObject.SetActive(true);
+            if (hasReturn) root.Player.Mover.Teleport(_returnCell, _returnFacing);
+            else PlacePlayer(null);
+            root.Camera.SetTarget(root.Player.transform);
+            root.Camera.SnapNow();
+            _returnScene = null;
+
+            yield return root.Fader.Fade(0f, fadeDuration);
+            GameRoot.InputLocks--;
+            IsTransitioning = false;
+            afterReturn?.Invoke();
         }
 
         void PlacePlayer(string spawnId)

@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using MemosIsland.Core;
 using MemosIsland.EditorTools.PixelArt;
+using MemosIsland.Race;
 using MemosIsland.UI;
 using MemosIsland.World;
 using UnityEditor;
@@ -324,6 +325,30 @@ namespace MemosIsland.EditorTools
                 }
             }
 
+            /// <summary>Encuentros de Memos salvajes en el pasto alto de este mapa (Fase 3).</summary>
+            public void Encounters(string terrainId, params (string species, int min, int max, int weight, bool night, bool collared)[] table)
+            {
+                var go = new GameObject("Wild Encounters");
+                go.AddComponent<WildEncounters>().Setup(Ground, T("tall_grass"), terrainId, table.Select(e => new WildEncounters.Entry
+                {
+                    speciesId = e.species, minLevel = e.min, maxLevel = e.max, weight = e.weight,
+                    nightOnly = e.night, collared = e.collared,
+                }).ToList());
+            }
+
+            /// <summary>Cartel de desafío de carrera (Fase 3, para probar mientras no hay vecinos).</summary>
+            public void Challenge(int x, int y, RaceFormat format, string title, string question, RaceSegmentDef[] track,
+                string win, string lose, params (string name, (string species, int level, bool collared)[] team)[] rivals)
+            {
+                var go = Prop("Challenge", new Vector3(x + 0.5f, y), S("Props/sign"), new Vector2(0.9f, 0.9f), new Vector2(0, 0.5f));
+                go.AddComponent<RaceChallenge>().Setup(format, title, question, track.ToList(),
+                    rivals.Select(r => new RaceChallenge.Rival
+                    {
+                        name = r.name,
+                        team = r.team.Select(m => new RaceChallenge.Member { speciesId = m.species, level = m.level, collared = m.collared }).ToList(),
+                    }).ToList(), win, lose);
+            }
+
             public void Warp(int x, int y, string scene, string spawn) =>
                 Child(Props, $"Warp → {scene}", new Vector3(x + 0.5f, y)).AddComponent<Warp>().Setup(scene, spawn);
 
@@ -381,6 +406,26 @@ namespace MemosIsland.EditorTools
                 "Muelle del puerto.",
                 "El barco rompehielos está en reparación. ¡Vuelve pronto!");
 
+            m.Encounters("pradera",
+                ("plumin", 3, 5, 5, false, false), ("zumbi", 3, 5, 4, false, false),
+                ("bostezo", 4, 6, 3, true, false), ("zumbi", 4, 5, 1, false, true));
+            m.Challenge(9, 11, RaceFormat.Trainer, "Carrera contra Lalo",
+                "DESAFÍO DE PRUEBA: carrera de 3 tramos contra Lalo. ¿Corrés?",
+                new[] { new RaceSegmentDef("pradera", 70), new RaceSegmentDef("rio", 60), new RaceSegmentDef("arena", 70) },
+                "Lalo: \"¡Uh! Sos más rápido de lo que pensaba.\"", "Lalo: \"¡Je! Te gané. ¿Revancha?\"",
+                ("Lalo", new[] { ("plumin", 5, false), ("chispin", 5, false), ("topin", 4, false) }));
+            m.Challenge(22, 11, RaceFormat.Cup, "Copa de la Isla (prueba)",
+                "DESAFÍO DE PRUEBA: Copa de 6 tramos contra 3 rivales. ¿Corrés?",
+                new[]
+                {
+                    new RaceSegmentDef("pradera", 70), new RaceSegmentDef("barro", 60), new RaceSegmentDef("rio", 60),
+                    new RaceSegmentDef("hielo", 60), new RaceSegmentDef("montana", 60), new RaceSegmentDef("arena", 70),
+                },
+                "¡Ganaste la Copa de prueba!", "La Copa se escapó esta vez…",
+                ("Lalo", new[] { ("plumin", 6, false), ("chispin", 5, false), ("topin", 5, false) }),
+                ("Agente de Ápice", new[] { ("copito", 6, true), ("zumbi", 6, true), ("bostezo", 6, true) }),
+                ("Capitana Vera", new[] { ("tuerquita", 7, false), ("ferrolobo", 7, false), ("imanta", 7, false) }));
+
             m.Spawn(16, 11, "default", Direction.Down);
             m.Spawn(30, 12, "este", Direction.Left);
             m.Warp(31, 12, RefugioScene, "oeste");
@@ -426,6 +471,10 @@ namespace MemosIsland.EditorTools
                 "\"Un hogar para cada Memo que lo necesite.\"");
             m.Lamp(15, 11);
             m.Lamp(6, 11);
+
+            m.Encounters("pradera",
+                ("plumin", 3, 5, 4, false, false), ("chispin", 4, 6, 2, false, false),
+                ("topin", 3, 5, 3, false, false), ("bostezo", 4, 6, 3, true, false));
 
             m.Spawn(13, 11, "default", Direction.Down);
             m.Spawn(1, 10, "oeste", Direction.Right);

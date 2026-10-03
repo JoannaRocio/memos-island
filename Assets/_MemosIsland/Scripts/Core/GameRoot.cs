@@ -5,7 +5,7 @@ using UnityEngine;
 namespace MemosIsland.Core
 {
     /// <summary>
-    /// Sistemas que viven durante toda la partida (jugador, cámara, interfaz, reloj, luz).
+    /// Sistemas que viven durante toda la partida (jugador, cámara, interfaz, reloj, luz, estado de la partida).
     /// Se crea solo desde Resources/GameRoot al darle Play a cualquier escena de mapa.
     /// </summary>
     public class GameRoot : MonoBehaviour
@@ -22,6 +22,9 @@ namespace MemosIsland.Core
         [SerializeField] ScreenFader fader;
         [SerializeField] MapNameBanner banner;
         [SerializeField] MapManager maps;
+        [SerializeField] GameState state = new();
+        [Tooltip("Mientras no exista la elección del inicial (Fase 8), arranca con un equipo de prueba.")]
+        [SerializeField] bool giveDebugTeam = true;
 
         public PlayerController Player => player;
         public CameraFollow Camera => cameraFollow;
@@ -29,11 +32,13 @@ namespace MemosIsland.Core
         public ScreenFader Fader => fader;
         public MapNameBanner Banner => banner;
         public MapManager Maps => maps;
+        public GameState State => state;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Bootstrap()
         {
-            if (Instance != null || FindAnyObjectByType<MapInfo>() == null) return;
+            if (Instance != null) return;
+            if (FindAnyObjectByType<MapInfo>() == null && FindAnyObjectByType<Race.RaceController>() == null) return;
             var prefab = Resources.Load<GameRoot>("GameRoot");
             if (prefab == null)
             {
@@ -53,6 +58,7 @@ namespace MemosIsland.Core
             Instance = this;
             InputLocks = 0;
             DontDestroyOnLoad(gameObject);
+            if (giveDebugTeam && state.team.Count == 0) state.GiveDebugTeam();
         }
 
         void Start() => maps.EnterCurrentScene();

@@ -48,47 +48,163 @@ namespace MemosIsland.UI
             return result;
         }
 
+        /// <summary>
+        /// Pregunta con opciones (↑↓ elige, A confirma). B elige cancelIndex si es ≥ 0.
+        /// </summary>
+        public void ShowChoice(string question, IList<string> options, Action<int> onChosen, int cancelIndex = -1)
+        {
+            if (IsOpen) return;
+            StartCoroutine(RunChoice(question, options, onChosen, cancelIndex));
+        }
+
         IEnumerator Run(IEnumerable<string> pages, Action onClosed)
         {
-            IsOpen = true;
-            GameRoot.InputLocks++;
-            visuals.SetActive(true);
-
+            Open();
             foreach (var page in Paginate(text.Font, pages, maxLineWidth, linesPerPage))
             {
-                arrow.gameObject.SetActive(false);
-                text.SetText(page);
-                text.VisibleCharacters = 0;
-                int total = text.CharacterCount;
-                float shown = 0f;
-                yield return null;
-
-                while (text.VisibleCharacters < total)
-                {
-                    if (GameInput.ConfirmPressed || GameInput.CancelPressed)
-                    {
-                        text.VisibleCharacters = total;
-                        yield return null;
-                        break;
-                    }
-                    shown += charactersPerSecond * Time.deltaTime;
-                    text.VisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(shown));
-                    yield return null;
-                }
-
+                yield return TypePage(page);
                 float blink = 0f;
                 while (!GameInput.ConfirmPressed && !GameInput.CancelPressed)
                 {
-                    blink += Time.deltaTime;
+                    blink += Time.unscaledDeltaTime;
                     arrow.gameObject.SetActive(blink % 0.6f < 0.4f);
                     yield return null;
                 }
             }
+            Close();
+            onClosed?.Invoke();
+        }
 
+        IEnumerator RunChoice(string question, IList<string> options, Action<int> onChosen, int cancelIndex)
+        {
+            Open();
+            var pages = Paginate(text.Font, new[] { question }, maxLineWidth, linesPerPage);
+            yield return TypePage(pages[pages.Count - 1]);
+
+            BuildChoiceBox(options);
+            int selected = 0;
+            int chosen = -1;
+            yield return null;
+            while (chosen < 0)
+            {
+                var move = GameInput.Move;
+                if (_choiceRepeat > 0f) _choiceRepeat -= Time.unscaledDeltaTime;
+                int dir = move.y > 0.5f ? -1 : move.y < -0.5f ? 1 : 0;
+                if (dir == 0) _choiceRepeat = 0f;
+                else if (_choiceRepeat <= 0f)
+                {
+                    selected = (selected + dir + options.Count) % options.Count;
+                    _choiceRepeat = 0.2f;
+                }
+                _choiceCursor.transform.localPosition = _choiceRowPositions[selected];
+
+                if (GameInput.ConfirmPressed) chosen = selected;
+                else if (GameInput.CancelPressed && cancelIndex >= 0) chosen = cancelIndex;
+                yield return null;
+            }
+            _choiceRoot.SetActive(false);
+            Close();
+            onChosen?.Invoke(chosen);
+        }
+
+        IEnumerator TypePage(string page)
+        {
+            arrow.gameObject.SetActive(false);
+            text.SetText(page);
+            text.VisibleCharacters = 0;
+            int total = text.CharacterCount;
+            float shown = 0f;
+            yield return null;
+            while (text.VisibleCharacters < total)
+            {
+                if (GameInput.ConfirmPressed || GameInput.CancelPressed)
+                {
+                    text.VisibleCharacters = total;
+                    yield return null;
+                    break;
+                }
+                shown += charactersPerSecond * Time.unscaledDeltaTime;
+                text.VisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(shown));
+                yield return null;
+            }
+        }
+
+        void Open()
+        {
+            IsOpen = true;
+            GameRoot.InputLocks++;
+            visuals.SetActive(true);
+        }
+
+        void Close()
+        {
             visuals.SetActive(false);
             GameRoot.InputLocks--;
             IsOpen = false;
-            onClosed?.Invoke();
+        }
+
+        // ------------------------------------------------------------------ Caja de opciones
+
+        GameObject _choiceRoot;
+        SpriteRenderer _choiceBox;
+        PixelText _choiceCursor;
+        readonly List<PixelText> _choiceRows = new();
+        readonly List<Vector3> _choiceRowPositions = new();
+        float _choiceRepeat;
+
+        const float Ppu = PixelFont.PixelsPerUnit;
+        const int ChoiceRowHeight = 10;
+
+        /// <summary>Caja con las opciones, a la derecha y apoyada sobre la caja de diálogo (pixels de interfaz).</summary>
+        void BuildChoiceBox(IList<string> options)
+        {
+            if (_choiceRoot == null)
+            {
+                _choiceRoot = new GameObject("Choice");
+                _choiceRoot.transform.SetParent(transform, false);
+                var source = visuals.transform.Find("Box").GetComponent<SpriteRenderer>();
+                _choiceBox = new GameObject("Box").AddComponent<SpriteRenderer>();
+                _choiceBox.transform.SetParent(_choiceRoot.transform, false);
+                _choiceBox.sprite = source.sprite;
+                _choiceBox.drawMode = SpriteDrawMode.Sliced;
+                _choiceBox.sharedMaterial = source.sharedMaterial;
+                _choiceBox.sortingOrder = source.sortingOrder + 20;
+                _choiceCursor = NewText("Cursor", new Color32(0xb1, 0x3e, 0x53, 0xff), false);
+                _choiceCursor.SetText("▶");
+            }
+
+            while (_choiceRows.Count < options.Count)
+                _choiceRows.Add(NewText($"Row{_choiceRows.Count}", new Color32(0x33, 0x3c, 0x57, 0xff), true));
+            int width = 0;
+            foreach (var o in options) width = Mathf.Max(width, text.Font.MeasureWidth(o));
+            width += 22;
+            int height = options.Count * ChoiceRowHeight + 10;
+            float right = 116f, bottom = -19f;
+            float left = right - width, top = bottom + height;
+
+            _choiceBox.size = new Vector2(width / Ppu, height / Ppu);
+            _choiceBox.transform.localPosition = new Vector3((left + width / 2f) / Ppu, (bottom + height / 2f) / Ppu, 0f);
+            _choiceRowPositions.Clear();
+            for (int i = 0; i < _choiceRows.Count; i++)
+            {
+                bool used = i < options.Count;
+                _choiceRows[i].gameObject.SetActive(used);
+                if (!used) continue;
+                _choiceRows[i].SetText(options[i]);
+                float y = top - 5 - i * ChoiceRowHeight + 1;
+                _choiceRows[i].transform.localPosition = new Vector3((left + 14) / Ppu, y / Ppu, 0f);
+                _choiceRowPositions.Add(new Vector3((left + 6) / Ppu, y / Ppu, 0f));
+            }
+            _choiceRoot.SetActive(true);
+        }
+
+        PixelText NewText(string name, Color color, bool shadow)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(_choiceRoot.transform, false);
+            var t = go.AddComponent<PixelText>();
+            t.Setup(text.Font, text.Material, _choiceBox.sortingOrder + 10, color, shadow);
+            return t;
         }
     }
 }
