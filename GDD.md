@@ -661,6 +661,8 @@ Packs de pixel art estilo GBA (itch.io) para el mundo y encargo o dibujo propio 
 
 **Duración estimada de la demo:** 4 a 6 horas.
 
+**Decisiones de la Fase 8 (octubre 2026):** la Copa se corre los sábados de 10 a 18 en el estadio, con al menos 3 Memos, en 3 rondas el mismo día (agente de Ápice, semifinal con Lalo, final de 6 tramos con Vera); si perdés, se vuelve a intentar el sábado siguiente (si perdés la final, el sábado siguiente vas directo a la final).
+
 ---
 
 ## 21. Arquitectura técnica

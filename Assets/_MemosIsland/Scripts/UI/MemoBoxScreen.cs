@@ -87,6 +87,16 @@ namespace MemosIsland.UI
             AnimatePortrait();
         }
 
+        /// <summary>Abre la MemoBox mostrando una especie (por ejemplo, Draken en el cierre del Capítulo 1).</summary>
+        public void Open(string speciesId)
+        {
+            Open();
+            int i = _species.FindIndex(s => s.id == speciesId);
+            if (i < 0) return;
+            _selected = i;
+            Refresh();
+        }
+
         public void Open()
         {
             var db = MemoDatabase.Instance;
