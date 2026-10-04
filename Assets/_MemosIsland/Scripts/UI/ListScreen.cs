@@ -49,6 +49,12 @@ namespace MemosIsland.UI
 
         public bool IsOpen { get; private set; }
 
+        // Recursos de interfaz que reusan otras pantallas armadas por código (UiKit).
+        public PixelFont Font => font;
+        public Sprite BoxSprite => boxSprite;
+        public Sprite PixelSprite => pixelSprite;
+        public Material Material => material;
+
         Content _content;
         List<Row> _rows = new();
         int _tab, _selected, _scroll, _openedFrame, _heldDir;

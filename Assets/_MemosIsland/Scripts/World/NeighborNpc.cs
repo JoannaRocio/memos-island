@@ -95,7 +95,7 @@ namespace MemosIsland.World
 
         public void Interact(PlayerController player)
         {
-            if (Talking || Leaving) return;
+            if (!enabled || Talking || Leaving) return;
             Talking = true;
             var d = player.Mover.Cell - Mover.Cell;
             Mover.Facing = Mathf.Abs(d.x) >= Mathf.Abs(d.y)

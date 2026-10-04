@@ -16,6 +16,8 @@ namespace MemosIsland.UI
 
         GameObject _root;
         PixelText _cursor;
+        SpriteRenderer _objectiveBox;
+        PixelText _objective;
         int _selected;
         float _repeat;
         bool _open;
@@ -47,6 +49,15 @@ namespace MemosIsland.UI
             }
             _cursor = NewText(right - width + 7, top - 6, new Color32(0xb1, 0x3e, 0x53, 0xff), false);
             _cursor.SetText("▶");
+
+            // Objetivo actual de la historia (Fase 8), abajo a la izquierda.
+            _objectiveBox = new GameObject("Objective Box").AddComponent<SpriteRenderer>();
+            _objectiveBox.transform.SetParent(_root.transform, false);
+            _objectiveBox.sprite = boxSprite;
+            _objectiveBox.drawMode = SpriteDrawMode.Sliced;
+            _objectiveBox.sharedMaterial = material;
+            _objectiveBox.sortingOrder = Order;
+            _objective = NewText(-110, -30, new Color32(0x33, 0x3c, 0x57, 0xff), true);
             _root.SetActive(false);
         }
 
@@ -100,6 +111,23 @@ namespace MemosIsland.UI
             _open = true;
             GameRoot.InputLocks++;
             _root.SetActive(true);
+            RefreshObjective();
+        }
+
+        void RefreshObjective()
+        {
+            var text = GameRoot.Instance.State.story.objective;
+            bool show = !string.IsNullOrEmpty(text);
+            _objectiveBox.gameObject.SetActive(show);
+            _objective.gameObject.SetActive(show);
+            if (!show) return;
+            var lines = font.Wrap($"Objetivo: {text}", 210);
+            _objective.SetText(string.Join("\n", lines));
+            float h = lines.Count * font.lineHeight + 8;
+            const float bottom = -66f;
+            _objectiveBox.size = new Vector2(224f / Ppu, h / Ppu);
+            _objectiveBox.transform.localPosition = new Vector3(0f, (bottom + h / 2f) / Ppu, 0f);
+            _objective.transform.localPosition = new Vector3(-106f / Ppu, (bottom + h - 4f) / Ppu, 0f);
         }
 
         void Close()

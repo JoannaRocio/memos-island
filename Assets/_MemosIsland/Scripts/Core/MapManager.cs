@@ -11,6 +11,11 @@ namespace MemosIsland.Core
         [SerializeField] float fadeDuration = 0.25f;
 
         public static MapManager Instance { get; private set; }
+
+        /// <summary>Ya se ubicó al jugador en un mapa (al darle Play o después de un cambio de mapa). Lo usa la historia.</summary>
+        public static event System.Action<string> SceneEntered;
+        /// <summary>El jugador terminó un paso en esta casilla.</summary>
+        public static event System.Action<Vector2Int> PlayerStepped;
         public bool IsTransitioning { get; private set; }
 
         string _lastMapName;
@@ -22,11 +27,13 @@ namespace MemosIsland.Core
         {
             PlacePlayer(spawnId);
             ShowBannerIfNewMap();
+            SceneEntered?.Invoke(SceneManager.GetActiveScene().name);
         }
 
         public void OnPlayerStepped(Vector2Int cell)
         {
             if (IsTransitioning) return;
+            PlayerStepped?.Invoke(cell);
             var warp = Warp.At(cell);
             if (warp != null)
             {
@@ -65,6 +72,7 @@ namespace MemosIsland.Core
             GameRoot.InputLocks--;
             IsTransitioning = false;
             ShowBannerIfNewMap();
+            SceneEntered?.Invoke(SceneManager.GetActiveScene().name);
         }
 
         // ------------------------------------------------------------------ Carreras
@@ -144,7 +152,7 @@ namespace MemosIsland.Core
         void ShowBannerIfNewMap()
         {
             var map = MapInfo.Current;
-            if (map == null || map.DisplayName == _lastMapName) return;
+            if (map == null || string.IsNullOrEmpty(map.DisplayName) || map.DisplayName == _lastMapName) return;
             _lastMapName = map.DisplayName;
             GameRoot.Instance.Banner.Show(map.DisplayName);
         }

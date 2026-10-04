@@ -42,6 +42,8 @@ namespace MemosIsland.EditorTools.PixelArt
             importer.alphaIsTransparency = true;
             importer.wrapMode = TextureWrapMode.Clamp;
             importer.npotScale = TextureImporterNPOTScale.None;
+            // Los peinados del jugador se recolorean en el juego (PlayerLook): necesitan poder leerse.
+            importer.isReadable = assetPath.Contains("/Generated/PlayerStyles/");
         }
 
         static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)

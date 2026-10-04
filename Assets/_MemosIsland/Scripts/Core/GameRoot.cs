@@ -72,11 +72,32 @@ namespace MemosIsland.Core
             }
             Instance = this;
             InputLocks = 0;
+            UiKit.FullScreens = 0;
+            NeighborDirector.Reserved.Clear();
             DontDestroyOnLoad(gameObject);
-            if (giveDebugTeam && state.team.Count == 0) state.GiveDebugTeam();
+            if (GetComponent<Story.StoryDirector>() == null) gameObject.AddComponent<Story.StoryDirector>();
+            // Al darle Play a un mapa directo (sin pasar por el título), se juega con la partida de prueba.
+            bool title = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == Story.TitleScreen.SceneName;
+            if (giveDebugTeam && !title && state.team.Count == 0) state.GiveDebugTeam();
         }
 
         void Start() => maps.EnterCurrentScene();
+
+        /// <summary>Nueva partida de historia (Fase 8): sin Memos, con 500 de dinero, el prólogo y la creación de personaje.</summary>
+        public void StartNewGame()
+        {
+            state = new GameState();
+            state.story.active = true;
+            companion.Refresh();
+        }
+
+        /// <summary>Partida de prueba: el equipo y los objetos de prueba, sin escenas de historia.</summary>
+        public void StartDebugGame()
+        {
+            state = new GameState();
+            state.GiveDebugTeam();
+            companion.Refresh();
+        }
 
         void OnDestroy()
         {

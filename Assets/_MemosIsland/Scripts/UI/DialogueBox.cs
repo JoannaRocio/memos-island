@@ -98,10 +98,19 @@ namespace MemosIsland.UI
             _portraitRoot.SetActive(false);
         }
 
+        /// <summary>Reemplaza las etiquetas de nombre y pronombre ({nombre}, {o/a/e}…) según el personaje.</summary>
+        static string Tags(string s)
+        {
+            var root = GameRoot.Instance;
+            return root != null ? Story.TextTags.Apply(s, root.State.story.profile) : s;
+        }
+
         public void Show(IEnumerable<string> pages, Action onClosed = null)
         {
             if (IsOpen) return;
-            StartCoroutine(Run(pages, onClosed));
+            var tagged = new List<string>();
+            foreach (var p in pages) tagged.Add(Tags(p));
+            StartCoroutine(Run(tagged, onClosed));
         }
 
         /// <summary>Corta los textos en páginas de pocos renglones que entran en la caja.</summary>
@@ -123,7 +132,9 @@ namespace MemosIsland.UI
         public void ShowChoice(string question, IList<string> options, Action<int> onChosen, int cancelIndex = -1)
         {
             if (IsOpen) return;
-            StartCoroutine(RunChoice(question, options, onChosen, cancelIndex));
+            var tagged = new List<string>();
+            foreach (var o in options) tagged.Add(Tags(o));
+            StartCoroutine(RunChoice(Tags(question), tagged, onChosen, cancelIndex));
         }
 
         IEnumerator Run(IEnumerable<string> pages, Action onClosed)

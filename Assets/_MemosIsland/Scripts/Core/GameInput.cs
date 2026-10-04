@@ -48,8 +48,24 @@ namespace MemosIsland.Core
             _menu.Enable();
         }
 
-        public static Vector2 Move { get { Init(); return _move.ReadValue<Vector2>(); } }
-        public static bool ConfirmPressed { get { Init(); return _confirm.WasPressedThisFrame(); } }
+        public static Vector2 Move { get { Init(); return DebugMove != Vector2.zero ? DebugMove : _move.ReadValue<Vector2>(); } }
+
+        /// <summary>Solo para pruebas automáticas: dirección "mantenida".</summary>
+        public static Vector2 DebugMove;
+        public static bool ConfirmPressed { get { Init(); return _confirm.WasPressedThisFrame() || ConsumeDebugPress(); } }
+
+        /// <summary>Solo para pruebas automáticas: cada unidad simula un toque de A en un cuadro distinto.</summary>
+        public static int DebugPresses;
+        static int _debugFrame = -1;
+
+        static bool ConsumeDebugPress()
+        {
+            if (DebugPresses <= 0 || _debugFrame == UnityEngine.Time.frameCount) return false;
+            if (_debugFrame == UnityEngine.Time.frameCount - 1) return false; // un cuadro de por medio, como un toque real
+            _debugFrame = UnityEngine.Time.frameCount;
+            DebugPresses--;
+            return true;
+        }
         public static bool CancelPressed { get { Init(); return _cancel.WasPressedThisFrame(); } }
         public static bool CancelHeld { get { Init(); return _cancel.IsPressed(); } }
         public static bool MenuPressed { get { Init(); return _menu.WasPressedThisFrame(); } }

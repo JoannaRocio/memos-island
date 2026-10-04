@@ -1,6 +1,8 @@
 """Arte de la Fase 7 (vecinos): los 9 vecinos en el mundo (16x32, a partir del sprite del jugador con otros
 colores y detalles), sus retratos de 48x48, muebles y carteles del pueblo, y la lluvia.
-Escribe Neighbors.txt, Portraits.txt, Town.txt y Weather.txt en Art/Source.
+Fase 8: los 4 peinados del jugador (PlayerStyles.txt, con los colores "clave" que se recolorean en el juego),
+los ojos del prólogo y los tiles del Bosque Susurro (Story.txt).
+Escribe Neighbors.txt, Portraits.txt, Town.txt, Weather.txt, PlayerStyles.txt y Story.txt en Art/Source.
 Uso: python make_neighbors.py"""
 import random
 from pixel_lib import *
@@ -323,4 +325,48 @@ for _ in range(230):
         rain.set((x - i) % 256, (y + i * 2 + 1) % 144, c)
 write("Weather.txt", "# Lluvia (lámina de 256x144 que se repite al caer). Generado por make_neighbors.py.\n\n"
       + block("rain", 256, 144, [rain.rows()]))
-print("Listo: Neighbors.txt, Portraits.txt, Town.txt, Weather.txt")
+
+# ================================================================== Fase 8: peinados del jugador
+
+STYLES = [("s0", []), ("s1", ["long"]), ("s2", ["spiky"]), ("s3", ["bun"])]
+KEY = dict(hair="ij", skin="gh", scarf="2", shirt="a9", pants="8", shoes="f")
+styles_txt = "# Peinados del jugador (corto, largo, pinchudo, rodete) con los colores clave del sprite base. Generado por make_neighbors.py.\n\n"
+for sid, feats in STYLES:
+    spec = dict(KEY, features=feats)
+    for d in ("down", "up", "right"):
+        frames = [["".join(r) for r in apply_features([row[:] for row in fr], d, spec, fr)] for fr in BASE[d]]
+        extra = ["flip 1"] if d in ("down", "up") else []
+        styles_txt += block(f"player_{sid}_{d}", 16, 32, frames, header=["pivot 0.5 0", "outline 0"], extra=extra)
+    styles_txt += f"sprite player_{sid}_left\nsize 16 32\npivot 0.5 0\noutline 0\ncopyfrom player_{sid}_right\nmirror\nend\n\n"
+write("PlayerStyles.txt", styles_txt)
+
+# ================================================================== Fase 8: historia
+
+story = "# Historia (Fase 8): ojos del prólogo y tiles del Bosque Susurro. Generado por make_neighbors.py.\n\n"
+eyes = Canvas(40, 10)
+for cx in (9, 30):
+    ell(eyes, cx, 5, 6, 3.2, ('2', '3', '4'))
+    rect(eyes, cx - 1, 3, cx, 6, '0')
+    eyes.set(cx + 1, 3, 'p')
+story += block("eyes", 40, 10, [eyes.rows()])
+
+rnd = random.Random(11)
+floor = Canvas(16, 16, 'm')
+for _ in range(22):
+    x, y = rnd.randrange(16), rnd.randrange(16)
+    floor.set(x, y, '7' if rnd.random() < .6 else '6')
+for (x, y) in [(3, 4), (11, 10), (7, 13)]:
+    px(floor, [(x, y), (x + 1, y)], 'i')
+story += block("forest_floor", 16, 16, [floor.rows()], extra=["tile"])
+
+fern = Canvas(16, 16)
+fern.g = [r[:] for r in floor.g]
+for bx in (2, 7, 12):
+    for i in range(6):
+        fern.set(bx + (i % 2), 14 - i * 2, '6')
+        fern.set(bx - 1 + (i % 3), 13 - i * 2, '5' if i > 3 else '6')
+    fern.set(bx, 3, '5')
+story += block("forest_grass", 16, 16, [fern.rows()], extra=["tile"])
+write("Story.txt", story)
+
+print("Listo: Neighbors.txt, Portraits.txt, Town.txt, Weather.txt, PlayerStyles.txt, Story.txt")

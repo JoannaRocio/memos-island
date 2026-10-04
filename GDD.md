@@ -586,7 +586,8 @@ Lo que se deja en la caja se vende al final del día.
 - **Pronombre:** él / ella / elle. Es **independiente de la apariencia**: cualquier combinación es válida.
 - **Apariencia:** tono de piel, peinado y color de pelo, ojos, anteojos (varios), barba o bigote (opcional), ropa superior, ropa inferior y colores.
 - **Nombre del refugio** (opcional, ej. "Refugio Lunita").
-- Los diálogos usan el pronombre elegido mediante etiquetas en los textos: `{nieto/a/e}`, `{él/ella/elle}`.
+- Los diálogos usan el pronombre elegido mediante etiquetas en los textos: `{nombre}`, `{refugio}` y opciones por pronombre como `{o/a/e}` o `{nieto/nieta/niete}` (él / ella / elle).
+- **Fase 8A (octubre 2026):** versión básica de la apariencia (piel, peinado, color de pelo, remera y pantalón); anteojos y barba quedan para el pulido. La bufanda roja del abuelo es fija.
 
 ---
 
