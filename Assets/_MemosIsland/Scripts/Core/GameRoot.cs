@@ -49,6 +49,10 @@ namespace MemosIsland.Core
         public ListScreen Lists => lists;
         public GameState State => state;
 
+        /// <summary>Ranura de guardado de esta partida (-1 = partida de prueba: no se guarda).</summary>
+        public int CurrentSlot { get; private set; } = -1;
+        public float PlaySeconds { get; private set; }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Bootstrap()
         {
@@ -79,6 +83,8 @@ namespace MemosIsland.Core
             // Al darle Play a un mapa directo (sin pasar por el título), se juega con la partida de prueba.
             bool title = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == Story.TitleScreen.SceneName;
             if (giveDebugTeam && !title && state.team.Count == 0) state.GiveDebugTeam();
+            GameSettings.Load();
+            MapManager.SceneEntered += OnSceneEntered;
         }
 
         void Start() => maps.EnterCurrentScene();
@@ -96,12 +102,66 @@ namespace MemosIsland.Core
         {
             state = new GameState();
             state.GiveDebugTeam();
+            CurrentSlot = -1;
             companion.Refresh();
         }
 
         void OnDestroy()
         {
+            MapManager.SceneEntered -= OnSceneEntered;
             if (Instance == this) Instance = null;
+        }
+
+        void Update()
+        {
+            if (CurrentSlot >= 0) PlaySeconds += Time.unscaledDeltaTime;
+        }
+
+        // ------------------------------------------------------------------ Guardado (Fase 9A)
+
+        /// <summary>Autoguardado: cada vez que llegás a un mapa (y al volver de una carrera).</summary>
+        void OnSceneEntered(string scene) => Autosave();
+
+        public void Autosave()
+        {
+            if (CurrentSlot >= 0 && MapInfo.Current != null) SaveNow();
+        }
+
+        /// <summary>Guarda en la ranura actual. Devuelve false si es una partida de prueba o falló la escritura.</summary>
+        public bool SaveNow()
+        {
+            if (CurrentSlot < 0) return false;
+            var cell = player.Mover.Cell;
+            return SaveSystem.Write(CurrentSlot, new SaveData
+            {
+                savedAt = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
+                mapName = MapInfo.Current != null ? MapInfo.Current.DisplayName : "",
+                x = cell.x,
+                y = cell.y,
+                facing = player.Mover.Facing,
+                playSeconds = PlaySeconds,
+                state = state,
+            });
+        }
+
+        /// <summary>Carga una partida y lleva al jugador adonde estaba.</summary>
+        public void LoadGame(SaveData data, int slot)
+        {
+            state = data.state;
+            CurrentSlot = slot;
+            PlaySeconds = data.playSeconds;
+            NeighborDirector.Reserved.Clear();
+            Story.PlayerLook.Apply(player.Mover, state.story.profile);
+            companion.Refresh();
+            maps.GoToCell(data.scene, new Vector2Int(data.x, data.y), data.facing);
+        }
+
+        /// <summary>Elige la ranura de una partida nueva (se guarda por primera vez al llegar al pueblo).</summary>
+        public void UseSlot(int slot)
+        {
+            CurrentSlot = slot;
+            PlaySeconds = 0f;
         }
     }
 }

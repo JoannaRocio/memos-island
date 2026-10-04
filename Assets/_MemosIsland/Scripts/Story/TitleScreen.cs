@@ -50,21 +50,31 @@ namespace MemosIsland.Story
             subtitle.SetText("La Isla de los Recuerdos");
             _ui.Center(subtitle, 0, 40);
             var species = MemoDatabase.Instance.GetSpecies("tostin");
-            var mascot = _ui.Sprite(species != null ? species.Portrait : null, 0, -34, Order + 5);
+            var mascot = _ui.Sprite(species != null ? species.Portrait : null, 0, -6, Order + 5);
+            mascot.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
             _titleItems.AddRange(new[] { logo.gameObject, subtitle.gameObject, mascot.gameObject });
 
-            var options = new List<string> { "Nueva partida" };
-            if (Debug.isDebugBuild) options.Add("Partida de prueba (sin historia)");
+            // Opciones del título (Fase 9A: guardado y opciones).
+            var options = new List<(string label, string id)>();
+            int recent = SaveSystem.MostRecent();
+            if (recent >= 0)
+            {
+                options.Add(("Continuar", "continue"));
+                options.Add(("Cargar partida", "load"));
+            }
+            options.Add(("Nueva partida", "new"));
+            options.Add(("Opciones", "options"));
+            if (Debug.isDebugBuild) options.Add(("Partida de prueba (sin historia)", "debug"));
             var rows = new List<PixelText>();
             for (int i = 0; i < options.Count; i++)
             {
-                var t = _ui.Text(0, -46 - i * 11, UiKit.White, Order + 5);
-                t.SetText(options[i]);
-                _ui.Center(t, 0, -46 - i * 11);
+                var t = _ui.Text(0, RowY(i), UiKit.White, Order + 5);
+                t.SetText(options[i].label);
+                _ui.Center(t, 0, RowY(i));
                 rows.Add(t);
                 _titleItems.Add(t.gameObject);
             }
-            var cursor = _ui.Text(0, -40, UiKit.Red, Order + 6, false);
+            var cursor = _ui.Text(0, RowY(0), UiKit.Red, Order + 6, false);
             cursor.SetText("▶");
             _titleItems.Add(cursor.gameObject);
 
@@ -76,18 +86,103 @@ namespace MemosIsland.Story
                 if (species != null && species.raceFrames is { Length: > 1 })
                     mascot.sprite = species.raceFrames[(int)(anim * 4f) % species.raceFrames.Length];
                 for (int i = 0; i < rows.Count; i++) rows[i].SetColor(i == selected ? UiKit.Gold : UiKit.White);
-                cursor.transform.localPosition = UiKit.P(rows[selected].transform.localPosition.x * 16f - 9f, -46 - selected * 11);
+                cursor.transform.localPosition = UiKit.P(rows[selected].transform.localPosition.x * 16f - 9f, RowY(selected));
 
-                var move = GameInput.Move;
-                int v = move.y > 0.5f ? -1 : move.y < -0.5f ? 1 : 0;
-                if (v != 0 && v != held) selected = (selected + v + rows.Count) % rows.Count;
-                held = v;
-                if (GameInput.ConfirmPressed) break;
+                if (!root.Dialogue.IsOpen)
+                {
+                    var move = GameInput.Move;
+                    int v = move.y > 0.5f ? -1 : move.y < -0.5f ? 1 : 0;
+                    if (v != 0 && v != held) selected = (selected + v + rows.Count) % rows.Count;
+                    held = v;
+                    if (GameInput.ConfirmPressed)
+                    {
+                        string picked = null;
+                        yield return Choose(options[selected].id, root, r => picked = r);
+                        if (picked == "start") yield break;
+                    }
+                }
                 yield return null;
             }
+        }
 
-            if (selected == 1) yield return DebugGame(root);
-            else yield return NewGame(root);
+        static float RowY(int i) => -14 - i * 10;
+
+        /// <summary>Lo que hace cada opción del título. "start" = ya arrancó una partida.</summary>
+        IEnumerator Choose(string id, GameRoot root, System.Action<string> result)
+        {
+            switch (id)
+            {
+                case "continue":
+                {
+                    int slot = SaveSystem.MostRecent();
+                    var data = SaveSystem.Read(slot);
+                    if (data == null) break;
+                    result("start");
+                    yield return LoadAndLeave(root, data, slot);
+                    break;
+                }
+                case "load":
+                {
+                    int slot = -1;
+                    yield return PickSlot("¿Qué partida cargás?", true, i => slot = i);
+                    var data = slot >= 0 ? SaveSystem.Read(slot) : null;
+                    if (data == null) break;
+                    result("start");
+                    yield return LoadAndLeave(root, data, slot);
+                    break;
+                }
+                case "new":
+                {
+                    int slot = -1;
+                    yield return PickSlot("¿En qué ranura guardás la partida nueva?", false, i => slot = i);
+                    if (slot < 0) break;
+                    if (SaveSystem.Exists(slot))
+                    {
+                        int sure = -1;
+                        yield return Cutscene.Choice("Esa ranura tiene una partida. Si seguís, se borra. ¿Seguro?",
+                            new[] { "Sí, empezar de nuevo", "No" }, i => sure = i);
+                        if (sure != 0) break;
+                    }
+                    result("start");
+                    yield return NewGame(root, slot);
+                    break;
+                }
+                case "options":
+                {
+                    bool closed = false;
+                    OptionsMenu.Open(() => closed = true);
+                    while (!closed) yield return null;
+                    break;
+                }
+                case "debug":
+                    result("start");
+                    yield return DebugGame(root);
+                    break;
+            }
+        }
+
+        /// <summary>Elegir una ranura (0, 1, 2) o -1 si vuelve. Con onlySaved, las vacías no se pueden elegir.</summary>
+        static IEnumerator PickSlot(string question, bool onlySaved, System.Action<int> picked)
+        {
+            var labels = new List<string>();
+            for (int i = 0; i < SaveSystem.Slots; i++) labels.Add(SaveSystem.Summary(i));
+            labels.Add("Volver");
+            int chosen = -1;
+            GameRoot.Instance.Dialogue.SetSpeaker(null, null);
+            GameRoot.Instance.Dialogue.ShowChoice(question, labels, i => chosen = i, labels.Count - 1);
+            while (chosen < 0) yield return null;
+            if (chosen >= SaveSystem.Slots || onlySaved && !SaveSystem.Exists(chosen)) chosen = -1;
+            picked(chosen);
+        }
+
+        IEnumerator LoadAndLeave(GameRoot root, SaveData data, int slot)
+        {
+            root.LoadGame(data, slot);
+            yield return new WaitForSeconds(0.3f); // ya está todo negro
+            _ui.Destroy();
+            UiKit.FullScreens--;
+            SetPlayerVisible(true);
+            Cutscene.End();
         }
 
         void SetPlayerVisible(bool visible)
@@ -112,9 +207,10 @@ namespace MemosIsland.Story
             yield return Leave(StoryDirector.RefugioExterior, "default");
         }
 
-        IEnumerator NewGame(GameRoot root)
+        IEnumerator NewGame(GameRoot root, int slot)
         {
             root.StartNewGame();
+            root.UseSlot(slot);
             foreach (var go in _titleItems) go.SetActive(false);
             yield return Prologue();
 

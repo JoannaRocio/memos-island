@@ -43,6 +43,17 @@ namespace MemosIsland.Core
             WildEncounters.Current?.TryEncounter(cell);
         }
 
+        Vector2Int? _pendingCell;
+        Direction _pendingFacing;
+
+        /// <summary>Ir a un mapa y aparecer en una casilla concreta (al cargar una partida).</summary>
+        public void GoToCell(string sceneName, Vector2Int cell, Direction facing)
+        {
+            _pendingCell = cell;
+            _pendingFacing = facing;
+            GoTo(sceneName, null);
+        }
+
         public void GoTo(string sceneName, string spawnId)
         {
             if (!IsTransitioning) StartCoroutine(Transition(sceneName, spawnId));
@@ -133,6 +144,7 @@ namespace MemosIsland.Core
             root.Camera.SetTarget(root.Player.transform);
             root.Camera.SnapNow();
             _returnScene = null;
+            root.Autosave();
 
             yield return root.Fader.Fade(0f, fadeDuration);
             GameRoot.InputLocks--;
@@ -143,8 +155,16 @@ namespace MemosIsland.Core
         void PlacePlayer(string spawnId)
         {
             var root = GameRoot.Instance;
-            var spawn = SpawnPoint.Find(spawnId);
-            if (spawn != null) root.Player.Mover.Teleport(spawn.Cell, spawn.Facing);
+            if (_pendingCell.HasValue)
+            {
+                root.Player.Mover.Teleport(_pendingCell.Value, _pendingFacing);
+                _pendingCell = null;
+            }
+            else
+            {
+                var spawn = SpawnPoint.Find(spawnId);
+                if (spawn != null) root.Player.Mover.Teleport(spawn.Cell, spawn.Facing);
+            }
             root.Companion?.SnapBehind();
             root.Camera.SnapNow();
         }

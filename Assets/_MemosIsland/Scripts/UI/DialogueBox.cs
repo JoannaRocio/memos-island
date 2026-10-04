@@ -16,7 +16,6 @@ namespace MemosIsland.UI
         [SerializeField] PixelText arrow;
         [SerializeField] int maxLineWidth = 206; // en pixels de interfaz
         [SerializeField] int linesPerPage = 2;
-        [SerializeField] float charactersPerSecond = 45f;
 
         public bool IsOpen { get; private set; }
 
@@ -203,7 +202,7 @@ namespace MemosIsland.UI
                     yield return null;
                     break;
                 }
-                shown += charactersPerSecond * Time.unscaledDeltaTime;
+                shown += GameSettings.CharactersPerSecond * Time.unscaledDeltaTime;
                 text.VisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(shown));
                 yield return null;
             }
