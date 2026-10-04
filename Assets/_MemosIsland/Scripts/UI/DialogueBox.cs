@@ -57,11 +57,12 @@ namespace MemosIsland.UI
             _portraitImage.transform.parent.gameObject.SetActive(_speakerPortrait != null);
             _portraitImage.sprite = _speakerPortrait;
             _nameText.SetText(_speakerName ?? "");
-            int w = text.Font.MeasureWidth(_speakerName ?? "") + 12;
+            int w = text.Font.MeasureWidth(_speakerName ?? "") + 16;
             float left = _speakerPortrait != null ? -58f : -116f;
-            _nameBox.size = new Vector2(w / Ppu, 14f / Ppu);
-            _nameBox.transform.localPosition = new Vector3((left + w / 2f) / Ppu, -14.5f / Ppu, 0f);
-            _nameText.transform.localPosition = new Vector3((left + 6f) / Ppu, -10.5f / Ppu, 0f);
+            // Caja de 18 px de alto apoyada sobre la caja de diálogo, con margen para que el texto no toque el borde.
+            _nameBox.size = new Vector2(w / Ppu, 18f / Ppu);
+            _nameBox.transform.localPosition = new Vector3((left + w / 2f) / Ppu, -12.5f / Ppu, 0f);
+            _nameText.transform.localPosition = new Vector3((left + 8f) / Ppu, -8.5f / Ppu, 0f);
         }
 
         void BuildSpeaker()

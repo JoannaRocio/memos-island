@@ -177,8 +177,17 @@ namespace MemosIsland.Story
 
         IEnumerator LoadAndLeave(GameRoot root, SaveData data, int slot)
         {
+            yield return CloseTitle(root);
             root.LoadGame(data, slot);
-            yield return new WaitForSeconds(0.3f); // ya está todo negro
+        }
+
+        /// <summary>
+        /// Funde a negro y borra la pantalla de título ANTES de cambiar de escena: esta corrutina vive en la escena
+        /// del título, y si la escena nueva carga rápido, Unity la corta antes de terminar (quedaba el fondo negro pegado).
+        /// </summary>
+        IEnumerator CloseTitle(GameRoot root)
+        {
+            yield return root.Fader.Fade(1f, 0.25f);
             _ui.Destroy();
             UiKit.FullScreens--;
             SetPlayerVisible(true);
@@ -193,12 +202,8 @@ namespace MemosIsland.Story
         IEnumerator Leave(string scene, string spawn)
         {
             var root = GameRoot.Instance;
+            yield return CloseTitle(root);
             root.Maps.GoTo(scene, spawn);
-            yield return new WaitForSeconds(0.3f); // ya está todo negro
-            _ui.Destroy();
-            UiKit.FullScreens--;
-            SetPlayerVisible(true);
-            Cutscene.End();
         }
 
         IEnumerator DebugGame(GameRoot root)
