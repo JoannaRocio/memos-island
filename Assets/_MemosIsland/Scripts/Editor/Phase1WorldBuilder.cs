@@ -83,7 +83,7 @@ namespace MemosIsland.EditorTools
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        static GameObject Child(Transform parent, string name, Vector3 localPos)
+        internal static GameObject Child(Transform parent, string name, Vector3 localPos)
         {
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);
@@ -192,6 +192,20 @@ namespace MemosIsland.EditorTools
             var clockText = Text(clockGo.transform, "Label", Vector3.zero, OrderUi + 10, dark);
             clockHud.Setup(clockBox, clockText);
 
+            // Lluvia (Fase 7): dos láminas que caen, debajo de las pantallas y los diálogos.
+            var rainGo = Child(ui.transform, "Rain", Vector3.zero);
+            SpriteRenderer RainSheet(string name)
+            {
+                var r = Child(rainGo.transform, name, Vector3.zero).AddComponent<SpriteRenderer>();
+                r.sprite = S("Weather/rain");
+                r.sharedMaterial = unlit;
+                r.color = new Color(1f, 1f, 1f, 0.55f);
+                r.sortingOrder = 600;
+                r.enabled = false;
+                return r;
+            }
+            rainGo.AddComponent<RainOverlay>().Setup(RainSheet("Sheet A"), RainSheet("Sheet B"));
+
             // Fundido a negro
             var faderGo = Child(ui.transform, "Fader", Vector3.zero);
             var faderRenderer = faderGo.AddComponent<SpriteRenderer>();
@@ -280,12 +294,14 @@ namespace MemosIsland.EditorTools
         {
             public readonly Tilemap Ground, Buildings;
             public readonly Transform Props;
+            public readonly MapInfo Info;
             readonly int _solid = LayerMask.NameToLayer("Solid");
 
             public MapBuilder(string displayName, int width, int height)
             {
                 var map = new GameObject("Map").AddComponent<MapInfo>();
                 map.Setup(displayName, new RectInt(0, 0, width, height));
+                Info = map;
 
                 var grid = new GameObject("Grid").AddComponent<Grid>();
                 Ground = Layer(grid, "Ground", 0);
@@ -302,6 +318,9 @@ namespace MemosIsland.EditorTools
                 go.AddComponent<TilemapCollider2D>();
                 return tm;
             }
+
+            /// <summary>Bajo techo: no llueve (interiores, cueva).</summary>
+            public void Indoor() => Info.SetOutdoor(false);
 
             public void Fill(Tilemap tm, TileBase tile, int x0, int y0, int x1, int y1)
             {

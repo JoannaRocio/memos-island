@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: marga
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: marga
+  displayName: Marga
+  role: Alcaldesa
+  portrait: {fileID: 21300000, guid: 70562913403ff2d40ab01628b19fcc97, type: 3}
+  icon: {fileID: 21300000, guid: 3bbbe54977d749e44bcdabaa8eb4c056, type: 3}
+  down:
+  - {fileID: 21300000, guid: f1bfecc5fe93bbc42894459cbd6cdb30, type: 3}
+  - {fileID: 21300000, guid: ce4725480df0dcd4db1f019f2a5f02a0, type: 3}
+  - {fileID: 21300000, guid: 558526d340f3d354d81599dd9892d3ef, type: 3}
+  up:
+  - {fileID: 21300000, guid: 3231a7d80decac547aa70b33e26a621f, type: 3}
+  - {fileID: 21300000, guid: 1eb6e8de07bef4c409f7d3ef9275431c, type: 3}
+  - {fileID: 21300000, guid: 4440ad6907ff2244e899287b93d12653, type: 3}
+  left:
+  - {fileID: 21300000, guid: b7b4c77f77a83154db3297fc0a029fab, type: 3}
+  - {fileID: 21300000, guid: 7cb07d2326766d1498132ae27355c27e, type: 3}
+  - {fileID: 21300000, guid: 90dcca38ce9348e439bf0018098d0a21, type: 3}
+  right:
+  - {fileID: 21300000, guid: bf5c9826c4d217540876e0acd8ebb0f2, type: 3}
+  - {fileID: 21300000, guid: 7578111df09a09148b0ac49b699bca0e, type: 3}
+  - {fileID: 21300000, guid: 1adfa91bc2a61124e919c6ab49dad9ca, type: 3}
+  loved:
+  - mermelada
+  - amatista
+  liked:
+  - flor
+  - zanahoria
+  - pastel_frutilla
+  disliked:
+  - alga
+  - piedra
+  lovedText: "Qu\xE9 detalle exquisito. Te lo agradezco mucho."
+  likedText: Muy amable de tu parte.
+  neutralText: "Gracias. Lo tendr\xE9 en cuenta."
+  dislikedText: "Ah. Bueno. Gracias por el\u2026 gesto."
+  firstMeet: "Te damos la bienvenida a Pueblo Puerto. Soy Marga, la alcaldesa. Si
+    necesit\xE1s algo del municipio, ped\xED turno. Si necesit\xE1s un consejo, me
+    encontr\xE1s en la plaza."
+  linesLow:
+  - 'Un pueblo es como un barco: todos tienen que remar para el mismo lado.'
+  - La Copa de la Isla trae visitantes y trabajo. Hay que cuidar lo que funciona.
+  - Si tu refugio necesita permisos, el municipio abre de nueve a cinco. Con turno.
+  linesMid:
+  - Tu refugio le hace bien al pueblo. La gente habla de los Memos con otra cara.
+  - "Ser alcaldesa es decidir todo el d\xEDa entre dos cosas que no te gustan."
+  - "Cuando era joven corr\xEDa en la Copa. Llegaba \xFAltima. Siempre. Pero llegaba."
+  linesHigh:
+  - "Me hac\xE9s acordar por qu\xE9 acept\xE9 este cargo. Para que la isla sea un
+    buen lugar para gente como vos."
+  - "Si alg\xFAn d\xEDa necesit\xE1s ayuda de verdad, ven\xEDs a m\xED. Sin turno."
+  linesRain:
+  - La lluvia no detiene al municipio. Detiene a los vecinos que vienen a quejarse.
+    Es casi lo mismo.
+  linesCompanion:
+  - "Tu {memo} se ve sano y bien cuidado. As\xED deber\xEDan estar todos los Memos
+    de la isla."
+  schedule:
+  - hour: 9
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 7, y: 6}
+    facing: 0
+    activity: municipio
+    line: Entrando al municipio. Hoy tengo cuatro reuniones. Cuatro.
+  - hour: 12
+    days: 127
+    weather: 1
+    scene: Map_PuebloPuerto
+    cell: {x: 22, y: 17}
+    facing: 0
+    activity: plaza
+    line: "Almuerzo en la plaza para escuchar a los vecinos. As\xED me entero de
+      todo."
+  - hour: 13
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 7, y: 6}
+    facing: 0
+    activity: municipio
+    line: 
+  - hour: 17
+    days: 127
+    weather: 1
+    scene: Map_PuebloPuerto
+    cell: {x: 26, y: 14}
+    facing: 0
+    activity: plaza
+    line: "\xDAltimo paseo del d\xEDa. Miro qu\xE9 hay que arreglar. Siempre hay
+      algo."
+  - hour: 19
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: marga_3
+    hearts: 3
+    scene: Map_PuebloPuerto
+    pages:
+    - "Ten\xE9s un momento. Acompa\xF1ame."
+    - "Esta plaza la hicieron los vecinos hace cuarenta a\xF1os. Cada uno trajo una
+      baldosa."
+    - "Esa, la torcida, la puse yo. Ten\xEDa ocho a\xF1os y estaba muy orgullosa."
+    - "Cada vez que tengo que tomar una decisi\xF3n dif\xEDcil, vengo a mirarla."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - "Es la m\xE1s linda"
+    - "\xBFQu\xE9 decisi\xF3n ten\xE9s que tomar?"
+    answerPoints: 2800000014000000
+    replies:
+    - "Es la m\xE1s torcida. Pero gracias. Me alegra que la veas."
+    - "Muchas. Ninguna f\xE1cil. Otro d\xEDa te cuento."
+  - id: marga_6
+    hearts: 6
+    scene: 
+    pages:
+    - Quiero agradecerte algo, formalmente.
+    - Desde que reabriste el refugio, los chicos de la escuela preguntan por los
+      Memos. Jojo no habla de otra cosa.
+    - "La isla se estaba olvidando de por qu\xE9 los Memos importan. Vos se lo est\xE1s
+      recordando."
+    - "Eso vale m\xE1s que cualquier Copa."
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 0
+    targetId: flor
+    count: 6
+    reward: 200
+    boardText: 'Marga: "6 flores para decorar el municipio antes de una visita."'
+    thanks: "Qued\xF3 precioso. El pueblo te lo agradece."
+  - kind: 0
+    targetId: zanahoria
+    count: 4
+    reward: 300
+    boardText: 'Marga: "4 zanahorias para el almuerzo comunitario."'
+    thanks: Gracias. Hoy comemos todos juntos gracias a vos.

@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: lalo
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: lalo
+  displayName: Lalo
+  role: Amigo de la infancia
+  portrait: {fileID: 21300000, guid: c7c323fb9a1befc448f65a7023d300fb, type: 3}
+  icon: {fileID: 21300000, guid: 945793b6cbdd48546badb1ad84d5867d, type: 3}
+  down:
+  - {fileID: 21300000, guid: 45511a35d75fef9469aa652e051f5808, type: 3}
+  - {fileID: 21300000, guid: f2080ac911cfaf84ab6acd4148b3d2eb, type: 3}
+  - {fileID: 21300000, guid: 6f510633cf580e643b2e553d88963633, type: 3}
+  up:
+  - {fileID: 21300000, guid: 8771e7169af038440949fa3b5915b12f, type: 3}
+  - {fileID: 21300000, guid: abd7b47a08d112c43831b309ca4ea71c, type: 3}
+  - {fileID: 21300000, guid: 5847c824208a1374497c4fce0466b147, type: 3}
+  left:
+  - {fileID: 21300000, guid: 98159bcbf4ce8e846b5ff38b74acc88a, type: 3}
+  - {fileID: 21300000, guid: 37e263d37e87dc14cb0d5e0ea6cb7e4b, type: 3}
+  - {fileID: 21300000, guid: 8bf3ac9f36853cb49a3880d85ea25456, type: 3}
+  right:
+  - {fileID: 21300000, guid: a23f29fa2d80731488f43cafbf366355, type: 3}
+  - {fileID: 21300000, guid: 05802c265c5a9a64db2d1ef1b2a17d33, type: 3}
+  - {fileID: 21300000, guid: b44d934abb18f6142ac3eaf9c5012112, type: 3}
+  loved:
+  - zanahoria
+  - pelota
+  liked:
+  - bayamemo
+  - fruto_silvestre
+  - pluma
+  disliked:
+  - cuarzo
+  - mineral_cobre
+  lovedText: "\xA1\xBFEn serio?! \xA1Sos lo m\xE1s! Esto lo comparto con Pipo. \u2026Bueno,
+    la mitad."
+  likedText: "\xA1Buen\xEDsimo! Gracias, crack."
+  neutralText: "\xA1Ah, gracias! Algo le voy a hacer."
+  dislikedText: "Eh\u2026 \xBFesto se come? \xBFNo? Ah. Bueno. Gracias igual."
+  firstMeet: "\xA1Eeeh, volviste! \xBFTe acord\xE1s de m\xED? \xA1Lalo! Jug\xE1bamos
+    a las carreras en el muelle. Yo ganaba siempre. Bueno, casi siempre."
+  linesLow:
+  - "\xA1Alg\xFAn d\xEDa te gano una carrera de verdad! Hoy no, eh. Hoy estoy cansado.
+    Ma\xF1ana."
+  - "Mi pap\xE1 pesca desde que sale el sol. Yo lo ayudo con las redes\u2026 cuando
+    me despierto."
+  - "\xBFViste la Copa de la Isla? Este a\xF1o la gano. O el que viene. Pero la gano."
+  linesMid:
+  - "Te extra\xF1\xE9, \xBFsab\xE9s? El pueblo estaba m\xE1s aburrido sin vos."
+  - "Pipo, mi Plum\xEDn, me despierta todos los d\xEDas picote\xE1ndome la oreja.
+    Es mi despertador con plumas."
+  - "Cuando \xE9ramos chicos dijiste que ibas a volver. Y volviste. Eso no lo hace
+    cualquiera."
+  linesHigh:
+  - "Sos como de mi familia. \xA1Familia elegida, ponele!"
+  - "A veces pienso que soy medio desastre. Pero cuando est\xE1s vos, me sale ser
+    mejor."
+  linesRain:
+  - "\xA1Lluvia! Ni las redes ni las carreras. D\xEDa de jugo y de perder al truco
+    con Deny."
+  linesCompanion:
+  - "\xA1Che, {memo} est\xE1 re en forma! \xBFLe das algo especial? \xA1Pasame el
+    secreto!"
+  - "\xA1Hola, {memo}! Pipo te manda saludos. Bah, te los mandar\xEDa si supiera
+    hablar."
+  schedule:
+  - hour: 7
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 22, y: 3}
+    facing: 1
+    activity: muelle
+    line: "\xA1Ayudando a mi pap\xE1 con las redes! \u2026Bueno, mirando c\xF3mo
+      las arregla."
+  - hour: 12
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 20, y: 15}
+    facing: 3
+    activity: plaza
+    line: "En la plaza a esta hora pasa de todo. Hoy, nada. Pero podr\xEDa."
+  - hour: 15
+    days: 127
+    weather: 1
+    scene: Map_RefugioExterior
+    cell: {x: 16, y: 9}
+    facing: 0
+    activity: entrenar
+    line: "\xA1Vine a entrenar en tu refugio! Hay m\xE1s lugar para correr que en
+      el pueblo."
+  - hour: 15
+    days: 127
+    weather: 2
+    scene: Map_Taberna
+    cell: {x: 9, y: 2}
+    facing: 0
+    activity: taberna
+    line: Con lluvia no se entrena. Se toma jugo. Son las reglas.
+  - hour: 18
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 15, y: 6}
+    facing: 0
+    activity: casa
+    line: "Esta es mi casa. Es chiquita, pero entramos todos. M\xE1s o menos."
+  - hour: 21
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: lalo_3
+    hearts: 3
+    scene: 
+    pages:
+    - "\xA1Ey! Mir\xE1 lo que encontr\xE9 limpiando mi pieza."
+    - "\xA1Nuestra medalla de cart\xF3n! La que hicimos para la \"Gran Copa del Muelle\".
+      Dice \"CAMPEONES\" con faltas de ortograf\xEDa."
+    - "Ganamos los dos, \xBFte acord\xE1s? Porque nos peleamos tanto por qui\xE9n
+      ganaba que hicimos empate."
+    question: "\xBFQui\xE9n gan\xF3 en realidad?"
+    answers:
+    - Vos, obvio
+    - Yo, obvio
+    answerPoints: 1e00000028000000
+    replies:
+    - "\xA1JA! \xA1Lo sab\xEDa! \u2026Igual empate. Me gusta m\xE1s empate."
+    - "\xA1Mentira! \u2026Bueno, puede ser. Revancha cuando quieras."
+  - id: lalo_6
+    hearts: 6
+    scene: 
+    pages:
+    - "\xBFPuedo contarte algo? Pero no te r\xEDas."
+    - "A veces siento que todos en la isla saben qu\xE9 hacer con su vida. Anni cura,
+      Fer forja, vos\u2026 vos rescat\xE1s Memos."
+    - "Y yo\u2026 corro. Y pierdo. Y vuelvo a correr."
+    - "Pero Pipo me mira como si yo fuera el mejor corredor del mundo. Y por \xE9l,
+      quiero serlo."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - Para Pipo, ya lo sos
+    - Entrenemos juntos
+    answerPoints: 3c00000032000000
+    replies:
+    - "\u2026S\xED, \xBFno? Gracias. En serio. Sos lo m\xE1s."
+    - "\xA1Trato hecho! Y la pr\xF3xima te gano. Prometido."
+  requests:
+  - kind: 1
+    targetId: zumbi
+    count: 1
+    reward: 200
+    boardText: "Lalo: \"\xA1Quiero ver un Zumbi de cerca para estudiar c\xF3mo vuela!\""
+    thanks: "\xA1Mir\xE1 c\xF3mo zumba! \xA1Ya entend\xED el secreto! \u2026Creo."
+  - kind: 0
+    targetId: zanahoria
+    count: 3
+    reward: 270
+    boardText: "Lalo: \"3 zanahorias para el entrenamiento de Pipo. \xA1Por favor!\""
+    thanks: "\xA1Gracias! Pipo va a correr como nunca. Bah, como siempre, pero contento."
+  - kind: 0
+    targetId: pluma
+    count: 2
+    reward: 140
+    boardText: 'Lalo: "2 plumas para hacerle un adorno a Pipo."'
+    thanks: "\xA1Le va a quedar hermoso! Gracias, crack."

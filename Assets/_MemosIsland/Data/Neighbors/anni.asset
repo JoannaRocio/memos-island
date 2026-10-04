@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: anni
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: anni
+  displayName: Anni
+  role: Veterinaria
+  portrait: {fileID: 21300000, guid: 74dd6dddb0d062a448dd9d82ee31bcc7, type: 3}
+  icon: {fileID: 21300000, guid: ef9824b288ea94d4c89040b1bcb5da17, type: 3}
+  down:
+  - {fileID: 21300000, guid: 41dd1d1d54de8f640ab14135fd171120, type: 3}
+  - {fileID: 21300000, guid: e42e7164080eccc4598f9e89998aadff, type: 3}
+  - {fileID: 21300000, guid: 235f9dc325d77c34dba14def5ac8a9dd, type: 3}
+  up:
+  - {fileID: 21300000, guid: 05204e40f636d674d9b7c5d373e36f00, type: 3}
+  - {fileID: 21300000, guid: 6c50eba6115e8a0418474027c6592229, type: 3}
+  - {fileID: 21300000, guid: bc74dad9326009041bb820228cfa361e, type: 3}
+  left:
+  - {fileID: 21300000, guid: 979470a4ee40e3a4081c0951be978490, type: 3}
+  - {fileID: 21300000, guid: c53997af21eec93428ed8c29cb8e8055, type: 3}
+  - {fileID: 21300000, guid: c94a03ef85f500841a91a6df45af5364, type: 3}
+  right:
+  - {fileID: 21300000, guid: 9a63b8b2a1865f64e8f763f2cdec2fa1, type: 3}
+  - {fileID: 21300000, guid: 39b2dd38455881a4b8286036e0d891da, type: 3}
+  - {fileID: 21300000, guid: 6027bff2d27083849ab5f5bbef60bbb3, type: 3}
+  loved:
+  - pastel_frutilla
+  - flor
+  liked:
+  - frutilla
+  - bayamemo
+  - pure_zapallo
+  disliked:
+  - mineral_hierro
+  - piedra
+  lovedText: "\xA1Ay, qu\xE9 hermoso! Me hiciste el d\xEDa, \xBFsab\xEDas? Gracias,
+    tesoro."
+  likedText: "\xA1Qu\xE9 rico! Gracias por pensar en m\xED."
+  neutralText: "Gracias, coraz\xF3n. Muy amable."
+  dislikedText: "Ay\u2026 gracias igual. Lo voy a usar para algo, seguro."
+  firstMeet: "\xA1Hola, tesoro! Soy Anni, la veterinaria. Si alguno de tus Memos
+    se siente mal, o vos ten\xE9s dudas, la cl\xEDnica siempre est\xE1 abierta para
+    ustedes."
+  linesLow:
+  - Un Memo con miedo no necesita que lo apures. Necesita que te quedes. Quieto,
+    cerca, tranquilo.
+  - 'La comida favorita no es solo un premio: les dice "te conozco".'
+  - "Si quer\xE9s, tra\xE9 a tu equipo y les hago una revisi\xF3n. Es gratis para
+    los vecinos."
+  linesMid:
+  - "Me gusta c\xF3mo los mir\xE1s. Se nota cuando alguien quiere a los Memos de
+    verdad."
+  - "Cuando era chica quer\xEDa ser marinera. Despu\xE9s cur\xE9 a un Plum\xEDn con
+    el ala lastimada\u2026 y ya no hubo vuelta."
+  - "\xBFComiste algo hoy? Vos tambi\xE9n ten\xE9s que cuidarte, \xBFeh?"
+  linesHigh:
+  - Sos de las personas que hacen que esta isla valga la pena. Te lo digo en serio.
+  - Cuando estoy cansada pienso en tus Memos jugando en el refugio. Se me pasa todo.
+  linesRain:
+  - "Los d\xEDas de lluvia los Memos duermen m\xE1s. \xA1Igual que yo!"
+  - Con lluvia vienen menos pacientes. Aprovecho y ordeno las vendas.
+  linesCompanion:
+  - "\xA1Hola, {memo}! Qu\xE9 brillo ten\xE9s en los ojos hoy. Se nota que te cuidan
+    bien."
+  - "{memo} tiene el pelaje (o las plumas, o lo que sea) precioso. \xA1Bien hecho!"
+  schedule:
+  - hour: 7
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 26, y: 16}
+    facing: 0
+    activity: paseo
+    line: "Antes de abrir doy una vuelta. Saludo a los Memos de la plaza\u2026 aunque
+      se escondan."
+  - hour: 7
+    days: 127
+    weather: 2
+    scene: Map_Clinica
+    cell: {x: 4, y: 5}
+    facing: 0
+    activity: trabajo
+    line: 
+  - hour: 9
+    days: 127
+    weather: 0
+    scene: Map_Clinica
+    cell: {x: 4, y: 5}
+    facing: 0
+    activity: trabajo
+    line: 
+  - hour: 18
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 23, y: 6}
+    facing: 0
+    activity: muelle
+    line: "El atardecer desde el muelle es mi momento favorito del d\xEDa."
+  - hour: 18
+    days: 127
+    weather: 2
+    scene: Map_Clinica
+    cell: {x: 4, y: 5}
+    facing: 0
+    activity: ordenar
+    line: "Con esta lluvia me quedo un rato m\xE1s ordenando."
+  - hour: 20
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: anni_3
+    hearts: 3
+    scene: 
+    pages:
+    - "\xBFTen\xE9s un minuto? Mir\xE1 este cuaderno."
+    - "Anoto cada Memo que atend\xED. Nombre, qu\xE9 ten\xEDa, c\xF3mo se cur\xF3.
+      Ya van\u2026 novecientos y pico."
+    - "Cuando un d\xEDa sale mal, lo abro en cualquier p\xE1gina. Siempre hay uno
+      que sali\xF3 bien."
+    question: "\xBFQu\xE9 le dec\xEDs?"
+    answers:
+    - Es un cuaderno precioso
+    - "Deber\xEDas descansar m\xE1s"
+    answerPoints: 280000001e000000
+    replies:
+    - "\xBFViste? Alg\xFAn d\xEDa te muestro la p\xE1gina de tus Memos."
+    - Ja, eso me dice todo el mundo. Pero gracias por preocuparte.
+  - id: anni_6
+    hearts: 6
+    scene: Map_Clinica
+    pages:
+    - "Tesoro, ven\xED que te quiero dar algo."
+    - "Es una cajita de vendas, gasas y un ung\xFCento que hago yo. Para el refugio."
+    - "No es que no conf\xEDe en tus cuidados, \xA1al contrario! Es que\u2026 me
+      quedo m\xE1s tranquila sabiendo que lo ten\xE9s."
+    - "Y si un d\xEDa pasa algo, de noche, lo que sea: golpe\xE1s la puerta de la
+      cl\xEDnica. \xBFPrometido?"
+    question: "\xBFPromet\xE9s?"
+    answers:
+    - Prometido
+    answerPoints: 32000000
+    replies:
+    - "As\xED me gusta. Ahora and\xE1, que tus Memos te esperan."
+  requests:
+  - kind: 0
+    targetId: hierba
+    count: 5
+    reward: 150
+    boardText: "Anni: \"Necesito 5 hierbas frescas para un ung\xFCento.\""
+    thanks: "\xA1Gracias, tesoro! Con esto alcanzo para todo el mes."
+  - kind: 0
+    targetId: bayamemo
+    count: 3
+    reward: 330
+    boardText: 'Anni: "3 bayamemos para un paciente que no quiere comer."'
+    thanks: "Ya le ofrec\xED una\u2026 \xA1y se la comi\xF3! Gracias, de coraz\xF3n."
+  - kind: 1
+    targetId: plumin
+    count: 1
+    reward: 180
+    boardText: "Anni: \"Quiero revisar a un Plum\xEDn sano para comparar. \xBFMe
+      tra\xE9s uno?\""
+    thanks: "\xA1Qu\xE9 alas fuertes! Gracias por traerlo. Est\xE1 perfecto."

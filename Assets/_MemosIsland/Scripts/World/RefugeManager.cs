@@ -83,7 +83,7 @@ namespace MemosIsland.World
             // Vida en la isla (Fase 6): pasan los días de la huerta, los envíos y el trabajo de los Memos.
             var report = IslandDay.Process(state, MemoDatabase.Instance, now);
             if (report.messages.Count > 0) _messages.Enqueue(new List<string>(report.messages));
-            if (IslandDay.HasHelper(state, now, WorkRole.Water))
+            if (IslandDay.HasHelper(state, now, WorkRole.Water) || Weather.IsRainy(now)) // con lluvia también
             {
                 var field = FindAnyObjectByType<FarmField>();
                 if (field != null) field.WaterAllByMemos();

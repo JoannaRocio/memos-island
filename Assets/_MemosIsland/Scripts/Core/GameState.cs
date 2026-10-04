@@ -29,6 +29,7 @@ namespace MemosIsland.Core
         public int bowlServings;
         public List<ItemStack> inventory = new();
         public Farm.IslandState island = new();
+        public Town.TownState town = new();
 
         // ------------------------------------------------------------------ Inventario
 

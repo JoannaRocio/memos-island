@@ -33,7 +33,7 @@ namespace MemosIsland.UI
                                             || root.Evolution != null && root.Evolution.IsRunning);
             box.enabled = !covered;
             label.gameObject.SetActive(!covered);
-            var text = clock.TimeText;
+            var text = (Weather.IsRainy(clock.Now) ? "☂ " : "☀ ") + clock.TimeText;
             if (text == _shown) return;
             _shown = text;
 

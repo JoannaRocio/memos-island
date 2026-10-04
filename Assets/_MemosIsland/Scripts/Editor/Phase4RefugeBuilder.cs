@@ -39,6 +39,7 @@ namespace MemosIsland.EditorTools
         {
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var m = new Phase1WorldBuilder.MapBuilder("Casa del refugio", 14, 10);
+            m.Indoor();
 
             // Piso, paredes (arriba con ventanas, costados y abajo) y la salida.
             m.Fill(m.Ground, T("in_floor"), 1, 1, 12, 7);

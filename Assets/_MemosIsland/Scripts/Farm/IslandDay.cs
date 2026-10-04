@@ -89,7 +89,7 @@ namespace MemosIsland.Farm
             {
                 var day = IslandState.DateKey(last.AddDays(d));
                 foreach (var plot in island.plots)
-                    FarmLogic.GrowOneDay(plot, day, Has(WorkRole.Water), Has(WorkRole.Grow) && rng.Next(10) < 3);
+                    FarmLogic.GrowOneDay(plot, day, Has(WorkRole.Water) || Weather.IsRainy(last.AddDays(d)), Has(WorkRole.Grow) && rng.Next(10) < 3);
 
                 if (Has(WorkRole.Till))
                     foreach (var plot in island.plots.Where(p => !p.tilled).Take(2)) plot.tilled = true;

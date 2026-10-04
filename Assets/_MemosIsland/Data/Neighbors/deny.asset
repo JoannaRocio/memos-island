@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: deny
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: deny
+  displayName: Deny
+  role: "Due\xF1o del almac\xE9n"
+  portrait: {fileID: 21300000, guid: c5161c119b23ebc498724b5b3fb430e6, type: 3}
+  icon: {fileID: 21300000, guid: 782ec282d794f354e920051e8bd74a63, type: 3}
+  down:
+  - {fileID: 21300000, guid: bb0e3ad17ceeb164099e36759c7e2b4c, type: 3}
+  - {fileID: 21300000, guid: 93de86189b35a994dafc0fb2c72c3ee0, type: 3}
+  - {fileID: 21300000, guid: b26b289c436a4474788214fb2dc35509, type: 3}
+  up:
+  - {fileID: 21300000, guid: 02e9d5843d8caf542866b8988a3e0726, type: 3}
+  - {fileID: 21300000, guid: ccc761ef4d0b637488e67c7cae9b124e, type: 3}
+  - {fileID: 21300000, guid: a6ad92d8cc2b794408acdc1314143c3a, type: 3}
+  left:
+  - {fileID: 21300000, guid: fca6fb6b6dbccdf48a6abde46c9f4c80, type: 3}
+  - {fileID: 21300000, guid: 1a73b2b4e4a4ca4428576bb059fa2089, type: 3}
+  - {fileID: 21300000, guid: e96025dd8211ad7458cd1d47885f8aa9, type: 3}
+  right:
+  - {fileID: 21300000, guid: a7645df2208a4004c934ef9a17c476e3, type: 3}
+  - {fileID: 21300000, guid: f4a593230a47fb74aaee63f93ce20aed, type: 3}
+  - {fileID: 21300000, guid: b7fb9301ced7f6444ab043725a61f845, type: 3}
+  loved:
+  - mermelada
+  - pastel_frutilla
+  liked:
+  - frutilla
+  - zapallo
+  - concha
+  disliked:
+  - piedra
+  - hierba
+  lovedText: "\xA1\xBFMermelada casera?! Esto lo pongo en la vidriera\u2026 no, mentira,
+    me la como hoy."
+  likedText: "\xA1Mir\xE1 vos, qu\xE9 detalle! Gracias, de verdad."
+  neutralText: "Ah, mir\xE1. Gracias, eh. Algo le voy a encontrar."
+  dislikedText: "\xBFUna\u2026 piedra? Bueno\u2026 sirve de pisapapeles. Supongo."
+  firstMeet: "\xA1Uh, cara nueva! Soy Deny, el del almac\xE9n. Semillas, comida,
+    cositas lindas\u2026 si no lo tengo, te lo consigo. Bueno, casi siempre."
+  linesLow:
+  - "Las semillas cambian seg\xFAn el d\xEDa. Los domingos traigo zapallo, \xA1no
+    te lo pierdas!"
+  - "\xBFSab\xEDas que si vend\xE9s lo que cosech\xE1s en la caja de env\xEDos, te
+    lo pago al otro d\xEDa? Negocio redondo."
+  - "El cartel de la puerta dice \"vuelvo en 5 minutos\". Lo puse hace tres a\xF1os.
+    Nunca lo saqu\xE9."
+  linesMid:
+  - "Vos s\xED que sab\xE9s elegir verduras. Se nota que les habl\xE1s. Yo tambi\xE9n
+    le hablo a las m\xEDas."
+  - "Si un d\xEDa ves que me olvido de cobrarte, no me avises. \u2026No, mentira,
+    avisame."
+  - "Me encanta cuando entr\xE1s. Es como cuando suena la campanita y es alguien
+    que me cae bien."
+  linesHigh:
+  - "Te guard\xE9 lo mejor del pedido de la semana. No le digas a nadie."
+  - "Antes el almac\xE9n era m\xE1s silencioso. Ahora entra gente que me pregunta
+    c\xF3mo estoy. Bah, entr\xE1s vos."
+  linesRain:
+  - "Con lluvia no viene nadie\u2026 \xA1por eso me encanta que vengas vos!"
+  - "La lluvia riega tus cultivos solita. \xA1D\xEDa libre para la regadera!"
+  linesCompanion:
+  - "\xA1Hola, {memo}! \xBFQuer\xE9s un caramelito? \u2026No tengo. Pero la intenci\xF3n
+    est\xE1."
+  schedule:
+  - hour: 8
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 5, y: 18}
+    facing: 0
+    activity: barrer
+    line: "\xA1Buen d\xEDa! Barro la vereda antes de abrir. Bah, la miro."
+  - hour: 9
+    days: 127
+    weather: 0
+    scene: Map_Almacen
+    cell: {x: 5, y: 5}
+    facing: 0
+    activity: trabajo
+    line: 
+  - hour: 17
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 22, y: 15}
+    facing: 3
+    activity: paseo
+    line: "Despu\xE9s de cerrar me gusta mirar qui\xE9n anda por la plaza. Es mi
+      novela."
+  - hour: 17
+    days: 127
+    weather: 2
+    scene: Map_Taberna
+    cell: {x: 2, y: 2}
+    facing: 1
+    activity: taberna
+    line: 
+  - hour: 19
+    days: 127
+    weather: 0
+    scene: Map_Taberna
+    cell: {x: 2, y: 2}
+    facing: 1
+    activity: taberna
+    line: "\xA1Ac\xE1 estoy! Charla, jugo de bayamemo y chismes. En ese orden."
+  - hour: 22
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: deny_3
+    hearts: 3
+    scene: Map_Almacen
+    pages:
+    - "\xA1Llegaste justo! Estoy ordenando el dep\xF3sito y encontr\xE9 esto: \xA1la
+      primera moneda que gan\xE9 con el almac\xE9n!"
+    - "Me la dio una nena por un caramelo. Yo ten\xEDa tu edad, m\xE1s o menos\u2026
+      y cero idea de c\xF3mo llevar un negocio."
+    - "Todav\xEDa no tengo idea, eh. Pero la gente vuelve. Algo bien debo hacer."
+    question: "\xBFPor qu\xE9 cre\xE9s que vuelven?"
+    answers:
+    - Porque sos buena onda
+    - "Porque no hay otro almac\xE9n"
+    answerPoints: 28000000f6ffffff
+    replies:
+    - "\xA1Ja! Igual s\xED, \xBFno? Gracias. Me lo voy a escribir en un papelito."
+    - "\u2026Eso doli\xF3 un poquito. Pero es verdad. \xA1Igual!"
+  - id: deny_6
+    hearts: 6
+    scene: Map_Almacen
+    pages:
+    - "Te quiero mostrar algo. Mir\xE1 la vidriera."
+    - "Hice un cartelito: \"Productos de la huerta del refugio\". \xA1Son tus verduras!
+      Las vendo con nombre y todo."
+    - "La gente pregunta por vos. Dicen \"\xBFlas de la huerta del refugio?\" y yo
+      digo \"\xA1s\xED, de alguien muy especial!\"."
+    - "\u2026Te dije especial. Bueno. Ya est\xE1 dicho."
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 0
+    targetId: nabo
+    count: 5
+    reward: 220
+    boardText: "Deny: \"\xA1Se me terminaron los nabos! Necesito 5 para hoy.\""
+    thanks: "\xA1Salvaste el d\xEDa! Bah, la tarde. Gracias."
+  - kind: 0
+    targetId: frutilla
+    count: 3
+    reward: 380
+    boardText: "Deny: \"Una clienta quiere 3 frutillas para una torta. \xBFTen\xE9s?\""
+    thanks: "\xA1Perfectas! Van directo a la torta. Bah, una me la como yo."
+  - kind: 0
+    targetId: concha
+    count: 2
+    reward: 160
+    boardText: 'Deny: "Quiero decorar la vidriera con 2 conchas de la playa."'
+    thanks: "\xA1Quedan hermosas! La vidriera m\xE1s linda del puerto."

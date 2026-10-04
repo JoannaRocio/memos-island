@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aaa15189acfca4790e50aea7c0d149, type: 3}
+  m_Name: vera
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Town.NeighborData
+  id: vera
+  displayName: Vera
+  role: Capitana de la Copa
+  portrait: {fileID: 21300000, guid: a6d28de0382581d4e9dda547f7c9dde2, type: 3}
+  icon: {fileID: 21300000, guid: 154bee8f5478ae943a54f44cdabc3a3c, type: 3}
+  down:
+  - {fileID: 21300000, guid: 6c362956747661e48af569e2055ceff7, type: 3}
+  - {fileID: 21300000, guid: a965bf839e72ba343a29ae394e76d1f4, type: 3}
+  - {fileID: 21300000, guid: 01316c505c51ae9438b89b56b5c3af19, type: 3}
+  up:
+  - {fileID: 21300000, guid: 3858ec9ea447f93428ad9539ce5ee62b, type: 3}
+  - {fileID: 21300000, guid: 0bc78067ff4b4934b99610b1fe19e937, type: 3}
+  - {fileID: 21300000, guid: dde6d17dcd8b26b4cbb0292be870e161, type: 3}
+  left:
+  - {fileID: 21300000, guid: dbf3a5ea49629124e88bdae3ef645248, type: 3}
+  - {fileID: 21300000, guid: 2e19a7c503551af4cb1eb7ebad921183, type: 3}
+  - {fileID: 21300000, guid: 5d1588e45e74fc4418d068e81c97147f, type: 3}
+  right:
+  - {fileID: 21300000, guid: 69b3fd5cb64e4914da1b9c79ca3a9d22, type: 3}
+  - {fileID: 21300000, guid: 9e8bd2d243b15324c922b60f5826ca4a, type: 3}
+  - {fileID: 21300000, guid: b445830dd795b5b48a60a9f02ee70731, type: 3}
+  loved:
+  - lingote_hierro
+  - esmeralda
+  liked:
+  - mineral_hierro
+  - comida_memo
+  - pure_zapallo
+  disliked:
+  - flor
+  - pastel_frutilla
+  lovedText: "Hierro de calidad. Sab\xE9s lo que valoro. Gracias."
+  likedText: "\xDAtil. Gracias."
+  neutralText: Gracias.
+  dislikedText: No soy de estas cosas. Pero valoro el gesto.
+  firstMeet: "Capitana Vera. Lidero la Copa de la Isla, equipo Metal. Si quer\xE9s
+    correr contra m\xED, primero ganate el lugar. No regalo nada."
+  linesLow:
+  - La disciplina le gana al talento cuando el talento no entrena.
+  - "Mis Memos son de tipo Metal. Lentos al arrancar, imparables en la monta\xF1a."
+  - "Una carrera se gana en los relevos. Eleg\xED bien qui\xE9n corre cada tramo."
+  linesMid:
+  - "Vi una de tus carreras. Ten\xE9s buen ojo para los tramos. Te falta frialdad."
+  - "Entreno a mis Memos todos los d\xEDas. Ellos me entrenan a m\xED tambi\xE9n:
+    paciencia."
+  - "No conf\xEDo f\xE1cil. Pero vos jug\xE1s limpio. Eso se nota."
+  linesHigh:
+  - "Si alguna vez lleg\xE1s a la final, espero que seas vos. Me gustar\xEDa perder
+    contra alguien que lo merece. \u2026Si es que pierdo."
+  - Sos de las pocas personas en esta isla con las que bajo la guardia.
+  linesRain:
+  - "Se entrena igual con lluvia. La pista mojada ense\xF1a a no confiarse."
+  linesCompanion:
+  - "Tu {memo}: buena postura, buena respiraci\xF3n. Bien entrenado."
+  schedule:
+  - hour: 7
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 41, y: 6}
+    facing: 0
+    activity: estadio
+    line: Entrenamiento matutino. Diez vueltas al estadio. Sin quejas.
+  - hour: 12
+    days: 127
+    weather: 0
+    scene: Map_Taberna
+    cell: {x: 9, y: 3}
+    facing: 2
+    activity: almuerzo
+    line: "Almuerzo r\xE1pido. Prote\xEDna y vuelta a entrenar."
+  - hour: 14
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 41, y: 6}
+    facing: 0
+    activity: estadio
+    line: 
+  - hour: 18
+    days: 127
+    weather: 0
+    scene: Map_PuebloPuerto
+    cell: {x: 20, y: 5}
+    facing: 3
+    activity: muelle
+    line: "Despu\xE9s de entrenar, estiro mirando el mar. El mar no tiene apuro."
+  - hour: 20
+    days: 127
+    weather: 0
+    scene: 
+    cell: {x: 0, y: 0}
+    facing: 0
+    activity: casa
+    line: 
+  events:
+  - id: vera_3
+    hearts: 3
+    scene: 
+    pages:
+    - "Est\xE1s ac\xE1. Bien. Necesito una opini\xF3n."
+    - "Tengo dos estrategias para la Copa. Una segura, una arriesgada. Mis Memos
+      rinden m\xE1s con la arriesgada\u2026 pero si sale mal, se cansan de m\xE1s."
+    - "\xBFQu\xE9 har\xEDas vos?"
+    question: "\xBFQu\xE9 har\xEDas?"
+    answers:
+    - 'La segura: los cuida'
+    - 'La arriesgada: para ganar'
+    answerPoints: 320000000a000000
+    replies:
+    - "Cuidarlos primero. \u2026S\xED. Por eso te pregunt\xE9 a vos."
+    - "Ganar no es todo. Pens\xE9 que dir\xEDas otra cosa."
+  - id: vera_6
+    hearts: 6
+    scene: 
+    pages:
+    - Te voy a decir algo que no le digo a nadie.
+    - "Mi primer Memo fue un Tuerquita que encontr\xE9 roto en un taller. Literalmente:
+      le faltaba un tornillo."
+    - "Lo arregl\xE9. Me sigui\xF3 desde ese d\xEDa. Ahora es el m\xE1s r\xE1pido
+      de mi equipo."
+    - "Por eso desconf\xEDo de los atajos. Las cosas buenas se arreglan despacio."
+    question: 
+    answers: []
+    answerPoints: 
+    replies: []
+  requests:
+  - kind: 0
+    targetId: comida_memo
+    count: 6
+    reward: 240
+    boardText: 'Vera: "6 comidas para Memos para el equipo. Calidad, por favor."'
+    thanks: "Bien. Mis Memos te lo agradecen. Yo tambi\xE9n."
+  - kind: 0
+    targetId: mineral_hierro
+    count: 3
+    reward: 280
+    boardText: 'Vera: "3 minerales de hierro para el equipo de entrenamiento."'
+    thanks: Buen material. Gracias.
+  - kind: 1
+    targetId: topin
+    count: 1
+    reward: 180
+    boardText: "Vera: \"Quiero ver la t\xE9cnica de excavaci\xF3n de un Top\xEDn.\""
+    thanks: Interesante. Muy eficiente. Gracias.
