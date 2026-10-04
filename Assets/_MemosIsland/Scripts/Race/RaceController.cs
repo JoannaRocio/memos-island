@@ -221,6 +221,13 @@ namespace MemosIsland.Race
             yield return Say(wildRacer.gaveUp
                 ? $"¡{wild.DisplayName} está agotado! Te mira con desconfianza…"
                 : $"¡Le ganaste a {wild.DisplayName}! Respira agitado y te mira…");
+            if (wild.collared)
+            {
+                // GDD §10: ganarle rompe el collar; tiembla, desorientado.
+                yield return Say("El collar violeta se agrieta… y se parte en dos.");
+                yield return Say($"{wild.DisplayName} tiembla. Mira para todos lados como si despertara de un sueño muy largo. No sabe dónde está.");
+            }
+            bool legendary = wild.Species != null && wild.Species.category == MemoCategory.Legendary;
 
             var state = GameRoot.Instance.State;
             var foods = World.MemoCareMenu.FoodsFor(wild, state);
@@ -239,14 +246,15 @@ namespace MemosIsland.Race
             {
                 // Los rescatados de un collar llegan con miedo; los salvajes, con desconfianza (GDD §10).
                 wild.rescued = wild.collared;
-                wild.trust = wild.collared ? 50 : 150;
+                wild.trust = legendary ? -60 : wild.collared ? 50 : 150; // legendarios: Hostil
                 wild.highestTrust = TrustRules.LevelFor(wild.trust);
                 wild.collared = false;
                 bool toTeam = GameRoot.Instance.State.AddMemo(wild);
                 result.captured = wild;
                 string liked = gaveFood && MemoCare.IsFavorite(wild, foods[chosen]) ? " ¡Le encantó!" : "";
-                yield return Say($"¡{wild.DisplayName} aceptó la comida!{liked} " +
-                                 (toTeam ? "Se unió a tu equipo." : "Te espera en el refugio."));
+                yield return Say(legendary
+                    ? $"{wild.DisplayName} agarra la comida sin dejar de gruñirte… y te sigue de lejos. Va a costar ganarse su confianza."
+                    : $"¡{wild.DisplayName} aceptó la comida!{liked} " + (toTeam ? "Se unió a tu equipo." : "Te espera en el refugio."));
             }
             else
             {

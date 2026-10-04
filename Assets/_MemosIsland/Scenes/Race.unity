@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &166966869
+--- !u!1 &100476525
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 166966871}
-  - component: {fileID: 166966870}
+  - component: {fileID: 100476527}
+  - component: {fileID: 100476526}
   m_Layer: 0
   m_Name: Race
   m_TagString: Untagged
@@ -136,41 +136,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &166966870
+--- !u!114 &100476526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166966869}
+  m_GameObject: {fileID: 100476525}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03a30eef7ce62e34eb6549fb3fd2864c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Race.RaceController
-  view: {fileID: 1428459017}
+  view: {fileID: 1557470390}
   font: {fileID: 11400000, guid: 30317fb3e15dced45ad69edc2f7f92db, type: 2}
   boxSprite: {fileID: 21300000, guid: 4b9d26acaec6b5f49a2d93790830a8cd, type: 3}
   pixelSprite: {fileID: 21300000, guid: 47926c924bdda3c43a58a7c9c883a40f, type: 3}
   uiMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   skyColor: {r: 0.4509804, g: 0.76862746, b: 0.96862745, a: 1}
---- !u!4 &166966871
+--- !u!4 &100476527
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166966869}
+  m_GameObject: {fileID: 100476525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1428459018}
+  - {fileID: 1557470391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1428459016
+--- !u!1 &1557470389
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,8 +178,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1428459018}
-  - component: {fileID: 1428459017}
+  - component: {fileID: 1557470391}
+  - component: {fileID: 1557470390}
   m_Layer: 0
   m_Name: Race View
   m_TagString: Untagged
@@ -187,13 +187,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1428459017
+--- !u!114 &1557470390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428459016}
+  m_GameObject: {fileID: 1557470389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221687dd7590584409992117020ba774, type: 3}
@@ -216,23 +216,23 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67aa324ea8b8104498e34f0f6f8a0b8c, type: 3}
   - {fileID: 21300000, guid: 89c2c11e47d30eb4887e635d5f18d63c, type: 3}
   - {fileID: 21300000, guid: 3cb062b287cf04e449bb9438fbc5a8b7, type: 3}
---- !u!4 &1428459018
+--- !u!4 &1557470391
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428459016}
+  m_GameObject: {fileID: 1557470389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 166966871}
+  m_Father: {fileID: 100476527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 166966871}
+  - {fileID: 100476527}

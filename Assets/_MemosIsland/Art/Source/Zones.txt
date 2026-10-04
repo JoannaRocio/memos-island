@@ -1,0 +1,231 @@
+# Zonas del Acto 3 (Fase 8B): barro, juncos, nieve, pasto nevado, hielo, roca, pasto de altura y derrumbe. Generado por make_zones.py.
+
+sprite mud
+size 16 16
+frame
+jiiiiiiiioiiiiii
+iiiiiiiiiiiiiiii
+iiiioiiiiiioiiii
+iiiiiiiiiiiijjji
+iiiiiiiiiiiiiiii
+iiijjjiiiiiiioii
+iiiiiiiiiiiioiii
+oiiiiiioiiiiiiio
+iiiiiiiiiiiiiiji
+iiiiiioiiiiiiiii
+iiioiiiiiiiiiiii
+iiiiiiiiiijjjiii
+iiiiiiiiiiiiiiij
+iiiiiiiiiiiijiii
+iiiiiiiiiiiiiiii
+iiijiiiiiiijiiii
+tile
+end
+
+sprite mud_reeds
+size 16 16
+frame
+ioiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+ijiiiiiiiiioiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiioijii
+iiiiiiiijoiiiiii
+iiiiiiijiiiiii6o
+iiiiioiiii6ii6ii
+iii6iii6ioi6ii7i
+ii6iij6iii7ii7oi
+ii7iji7iii7oi7oo
+ii7iio7iii7ii7ii
+ii7iio7iii7ii7oi
+ii7iii7iii7oi7ii
+iiiiiiioiiiiiiii
+tile
+end
+
+sprite snow
+size 16 16
+frame
+ccccccdccdcccccc
+cccccccccccccccc
+ccdccccccccccccc
+cccccdcccccccccc
+cccccccccccccccc
+cccccccdcccccccc
+ccccccccddcccccc
+cccccccccccccccc
+cccccccccccccccd
+cccccccdcdccdccc
+ccdccccccccccccc
+cccccccdcccccccc
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+ccccccccccccdccc
+tile
+end
+
+sprite snow_grass
+size 16 16
+frame
+cccccccccccccccc
+cccccccccccccccc
+cccccccccccccccc
+cccccdcccccccccc
+ccdcdccccccccccc
+cccccccccccccccc
+dccccccccccccccc
+cccdccceccccccdd
+cccccceccceccccc
+cccccccdcccecccc
+ccecccdcccdccecc
+ccceccdcdcdcccec
+ccdccddcccdccdcc
+ccdcccdcccdccdcc
+ccdcccdcccdccdcc
+cccccccccccccccc
+tile
+end
+
+sprite ice
+size 16 16
+frame
+babbbbbbbcbbbbbb
+bbbbbbcbabbbbbbb
+bbbcbbbbbbbbbbba
+cbbbbbabbbbbbbbb
+bbbbbbbbbbbbbcbb
+bbbbabbbbbcbbbbb
+bbbbbbbcbbbabbbb
+bbabcbbbbbbbbbbb
+bcbbbbbbbabbbbbb
+abbbbbbbbbbbbbcb
+bbbbbbbabbbcbbbb
+bbbbbbbbcbbbbbab
+bbbbbabbbbbbbbbb
+bbcbbbbbbbbbabbb
+bbbabbbbbbbbbbbc
+bbbbbbbbbbabcbbb
+tile
+end
+
+sprite cliff
+size 16 16
+frame
+eeeeeeeeeeeeeeee
+eefeeeeeeeeffeee
+edeeeeedefeeeffe
+eeffffeeeeeeeeee
+edeeeeeeeedeefee
+eeeeeeeeefeeedee
+eeeeeeeeeeeeeeee
+eeefeeeeefeeeeee
+eeeeeeeeeffffeee
+edeeeeeeeeeeeeee
+eeeeeeeeeeeeeeed
+eeeeeefeeedeeeee
+eeeeeeeeeeeeeeee
+eefeeffffeeeeeed
+eeeeeeeeeeeeeede
+eeeedeeefeeeeeee
+tile
+end
+
+sprite cliff_grass
+size 16 16
+frame
+eeeeeeedeeeeeeee
+eeedeeeeeeeeeeee
+eeeeeeedeeeedeee
+eeeeeeeeeeeeeeee
+eefeeefeeeeeeeee
+eeeefeeeeeeeeeee
+eeeefeeeeeeeeeee
+eee5eeeeeeeeeeee
+ee5fee5eee5eeeee
+eee7eee5eee5ee5e
+ee7eee7eee7ee5ee
+ee7eee7ded7ee7ee
+ee7eee7eee7ee7ee
+ee7eee7eee7ee7ee
+ee7ede7eee7ee7ee
+efeeeeeeeeeefdde
+tile
+end
+
+sprite cliff_wall
+size 16 16
+frame
+effffffeffffffef
+fffeffffffefffff
+ffffffeffffffeff
+ffeffffffeffffff
+fffffeffffffefff
+f000f000e000f000
+ffffeffffffeffff
+effffffeffffffef
+fffeffffffefffff
+ffffffeffffffeff
+ffeffffffeffffff
+f000f000f000e000
+feffffffeffffffe
+ffffeffffffeffff
+effffffeffffffef
+fffeffffffefffff
+tile solid
+end
+
+sprite rubble
+size 32 24
+pivot 0.5 0
+outline 0
+frame
+................................
+................................
+................................
+................................
+....dddd....dddddd......dddd....
+..eeedddddeedddddddd..eeeddddd..
+.eeeeeeeeddeeeeddddddeeeeeeeedd.
+.eeeeeeeeeeeeeeeeedddeeeeeeeeee.
+.ffeeeeeeeeeeeeeeeeeeffeeeeeeee.
+.ffffffee00eeeeeeeeeeffffffeeee.
+..fffffffffeeeeeeeeeeeffffffff..
+....ffffffffffeeeeeeeeddffff....
+...eeddddffffffffeee00eeddddd...
+..eeeeeedfffffffffffeeeeeeedd...
+..eeeeeeeeffffffffffeeeeeeeeee..
+.eeeeeeeeeeeffffffeeeeeeeeeeee..
+.eeeeeeeeeeeeefffeeeeeeeeeeeee..
+.fffeeeeeeeeeeffffffeeeeeeeeee..
+.ffffffeeeee00effffffffeeeeee...
+..ffffffffeeee.fffffffffffeee...
+..fffffffffffe..ffffffffffff....
+...ffffffffff....ffffffffff.....
+.....ffffff........ffffff.......
+................................
+end
+
+sprite icon_collar_roto
+size 16 16
+outline 0
+frame
+................
+........d.......
+.....kkdddk.....
+....kll..llk....
+...kll....llk...
+..kll......llk..
+..kl........lk..
+..kl........lk..
+..kl........lk..
+..kl........lk..
+..kll......llk..
+...kll....llk...
+....kll..llk....
+.....kk..kk.....
+................
+................
+end
+

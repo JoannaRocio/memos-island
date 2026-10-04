@@ -15,7 +15,7 @@ namespace MemosIsland.Story
     /// Anni que lo cura, y el objetivo de que el inicial salga de su escondite.
     /// Solo corre en una partida de historia (Nueva partida); la partida de prueba no tiene escenas.
     /// </summary>
-    public class StoryDirector : MonoBehaviour
+    public partial class StoryDirector : MonoBehaviour
     {
         public const string Pueblo = "Map_PuebloPuerto";
         public const string RefugioExterior = "Map_RefugioExterior";
@@ -26,6 +26,8 @@ namespace MemosIsland.Story
         public static readonly RectInt Clearing = new(11, 15, 10, 6);
         public static readonly Vector2Int ClearingMemoCell = new(15, 19);
 
+        public static StoryDirector Instance { get; private set; }
+
         static GameRoot Root => GameRoot.Instance;
         static StoryState S => Root.State.story;
 
@@ -34,14 +36,17 @@ namespace MemosIsland.Story
 
         void OnEnable()
         {
+            Instance = this;
             MapManager.SceneEntered += OnSceneEntered;
             MapManager.PlayerStepped += OnPlayerStepped;
+            StoryMemo.Captured += OnStoryMemoCaptured;
         }
 
         void OnDisable()
         {
             MapManager.SceneEntered -= OnSceneEntered;
             MapManager.PlayerStepped -= OnPlayerStepped;
+            StoryMemo.Captured -= OnStoryMemoCaptured;
         }
 
         void Run(IEnumerator beat)
@@ -67,6 +72,7 @@ namespace MemosIsland.Story
             else if (scene == RefugioInterior && S.Has("rescue_pending")) Run(AnniHeals());
             else if (scene == RefugioInterior && S.Has("arrived") && !S.Has("journal")) Run(Journal());
             else if (scene == Bosque && S.Has("journal") && !S.Has("forest_seen")) Run(ForestFirstLook());
+            else OnSceneEnteredAct3(scene);
         }
 
         void OnPlayerStepped(Vector2Int cell)
@@ -259,7 +265,7 @@ namespace MemosIsland.Story
                 $"(¡{starter.DisplayName} se asomó de su escondite y te miró a los ojos por primera vez!)",
                 "(Todavía desconfía, pero ya no se esconde. Es un comienzo.)");
             S.Set("starter_out");
-            yield return NewObjective($"Conocer la isla: hablar con los vecinos, cuidar la huerta y a {starter.DisplayName}.");
+            yield return NewObjective("Conocer a Zorak, el ermitaño que vigila la cueva (abajo a la derecha del refugio). Dicen que sabe de carreras.");
         }
     }
 }
