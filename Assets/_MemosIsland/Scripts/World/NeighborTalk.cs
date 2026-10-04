@@ -26,6 +26,9 @@ namespace MemosIsland.World
             var data = npc.Data;
             var friend = root.State.town.Get(data.id);
 
+            // Escenas de la historia (Fase 8) que pasan al hablarle a este vecino.
+            if (Story.StoryDirector.Instance != null && Story.StoryDirector.Instance.TryNeighborBeat(npc, done)) return;
+
             if (friend.met)
             {
                 var ev = NeighborFriendship.PendingEvent(data, friend, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);

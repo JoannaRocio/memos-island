@@ -236,8 +236,19 @@ namespace MemosIsland.Tests
             Weather.DebugOverride = null;
             var start = new DateTime(2026, 1, 1);
             Assert.AreEqual(Weather.Roll(start.AddHours(3)), Weather.Roll(start.AddHours(20)));
-            int rainy = Enumerable.Range(0, 365).Count(d => Weather.Roll(start.AddDays(d)) == WeatherKind.Rainy);
+            int rainy = Enumerable.Range(0, 365).Count(d => Weather.Roll(start.AddDays(d)) != WeatherKind.Sunny);
             Assert.That(rainy, Is.InRange(55, 130));
+        }
+
+        [Test]
+        public void StormsAreRareAndCountAsRain()
+        {
+            Weather.DebugOverride = null;
+            var start = new DateTime(2026, 1, 1);
+            int storms = Enumerable.Range(0, 365).Count(d => Weather.Roll(start.AddDays(d)) == WeatherKind.Stormy);
+            Assert.That(storms, Is.InRange(12, 50), "más o menos uno de cada doce días");
+            var stormDay = Enumerable.Range(0, 365).Select(d => start.AddDays(d)).First(d => Weather.Roll(d) == WeatherKind.Stormy);
+            Assert.IsTrue(Weather.IsRainy(stormDay), "con tormenta también llueve (la huerta se riega)");
         }
     }
 }

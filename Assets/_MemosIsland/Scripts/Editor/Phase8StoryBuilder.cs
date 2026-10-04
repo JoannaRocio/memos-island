@@ -168,7 +168,7 @@ namespace MemosIsland.EditorTools
             EditorSceneManager.SaveScene(scene);
         }
 
-        static void AddWarp(Transform props, int x, int y, string scene, string spawn)
+        internal static void AddWarp(Transform props, int x, int y, string scene, string spawn)
         {
             var go = new GameObject($"Warp → {scene}");
             go.transform.SetParent(props, false);
@@ -176,7 +176,7 @@ namespace MemosIsland.EditorTools
             go.AddComponent<Warp>().Setup(scene, spawn);
         }
 
-        static void AddSpawn(Transform props, int x, int y, string id, Direction facing)
+        internal static void AddSpawn(Transform props, int x, int y, string id, Direction facing)
         {
             var go = new GameObject($"Spawn {id}");
             go.transform.SetParent(props, false);

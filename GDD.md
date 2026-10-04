@@ -574,7 +574,7 @@ Lo que se deja en la caja se vende al final del día.
 - **Modo de prueba** (solo en el editor o en builds de desarrollo): F5 / F6 atrasan o adelantan una hora y F7 vuelve a la hora real.
 - **Los días del juego son los días reales**, como en Animal Crossing: los cultivos crecen por días reales regados (si un día no se riega, se pausa; nunca se muere), la mina y la recolección se renuevan cada día real, la caja de envíos paga al día siguiente y los cuidados tienen límites por día real.
 - **Sin energía del jugador ni desmayos:** podés hacer todo lo que quieras; lo que pone el ritmo es el día real (decisión de octubre 2026).
-- **Clima:** uno por día real, igual todo el día. En la Fase 7 hay **sol y lluvia** (≈1 de cada 4 días; la lluvia riega sola la huerta y los vecinos cambian su rutina). Nublado y **tormenta** (aparece Karman) se suman más adelante. F8 fuerza el clima en modo de prueba.
+- **Clima:** uno por día real, igual todo el día. En la Fase 8B se suma la **tormenta** (≈1 de cada 12 días, llueve igual, relámpagos; es cuando aparece Karman). En la Fase 7 hay **sol y lluvia** (≈1 de cada 4 días; la lluvia riega sola la huerta y los vecinos cambian su rutina). Nublado y **tormenta** (aparece Karman) se suman más adelante. F8 fuerza el clima en modo de prueba.
 - **Días de la semana:** la Copa y las carreras oficiales son los **sábados**.
 - **Iluminación:** amanecer, día, atardecer y noche, con luces 2D en ventanas y faroles.
 

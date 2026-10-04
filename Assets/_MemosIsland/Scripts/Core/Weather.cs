@@ -2,15 +2,17 @@ using System;
 
 namespace MemosIsland.Core
 {
-    public enum WeatherKind { Sunny, Rainy }
+    public enum WeatherKind { Sunny, Rainy, Stormy }
 
     /// <summary>
     /// Clima del día (GDD §5 y §16): uno por día real, igual todo el día y para todos.
-    /// Llueve más o menos uno de cada cuatro días. Con lluvia la huerta se riega sola.
+    /// Llueve más o menos uno de cada cuatro días (con lluvia la huerta se riega sola); uno de cada
+    /// doce, más o menos, hay tormenta: llueve igual y en los Acantilados aparece Karman (Fase 8B).
     /// </summary>
     public static class Weather
     {
         public const float RainChance = 0.25f;
+        public const float StormChance = 0.08f; // parte de los días de lluvia
 
         /// <summary>Para probar (F8 en el juego): fuerza el clima de hoy.</summary>
         public static WeatherKind? DebugOverride;
@@ -32,12 +34,18 @@ namespace MemosIsland.Core
                 h ^= h >> 13;
                 h *= 0x5bd1e995;
                 h ^= h >> 15;
-                return (h % 1000) / 1000f < RainChance ? WeatherKind.Rainy : WeatherKind.Sunny;
+                float roll = (h % 1000) / 1000f;
+                return roll < StormChance ? WeatherKind.Stormy : roll < RainChance ? WeatherKind.Rainy : WeatherKind.Sunny;
             }
         }
 
-        public static bool IsRainy(DateTime date) => For(date) == WeatherKind.Rainy;
+        /// <summary>Llueve (también con tormenta).</summary>
+        public static bool IsRainy(DateTime date) => For(date) != WeatherKind.Sunny;
 
-        public static string Name(WeatherKind w) => w == WeatherKind.Rainy ? "Lluvia" : "Sol";
+        public static bool IsStormy(DateTime date) => For(date) == WeatherKind.Stormy;
+
+        public static string Name(WeatherKind w) => w switch { WeatherKind.Rainy => "Lluvia", WeatherKind.Stormy => "Tormenta", _ => "Sol" };
+
+        public static string Icon(WeatherKind w) => w switch { WeatherKind.Rainy => "☂", WeatherKind.Stormy => "ϟ", _ => "☀" };
     }
 }

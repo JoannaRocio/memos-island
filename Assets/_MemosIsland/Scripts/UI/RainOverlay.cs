@@ -11,7 +11,8 @@ namespace MemosIsland.UI
         [SerializeField] SpriteRenderer sheetB;
         [SerializeField] float speed = 9f; // unidades de interfaz por segundo
 
-        float _y;
+        float _y, _nextLightning = 5f;
+        SpriteRenderer _flash;
 
         public void Setup(SpriteRenderer a, SpriteRenderer b)
         {
@@ -31,11 +32,38 @@ namespace MemosIsland.UI
             sheetA.enabled = sheetB.enabled = show;
             if (!show) return;
 
+            // Tormenta: relámpagos cada tanto (un destello blanco breve).
+            if (Weather.IsStormy(clock.Now) && (_nextLightning -= Time.deltaTime) <= 0f)
+            {
+                _nextLightning = Random.Range(6f, 14f);
+                StartCoroutine(Lightning());
+            }
+
             float h = sheetA.sprite.bounds.size.y;
             _y -= speed * Time.deltaTime;
             if (_y <= -h) _y += h;
             sheetA.transform.localPosition = new Vector3(0f, _y, 0f);
             sheetB.transform.localPosition = new Vector3(0f, _y + h, 0f);
+        }
+
+        System.Collections.IEnumerator Lightning()
+        {
+            if (_flash == null)
+            {
+                _flash = new GameObject("Lightning").AddComponent<SpriteRenderer>();
+                _flash.transform.SetParent(transform, false);
+                var pixel = GameRoot.Instance.Lists.PixelSprite;
+                _flash.sprite = pixel;
+                _flash.sharedMaterial = sheetA.sharedMaterial;
+                _flash.sortingOrder = sheetA.sortingOrder + 1;
+                float px = pixel != null ? pixel.rect.width : 2f;
+                _flash.transform.localScale = new Vector3(300f / px, 170f / px, 1f);
+            }
+            foreach (var a in new[] { 0.55f, 0f, 0.4f, 0f })
+            {
+                _flash.color = new Color(1f, 1f, 1f, a);
+                yield return new WaitForSeconds(0.07f);
+            }
         }
     }
 }
