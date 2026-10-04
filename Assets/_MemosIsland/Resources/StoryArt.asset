@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429ea67ec46f8c24b9070d18a27d51b8, type: 3}
+  m_Name: StoryArt
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Story.StoryArtSet
+  silex: {fileID: 21300000, guid: 1eae1901d3c2222499e6140c8bb8f6bc, type: 3}
+  scarfFigure: {fileID: 21300000, guid: eb5aedfe5e50cc2409d677012fad8f68, type: 3}

@@ -9,6 +9,12 @@ def write(name, text):
     open(os.path.join(OUT, name), "w", encoding="utf-8").write(text)
 
 
+def rect(cv, x0, y0, x1, y1, c):
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            cv.set(x, y, c)
+
+
 def speckle(base, specks, seed, n=22):
     rnd = random.Random(seed)
     cv = Canvas(16, 16, base)
@@ -85,6 +91,26 @@ for (cx, x0, x1) in [(6, 1, 7), (10, 9, 15)]:
 for (x, y) in [(8, 1), (7, 2), (8, 2), (9, 2)]:
     collar.set(x, y, 'd')
 out += block("icon_collar_roto", 16, 16, [collar.rows()], header=["outline 0"])
+
+# Cierre (Fase 8C): el Director Sílex de espaldas y una figura en las sombras con la bufanda roja del abuelo.
+silex = Canvas(24, 40)
+shade_ellipse(silex, 12, 7, 5, 5.5, ('d', 'c', 'c'))            # pelo gris peinado hacia atrás
+rect(silex, 9, 12, 14, 13, 'h')                                  # nuca
+poly_fill(silex, [(3, 39), (5, 16), (9, 13), (15, 13), (19, 16), (21, 39)], 'f')  # saco largo
+poly_fill(silex, [(5, 39), (7, 18), (11, 15), (13, 15), (17, 18), (19, 39)], '0')
+rect(silex, 11, 15, 12, 38, 'f')
+for (x, y) in [(6, 22), (17, 22)]:
+    silex.set(x, y, 'e')
+out += block("silex", 24, 40, [silex.rows()], header=["pivot 0.5 0", "outline 0"])
+
+figure = Canvas(20, 36)
+shade_ellipse(figure, 10, 7, 5, 5.5, ('0', 'f', 'f'))
+poly_fill(figure, [(2, 35), (4, 14), (8, 12), (12, 12), (16, 14), (18, 35)], '0')
+rect(figure, 5, 12, 15, 14, '2')                                 # la bufanda roja
+rect(figure, 6, 12, 8, 13, '3')
+rect(figure, 13, 15, 15, 22, '2')                                # la punta que cuelga
+out += block("scarf_figure", 20, 36, [figure.rows()], header=["pivot 0.5 0", "outline 0"])
+
 
 write("Zones.txt", out)
 print("Listo: Zones.txt")

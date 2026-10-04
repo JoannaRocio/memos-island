@@ -29,6 +29,8 @@ namespace MemosIsland.Story
         public string starterUid;
         public string objective = "";
         public List<string> flags = new();
+        [UnityEngine.Tooltip("Día (yyyy-MM-dd) en que perdiste en la Copa: se vuelve a intentar el sábado siguiente.")]
+        public string cupLostOn = "";
 
         public bool Has(string flag) => flags.Contains(flag);
 
