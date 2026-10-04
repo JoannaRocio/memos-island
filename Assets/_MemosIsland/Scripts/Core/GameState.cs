@@ -30,6 +30,7 @@ namespace MemosIsland.Core
         public List<ItemStack> inventory = new();
         public Farm.IslandState island = new();
         public Town.TownState town = new();
+        public Story.StoryState story = new();
 
         // ------------------------------------------------------------------ Inventario
 

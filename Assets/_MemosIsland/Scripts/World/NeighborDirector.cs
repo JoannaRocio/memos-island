@@ -26,6 +26,9 @@ namespace MemosIsland.World
 
         public static NeighborDirector Current { get; private set; }
 
+        /// <summary>Vecinos que maneja una escena de la historia: el director no los hace aparecer.</summary>
+        public static readonly HashSet<string> Reserved = new();
+
         public void Setup(List<Vector2Int> exitCells) => exits = exitCells;
 
         void OnEnable() => Current = this;
@@ -69,6 +72,11 @@ namespace MemosIsland.World
             var now = Now;
             foreach (var data in db.neighbors.Where(n => n != null))
             {
+                if (Reserved.Contains(data.id))
+                {
+                    if (_present.ContainsKey(data.id)) Despawn(data.id);
+                    continue;
+                }
                 var entry = NeighborSchedule.Resolve(data, now);
                 bool wantHere = entry != null && entry.scene == _scene;
                 _present.TryGetValue(data.id, out var npc);

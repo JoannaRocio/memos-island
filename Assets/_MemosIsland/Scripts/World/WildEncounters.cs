@@ -62,6 +62,7 @@ namespace MemosIsland.World
                 return false;
             }
             if (ground == null || ground.GetTile((Vector3Int)cell) != encounterTile) return false;
+            if (GameRoot.Instance.State.team.Count == 0) return false; // sin Memos todavía (inicio de la historia)
             if (_rng.NextDouble() >= chancePerStep) return false;
 
             var entry = Pick();

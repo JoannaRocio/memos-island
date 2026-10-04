@@ -1,0 +1,61 @@
+# Historia (Fase 8): ojos del prólogo y tiles del Bosque Susurro. Generado por make_neighbors.py.
+
+sprite eyes
+size 40 10
+frame
+........................................
+........................................
+.....34444444.............34444444......
+....333300p444...........333300p444.....
+...333330033333.........333330033333....
+...222330033333.........222330033333....
+....2222002333...........2222002333.....
+.....22222222.............22222222......
+........................................
+........................................
+end
+
+sprite forest_floor
+size 16 16
+frame
+7mmmm6m6mmmmmmm6
+mm7mmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mmmmmmmmmmmmm7mm
+mmmiimmmm7mmmmmm
+mmmmmm6mmmmmmmm7
+mmmmmmmmmmmmmmmm
+mmmmmm6mmmmmmmmm
+mm7mmm7mmmmmmm7m
+mmmmmmm7mmmmmmmm
+mmmmmmmmm7miimmm
+mmmmmmmmmmmmmmmm
+m6m7mmmmm7mmmmmm
+mmmmmmmiimmm7mmm
+mmmmmmmmmm7mmm7m
+m7mmmmmmmmmmmmmm
+tile
+end
+
+sprite forest_grass
+size 16 16
+frame
+7mmmm6m6mmmmmmm6
+mm7mmmmmmmmmmmmm
+mmmmmmmmmmmmmmmm
+mm55mmm55mmm55mm
+mmm6immm67mmm6mm
+mm5mmm65mmmm5mm7
+mm6mmmm6mmmm6mmm
+m6mmmm6mmmm6mmmm
+mm76mm7m6mmmm67m
+mmm6mmm76mmmm6mm
+mm6mmmm6m7mi6mmm
+mm6mmmm6mmmm6mmm
+m6m6mmmm67mmm6mm
+m6mmmm6iimm67mmm
+mm6mmmm6mm7m6m7m
+m7mmmmmmmmmmmmmm
+tile
+end
+

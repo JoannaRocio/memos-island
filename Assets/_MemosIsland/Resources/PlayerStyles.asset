@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e426dfc2fae4cc4aa1d6b51d35dde2c, type: 3}
+  m_Name: PlayerStyles
+  m_EditorClassIdentifier: MemosIsland.Runtime::MemosIsland.Story.PlayerStyleSet
+  styles:
+  - name: Corto
+    down:
+    - {fileID: 21300000, guid: c7c10ddab851ead4a88adccc1efc0aaa, type: 3}
+    - {fileID: 21300000, guid: c224ae3996ec4a6468f3d7cb14a3b548, type: 3}
+    - {fileID: 21300000, guid: 6652459e954c463439e682fab79ace1e, type: 3}
+    up:
+    - {fileID: 21300000, guid: acea05bfc633864408f0adb456595c37, type: 3}
+    - {fileID: 21300000, guid: 4a6a214a8d343774aab239f34f5dd968, type: 3}
+    - {fileID: 21300000, guid: 069df0404daad704fae8b19d687d281c, type: 3}
+    left:
+    - {fileID: 21300000, guid: 269f338d530f1514b8c1e274ac82eae8, type: 3}
+    - {fileID: 21300000, guid: 8ac5f366bf4ae1f4d8f71892e3941486, type: 3}
+    - {fileID: 21300000, guid: cd37b7ab3b93c08429100637f6ced732, type: 3}
+    right:
+    - {fileID: 21300000, guid: f05629275b491034c9cc3a95916b4289, type: 3}
+    - {fileID: 21300000, guid: 018088aea47006c42be46f9440f0cf52, type: 3}
+    - {fileID: 21300000, guid: 12fe7b9ea181d1e4c81bb1b8bf21ed7a, type: 3}
+  - name: Largo
+    down:
+    - {fileID: 21300000, guid: f0bf6472eae18884fab1eedc6851f851, type: 3}
+    - {fileID: 21300000, guid: d8fd2fceaaf8a4e4ca918577e82045d9, type: 3}
+    - {fileID: 21300000, guid: fc630b63b5e2af2418b20052a752735b, type: 3}
+    up:
+    - {fileID: 21300000, guid: 11894844e1234f74c8f673b05578fe19, type: 3}
+    - {fileID: 21300000, guid: caa1b8febb4749649a7df6f70b2ebeca, type: 3}
+    - {fileID: 21300000, guid: 3521960789c7ae94a93ad5c66b072dfb, type: 3}
+    left:
+    - {fileID: 21300000, guid: 4596d8f07a79f1e44bce7fb3b7e27372, type: 3}
+    - {fileID: 21300000, guid: a8cb71963e7020948b7d8a8835689bcd, type: 3}
+    - {fileID: 21300000, guid: 6852ee3fa1d97f74abbddda19abf0e97, type: 3}
+    right:
+    - {fileID: 21300000, guid: 8cfae9b01d811d040a32cfb2e324a5ba, type: 3}
+    - {fileID: 21300000, guid: 8290ffd3e66736e478489a88cc5471d5, type: 3}
+    - {fileID: 21300000, guid: 8d5ca121b9552054f97806e76ba86e24, type: 3}
+  - name: Pinchudo
+    down:
+    - {fileID: 21300000, guid: 2e9339f8a7c6b2d49a790390a925443f, type: 3}
+    - {fileID: 21300000, guid: 6f0ce3ce7d04a584196860ea62fc54c2, type: 3}
+    - {fileID: 21300000, guid: f71b263e65723ea479e2fb86357d836c, type: 3}
+    up:
+    - {fileID: 21300000, guid: 5b4c2f11ad406634b86ff1d048c3334d, type: 3}
+    - {fileID: 21300000, guid: 242d5fe32f236c54cb1fd403f4fd4fe3, type: 3}
+    - {fileID: 21300000, guid: e00637f11f191204482617a8bbb79225, type: 3}
+    left:
+    - {fileID: 21300000, guid: 92d84e9a5b038ae47b3b689aa80938ee, type: 3}
+    - {fileID: 21300000, guid: 41953be4f1beca54c8d80827bab74faa, type: 3}
+    - {fileID: 21300000, guid: 2d7c38f7adb7e0c4fb77afa2926230a9, type: 3}
+    right:
+    - {fileID: 21300000, guid: 02d952e53ceb86f4182ea14159f3729b, type: 3}
+    - {fileID: 21300000, guid: 066974b1db33e1c449107922d95a8aa4, type: 3}
+    - {fileID: 21300000, guid: 09dac9941147e9541857620764fe6774, type: 3}
+  - name: Rodete
+    down:
+    - {fileID: 21300000, guid: 93573dc6e7b61eb4aa805890980499cb, type: 3}
+    - {fileID: 21300000, guid: 7d30c406d6604b446bdf83dedf783449, type: 3}
+    - {fileID: 21300000, guid: a1843ba8d5c397a45a04173e4d48a9d7, type: 3}
+    up:
+    - {fileID: 21300000, guid: c9fb8d3a15ad71b4d92bca2f92644440, type: 3}
+    - {fileID: 21300000, guid: 31315cdd9ca4b6f4d8adeba13b9e611f, type: 3}
+    - {fileID: 21300000, guid: 77d73e874631af5489e88c2facd9b7db, type: 3}
+    left:
+    - {fileID: 21300000, guid: 338f30f5492630f4696047b57872dbcb, type: 3}
+    - {fileID: 21300000, guid: 2c2d94fc2bc33064d946f96f0665a487, type: 3}
+    - {fileID: 21300000, guid: 619f94f3d9aed9347b8990f75e1a430d, type: 3}
+    right:
+    - {fileID: 21300000, guid: baf5bb15716539941b133c199286d989, type: 3}
+    - {fileID: 21300000, guid: dfb06419ea8634a489f106f99d50add7, type: 3}
+    - {fileID: 21300000, guid: 5154d6df13b0ad643acbb8f89907cc02, type: 3}

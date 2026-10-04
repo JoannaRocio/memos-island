@@ -51,6 +51,11 @@ namespace MemosIsland.World
         public void Interact(PlayerController player)
         {
             var root = GameRoot.Instance;
+            if (root.State.team.Count == 0)
+            {
+                root.Dialogue.Show(new[] { "Para correr necesitás al menos un Memo en tu equipo." });
+                return;
+            }
             root.Dialogue.ShowChoice(question, new[] { "¡Sí!", "Ahora no" }, choice =>
             {
                 if (choice != 0) return;

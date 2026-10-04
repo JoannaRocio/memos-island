@@ -24,7 +24,7 @@ namespace MemosIsland.UI
             var root = GameRoot.Instance;
             var clock = GameClock.Instance;
             bool covered = root != null && (root.MyMemos != null && root.MyMemos.IsOpen || root.MemoBox != null && root.MemoBox.IsOpen
-                                            || root.Lists != null && root.Lists.IsOpen
+                                            || root.Lists != null && root.Lists.IsOpen || UiKit.FullScreens > 0
                                             || root.Evolution != null && root.Evolution.IsRunning);
             bool show = clock != null && !covered && MapInfo.Current != null && MapInfo.Current.Outdoor
                         && Weather.IsRainy(clock.Now);
