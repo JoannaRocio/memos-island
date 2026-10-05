@@ -132,8 +132,8 @@ namespace MemosIsland.UI
             if (dir == _heldDir && ((_repeat -= Time.unscaledDeltaTime) > 0f || h != 0 && v == 0)) return;
             _repeat = dir == _heldDir ? 0.08f : 0.35f;
             _heldDir = dir;
-            if (v != 0) _selected = Mathf.Clamp(_selected + v, 0, Mathf.Max(0, _rows.Count - 1));
             AudioManager.Sfx("cursor", 0.6f);
+            if (v != 0) _selected = Mathf.Clamp(_selected + v, 0, Mathf.Max(0, _rows.Count - 1));
             else if (_content.tabs.Length > 1)
             {
                 _tab = (_tab + h + _content.tabs.Length) % _content.tabs.Length;
