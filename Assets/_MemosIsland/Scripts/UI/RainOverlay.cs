@@ -37,6 +37,7 @@ namespace MemosIsland.UI
             {
                 _nextLightning = Random.Range(6f, 14f);
                 StartCoroutine(Lightning());
+                AudioManager.Sfx("thunder", 0.6f, Random.Range(0.85f, 1.1f));
             }
 
             float h = sheetA.sprite.bounds.size.y;

@@ -16,6 +16,7 @@ namespace MemosIsland.World
         /// <param name="companionChanged">Avisa que cambió el compañero (para crear o quitar actores).</param>
         public static void Open(MemoInstance memo, Action<Emote> react, Action companionChanged)
         {
+            AudioManager.Cry(memo.Species);
             var root = GameRoot.Instance;
             var state = root.State;
             bool isCompanion = state.companionUid == memo.uid;

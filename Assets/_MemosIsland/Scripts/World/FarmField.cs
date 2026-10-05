@@ -83,6 +83,7 @@ namespace MemosIsland.World
             {
                 var cropId = FarmLogic.Harvest(plot, seed, state);
                 Refresh();
+                AudioManager.Sfx("get", 0.7f);
                 root.Dialogue.Show(new[] { $"¡Cosechaste: {MemoDatabase.Instance.GetItem(cropId)?.displayName}!" });
                 return;
             }

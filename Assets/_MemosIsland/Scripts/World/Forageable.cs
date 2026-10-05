@@ -20,6 +20,7 @@ namespace MemosIsland.World
         {
             var root = GameRoot.Instance;
             root.State.AddItem(itemId);
+            AudioManager.Sfx("get", 0.7f);
             root.State.island.foraged.Add(key);
             root.Dialogue.Show(new[] { $"Juntaste: {MemoDatabase.Instance.GetItem(itemId)?.displayName}." });
             Destroy(gameObject);

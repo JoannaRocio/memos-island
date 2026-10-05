@@ -111,6 +111,7 @@ namespace MemosIsland.UI
 
         static void Save(GameRoot root)
         {
+            if (root.CurrentSlot >= 0) AudioManager.Sfx("save");
             string text = root.CurrentSlot < 0
                 ? "La partida de prueba no se guarda. Empezá una Nueva partida desde el título para guardar."
                 : root.SaveNow() ? $"Partida guardada en la ranura {root.CurrentSlot + 1}." : "No se pudo guardar. Probá de nuevo.";

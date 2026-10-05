@@ -229,8 +229,10 @@ namespace MemosIsland.Story
         /// <summary>Prólogo (GDD §4): pantalla negra, tormenta, cadenas, dos ojos, la voz, el destello violeta y el título.</summary>
         IEnumerator Prologue()
         {
+            AudioManager.Instance?.SetOverride("apice");
             yield return new WaitForSeconds(0.8f);
             yield return Cutscene.Narrate("(Una tormenta. Truenos que hacen temblar el piso.)");
+            AudioManager.Sfx("thunder");
             yield return Cutscene.Flash(new Color(1f, 1f, 1f, 0.75f), 0.05f, 0.5f);
             yield return Cutscene.Narrate("(Voces que gritan. Cadenas que se arrastran sobre la piedra.)");
 
@@ -244,6 +246,7 @@ namespace MemosIsland.Story
             yield return Cutscene.Say("???", null, "Este es fuerte. Pónganle el collar.");
             yield return Cutscene.Narrate("(Un grito.)");
             Destroy(eyesRenderer.gameObject);
+            AudioManager.Sfx("collar");
             yield return Cutscene.Flash(new Color(0.61f, 0.24f, 1f, 1f), 0.25f, 1.6f);
             yield return new WaitForSeconds(0.6f);
             yield return Cutscene.Narrate("(…Después, silencio.)");
@@ -255,6 +258,7 @@ namespace MemosIsland.Story
             var chapter = _ui.Text(0, -10, UiKit.White, Order + 5, false);
             chapter.SetText("Capítulo 1: El Collar");
             _ui.Center(chapter, 0, -10);
+            AudioManager.Instance?.ClearOverride();
             yield return new WaitForSeconds(2.5f);
             Destroy(title.gameObject);
             Destroy(chapter.gameObject);
