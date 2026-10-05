@@ -254,15 +254,80 @@ def song(bpm, chords, melody, lead="flute", lead_gain=0.32, pad_gain=0.22, arp="
     return out
 
 
+def bird(start_hz, seed):
+    """Un pajarito: dos o tres píos cortos que suben y bajan."""
+    rnd = random.Random(seed)
+    out = []
+    for _ in range(rnd.randint(2, 3)):
+        n = int(rnd.uniform(0.06, 0.1) * RATE)
+        f0 = start_hz * rnd.uniform(0.9, 1.15)
+        ph = 0.0
+        for i in range(n):
+            k = i / n
+            f = f0 * (1 + 0.5 * math.sin(math.pi * k))
+            ph += f / RATE
+            out.append(math.sin(2 * math.pi * ph) * math.sin(math.pi * k))
+        out += [0.0] * int(rnd.uniform(0.04, 0.09) * RATE)
+    return out
+
+
+def granja():
+    """La granja del abuelo: vals de cuna en 3/4 con guitarra punteada, piano cálido y pajaritos."""
+    bpm = 72
+    sixteenth = 60.0 / bpm / 4
+    bar = 12 * sixteenth  # 3/4
+    chords = ["D", "A", "Bm", "G", "D", "Em", "A7", "D",
+              "G", "D", "Em", "A", "Bm", "G", "A7", "D"]
+    melody = ("f#5:6 e5:2 d5:4  e5:8 c#5:4  d5:6 c#5:2 b4:4  b4:12 "
+              "a4:4 d5:4 f#5:4  g5:6 f#5:2 e5:4  e5:4 g5:4 c#5:4  d5:12 "
+              "b5:6 a5:2 g5:4  a5:8 f#5:4  g5:6 f#5:2 e5:4  e5:8 c#5:4 "
+              "d5:4 f#5:4 b5:4  a5:6 g5:2 b4:4  c#5:4 e5:4 a5:4  d5:12")
+    loop_len = int(len(chords) * bar * RATE)
+    buf = [0.0] * (loop_len * 2)
+    for rep in range(2):
+        base = rep * loop_len
+        for b, name in enumerate(chords):
+            root, shape = chord(name)
+            start = base + int(b * bar * RATE)
+            # Colchón muy suave, solo para dar calidez.
+            place(buf, pad([hz(root + 12 + s) for s in shape[:3]], bar * 1.05), start, 0.08)
+            # Guitarra punteada: bajo en el 1 y los dedos en corcheas (3ra, 5ta, octava, 5ta, 3ra).
+            third, fifth = root + 12 + shape[1], root + 12 + shape[2]
+            pattern = [root - 12, third, fifth, root + 24, fifth, third]
+            for k, m in enumerate(pattern):
+                gain = 0.26 if k == 0 else 0.13
+                place(buf, pluck(hz(m), 1.6, bright=0.35 if k == 0 else 0.55, seed=b * 6 + k),
+                      start + int(k * 2 * sixteenth * RATE), gain)
+        # Melodía en piano cálido.
+        pos = base
+        for token in melody.split():
+            note, units = token.split(":")
+            length = int(units) * sixteenth
+            if note != "r":
+                place(buf, epiano(hz(midi(note)), length + 0.5), pos, 0.24)
+            pos += int(length * RATE)
+        # Pajaritos lejanos, de vez en cuando.
+        rnd = random.Random(rep + 3)
+        for i in range(4):
+            at = base + int((0.1 + 0.22 * i + rnd.uniform(0, 0.08)) * loop_len)
+            place(buf, bird(rnd.uniform(2600, 3400), seed=i + rep * 10), at, 0.035)
+
+    buf = lowpass(buf, 2400)
+    buf = reverb(buf, mix=0.24)
+    out = buf[loop_len:]
+    k = int(0.03 * RATE)
+    for i in range(k):
+        a = (i + 1) / k
+        out[-k + i] = out[-k + i] * (1 - a) + buf[loop_len - k + i] * a
+    return out
+
+
 SOFT_BEAT = {0: "k", 4: "s", 6: "s", 8: "k", 12: "s", 14: "s"}
 WALK_BEAT = {0: "k", 8: "s", 12: "s"}
 
 MUSIC = {
-    # Refugio: casa, tarde tranquila. Flauta lenta sobre arpa y colchón.
-    "refugio": lambda: song(68, ["Fmaj7", "Am7", "Bbmaj7", "C6", "Dm7", "Am7", "Gm7", "Csus4"],
-                            "a5:8 c6:4 a5:4  g5:12 e5:4  f5:8 d5:4 f5:4  e5:16 "
-                            "d5:4 f5:4 a5:8  c6:8 e5:8  f5:4 g5:4 a5:4 d6:4  c6:16",
-                            lead="flute", arp="updown", brightness=2600),
+    # Refugio (la granja del abuelo): vals de cuna con guitarra, piano cálido y pajaritos.
+    "refugio": granja,
     # Pueblo Puerto: soleado y amable. Piano eléctrico y arpa.
     "pueblo": lambda: song(86, ["Cmaj7", "Am7", "Dm7", "G7", "Em7", "Am7", "Fmaj7", "G6"],
                            "e5:4 g5:4 b5:4 g5:4  c6:8 a5:8  f5:4 a5:4 c6:4 a5:4  b5:8 g5:8 "
