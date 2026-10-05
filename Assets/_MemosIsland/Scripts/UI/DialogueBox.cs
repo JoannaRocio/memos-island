@@ -175,11 +175,20 @@ namespace MemosIsland.UI
                 {
                     selected = (selected + dir + options.Count) % options.Count;
                     _choiceRepeat = 0.2f;
+                    AudioManager.Sfx("cursor", 0.6f);
                 }
                 _choiceCursor.transform.localPosition = _choiceRowPositions[selected];
 
-                if (GameInput.ConfirmPressed) chosen = selected;
-                else if (GameInput.CancelPressed && cancelIndex >= 0) chosen = cancelIndex;
+                if (GameInput.ConfirmPressed)
+                {
+                    chosen = selected;
+                    AudioManager.Sfx("confirm", 0.7f);
+                }
+                else if (GameInput.CancelPressed && cancelIndex >= 0)
+                {
+                    chosen = cancelIndex;
+                    AudioManager.Sfx("cancel", 0.7f);
+                }
                 yield return null;
             }
             _choiceRoot.SetActive(false);
@@ -204,7 +213,10 @@ namespace MemosIsland.UI
                     break;
                 }
                 shown += GameSettings.CharactersPerSecond * Time.unscaledDeltaTime;
+                int before = text.VisibleCharacters;
                 text.VisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(shown));
+                // Blip de texto, una letra de cada tres (como en los juegos de GBA).
+                if (text.VisibleCharacters / 3 != before / 3) AudioManager.Sfx("blip", 0.35f);
                 yield return null;
             }
         }

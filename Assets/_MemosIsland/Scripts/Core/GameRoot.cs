@@ -80,6 +80,7 @@ namespace MemosIsland.Core
             NeighborDirector.Reserved.Clear();
             DontDestroyOnLoad(gameObject);
             if (GetComponent<Story.StoryDirector>() == null) gameObject.AddComponent<Story.StoryDirector>();
+            if (GetComponent<AudioManager>() == null) gameObject.AddComponent<AudioManager>();
             // Al darle Play a un mapa directo (sin pasar por el título), se juega con la partida de prueba.
             bool title = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == Story.TitleScreen.SceneName;
             if (giveDebugTeam && !title && state.team.Count == 0) state.GiveDebugTeam();

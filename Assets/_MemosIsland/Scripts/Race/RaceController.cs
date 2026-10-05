@@ -164,6 +164,7 @@ namespace MemosIsland.Race
             foreach (var text in new[] { "3", "2", "1", "¡YA!" })
             {
                 _hud.SetPanel(text);
+                AudioManager.Sfx(text == "¡YA!" ? "race_start" : "race_beep");
                 yield return new WaitForSeconds(0.6f);
             }
             _hud.SetPanel(null);
@@ -178,6 +179,7 @@ namespace MemosIsland.Race
                 playerRank = _sim.Player.rank,
                 racers = _sim.Racers.Count,
             };
+            AudioManager.Sfx(result.playerWon ? "race_win" : "race_lose");
 
             // Correr juntos suma confianza (+3, o +6 si ganaron) y les levanta el ánimo.
             foreach (var m in _sim.Player.memos.Where(m => m.hasRun))
@@ -224,6 +226,7 @@ namespace MemosIsland.Race
             if (wild.collared)
             {
                 // GDD §10: ganarle rompe el collar; tiembla, desorientado.
+                AudioManager.Sfx("collar");
                 yield return Say("El collar violeta se agrieta… y se parte en dos.");
                 yield return Say($"{wild.DisplayName} tiembla. Mira para todos lados como si despertara de un sueño muy largo. No sabe dónde está.");
             }

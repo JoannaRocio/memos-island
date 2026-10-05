@@ -113,6 +113,7 @@ namespace MemosIsland.UI
             }
             if (GameInput.ConfirmPressed && _rows.Count > 0 && _content.confirm != null)
             {
+                AudioManager.Sfx("confirm", 0.7f);
                 var message = _content.confirm(_tab, _selected);
                 Refresh();
                 if (!string.IsNullOrEmpty(message)) GameRoot.Instance.Dialogue.Show(new[] { message });
@@ -132,6 +133,7 @@ namespace MemosIsland.UI
             _repeat = dir == _heldDir ? 0.08f : 0.35f;
             _heldDir = dir;
             if (v != 0) _selected = Mathf.Clamp(_selected + v, 0, Mathf.Max(0, _rows.Count - 1));
+            AudioManager.Sfx("cursor", 0.6f);
             else if (_content.tabs.Length > 1)
             {
                 _tab = (_tab + h + _content.tabs.Length) % _content.tabs.Length;

@@ -1,3 +1,4 @@
+using MemosIsland.Core;
 using MemosIsland.UI;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ namespace MemosIsland.World
 
         public void Show(Emote emote, float seconds = 1.8f)
         {
+            AudioManager.Sfx("bubble", 0.4f, emote == Emote.Sad || emote == Emote.Scared ? 0.8f : 1f);
             var (text, color) = emote switch
             {
                 Emote.Love => ("♥", Red),

@@ -159,6 +159,7 @@ namespace MemosIsland.Story
         IEnumerator HardMoment()
         {
             yield return Cutscene.Wait(0.8f);
+            AudioManager.Instance?.SetOverride("apice");
             yield return Cutscene.Narrate("(El Pantano Pantufla. Huele a barro y a lluvia vieja. Hay huellas de ruedas en el camino.)");
             var player = Root.Player.Mover;
             var memo = MemoInstance.Create("pantuflo", 9, trust: 0);
@@ -182,6 +183,7 @@ namespace MemosIsland.Story
             while (mover.IsMoving) yield return null;
             bubble.Show(Emote.Love, 1.4f);
             yield return Cutscene.Wait(1.2f);
+            AudioManager.Sfx("collar", 0.6f);
             yield return Cutscene.Flash(new Color(0.61f, 0.24f, 1f, 0.6f), 0.1f, 0.6f);
             bubble.Show(Emote.Sad, 1.6f);
             yield return Cutscene.Narrate("(El collar brilla. Pantuflo se encoge, suelta un quejido… y retrocede.)");
@@ -190,6 +192,7 @@ namespace MemosIsland.Story
             yield return Cutscene.Narrate(
                 "(Se fue. Por un segundo te recordó a alguien. Y el collar no lo dejó quedarse.)",
                 "(Necesitás entender qué es ese collar. Anni sabe de Memos más que nadie en la isla.)");
+            AudioManager.Instance?.ClearOverride();
             S.Set("hard_moment");
             yield return NewObjective("Contarle a Anni, en la clínica, lo que viste en el Pantano.");
         }

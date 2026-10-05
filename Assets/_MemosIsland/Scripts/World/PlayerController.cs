@@ -63,6 +63,7 @@ namespace MemosIsland.World
         void OnStepFinished(GridMover mover)
         {
             _keepWalking = true;
+            AudioManager.Sfx("step", mover.IsRunning ? 0.35f : 0.25f, Random.Range(0.9f, 1.1f));
             MapManager.Instance?.OnPlayerStepped(mover.Cell);
         }
 

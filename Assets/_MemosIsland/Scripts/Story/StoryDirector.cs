@@ -215,8 +215,10 @@ namespace MemosIsland.Story
                 foodName != null
                     ? $"(Le ofrecés la {foodName} con la mano abierta. {StarterName} gruñe… y de pronto se queda quieto, olfateando.)"
                     : $"(Extendés la mano, despacio. {StarterName} gruñe… y de pronto se queda quieto, olfateando.)",
-                "(Huele la bufanda del abuelo. La reconoce.)",
-                "(De algún lado suena una cajita de música: la melodía que el abuelo tarareaba siempre.)");
+                "(Huele la bufanda del abuelo. La reconoce.)");
+            AudioManager.Instance?.SetOverride("cajita");
+            yield return Cutscene.Narrate("(De algún lado suena una cajita de música: la melodía que el abuelo tarareaba siempre.)");
+            AudioManager.Sfx("collar");
             yield return Cutscene.Flash(new Color(0.84f, 0.65f, 1f, 0.95f), 0.15f, 0.9f);
             memo.collared = false;
             view.Setup(mover, memo);
@@ -238,6 +240,7 @@ namespace MemosIsland.Story
 
         IEnumerator AnniHeals()
         {
+            AudioManager.Instance?.ClearOverride();
             yield return Cutscene.Wait(0.4f);
             var player = Root.Player.Mover;
             var anni = Cutscene.SpawnNeighbor("anni", player.Cell + new Vector2Int(0, 3), Direction.Down);

@@ -94,6 +94,7 @@ namespace MemosIsland.World
             wild.collared = entry.collared;
             var team = root.State.team;
 
+            AudioManager.Cry(wild.Species, wild.collared ? 0.8f : 1f);
             string intro = wild.collared
                 ? $"¡Un {wild.DisplayName} con collar! Sus ojos no tienen brillo…"
                 : wild.shiny ? $"¡Un {wild.DisplayName} salvaje… y brilla!" : $"¡Apareció un {wild.DisplayName} salvaje!";

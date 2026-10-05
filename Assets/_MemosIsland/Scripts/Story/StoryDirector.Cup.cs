@@ -145,7 +145,9 @@ namespace MemosIsland.Story
             while (!calmed) yield return null;
             Cutscene.Begin();
 
+            AudioManager.Instance?.SetOverride("cajita");
             yield return Cutscene.Narrate("(Pipo huele la bufanda del abuelo. Se queda quieto. Tiembla.)");
+            AudioManager.Sfx("collar");
             yield return Cutscene.Flash(new Color(0.84f, 0.65f, 1f, 0.95f), 0.15f, 0.9f);
             pipo.collared = false;
             view.Setup(mover, pipo);
@@ -171,6 +173,7 @@ namespace MemosIsland.Story
             NeighborFriendship.Add(Root.State.town.Get("lalo"), 100);
             Destroy(go);
             Cutscene.ReleaseNeighbor(lalo);
+            AudioManager.Instance?.ClearOverride();
             S.Set("cup_semi_done");
             yield return Announcer("Lalo se retira… ¡{nombre} pasa a la gran final!");
         }
@@ -280,6 +283,7 @@ namespace MemosIsland.Story
             figure.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
             figure.color = new Color(1f, 1f, 1f, 0f);
 
+            AudioManager.Instance?.SetOverride("apice");
             yield return Root.Fader.Fade(0f, 0.8f);
             yield return Cutscene.Narrate("(Mientras tanto, en el continente. Una torre de Ápice, en lo más alto.)");
             yield return Cutscene.Say("Director Sílex", null,
@@ -308,6 +312,7 @@ namespace MemosIsland.Story
             var text = end.Text(0, 8, UiKit.Gold, 960);
             text.transform.localScale = new Vector3(2f, 2f, 1f);
             text.SetText("Continuará…");
+            AudioManager.Instance?.SetOverride("cajita");
             end.Center(text, 0, 10);
             yield return Root.Fader.Fade(0f, 1f);
             yield return Cutscene.Wait(2.5f);
@@ -319,6 +324,7 @@ namespace MemosIsland.Story
             yield return Root.Fader.Fade(1f, 0.6f);
             end.Destroy();
             UiKit.FullScreens--;
+            AudioManager.Instance?.ClearOverride();
         }
     }
 }
