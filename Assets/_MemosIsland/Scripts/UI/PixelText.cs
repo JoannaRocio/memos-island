@@ -98,7 +98,7 @@ namespace MemosIsland.UI
                     var sprite = font.GetSprite(c);
                     if (sprite != null)
                     {
-                        if (shadow) Place(sprite, x + 1, y + 1, shadowColor, sortingOrder);
+                        if (shadow && !IsDark(color)) Place(sprite, x + 1, y + 1, shadowColor, sortingOrder);
                         Place(sprite, x, y, color, sortingOrder + 1);
                     }
                     x += font.Advance(c);
@@ -106,6 +106,12 @@ namespace MemosIsland.UI
             }
             for (int i = _used; i < _pool.Count; i++) _pool[i].enabled = false;
         }
+
+        /// <summary>
+        /// Los textos oscuros van sobre cajas claras: ahí la sombra molesta para leer. Solo los textos claros
+        /// (sobre fondo oscuro, como el título) llevan sombra.
+        /// </summary>
+        static bool IsDark(Color c) => c.r * 0.3f + c.g * 0.59f + c.b * 0.11f < 0.5f;
 
         void Place(Sprite sprite, int px, int py, Color c, int order)
         {
